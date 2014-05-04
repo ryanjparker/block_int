@@ -1,4 +1,4 @@
-# run simulation study
+# code to run simulation study
 library(fields)
 library(lhs)
 library(MASS)
@@ -14,7 +14,7 @@ source("R/estimate.R")
 	res <- mclapply(1:design$Nreps, function(i) {
 	#res <- lapply(1:design$Nreps, function(i) {
 		seed <- 1983 + i + design$Nreps*(which.exp-1)
-    set.seed(seed)  # set a seed for reproducibility
+		set.seed(seed)  # set a seed for reproducibility
 
 		# generate data
 		data <- generate_data(design, factors)
@@ -25,13 +25,35 @@ source("R/estimate.R")
 			res.orac <- eval.orac(design, factors, data)
 
 			# ... full
-			#res.full <- eval.full(design, factors, data)
+			res.full <- eval.full(design, factors, data)
 
-			# ... independent blocks/random assignment
-			res.indr <- eval.indr(design, factors, data)
+#			# 250 obs per block
+#			factors$Nblock_obs_ind <- 250
+#				res.indr <- eval.indr(design, factors, data)
+#				res.indc <- eval.indc(design, factors, data, res.indr$theta)
+#				rir_250 <- res.indr
+#				ric_250 <- res.indc
 
-			# ... independent blocks/cluster assignment
-			res.indc <- eval.indc(design, factors, data, res.indr$theta)
+			# 100 obs per block
+			factors$Nblock_obs_ind <- 100
+				res.indr <- eval.indr(design, factors, data)
+				res.indc <- eval.indc(design, factors, data, res.indr$theta)
+				rir_100 <- res.indr
+				ric_100 <- res.indc
+
+			# 50 obs per block
+			factors$Nblock_obs_ind <- 50
+				res.indr <- eval.indr(design, factors, data)
+				res.indc <- eval.indc(design, factors, data, res.indr$theta)
+				rir_50 <- res.indr
+				ric_50 <- res.indc
+
+			# 25 obs per block
+			factors$Nblock_obs_ind <- 25
+				res.indr <- eval.indr(design, factors, data)
+				res.indc <- eval.indc(design, factors, data, res.indr$theta)
+				rir_25 <- res.indr
+				ric_25 <- res.indc
 
 #			# ... dependent blocks/random assignment
 #			res.depr <- eval.depr(design, factors, data)
@@ -44,13 +66,23 @@ source("R/estimate.R")
 			# oracle
 			orac.status=res.orac$status, orac.time=res.orac$time, orac.rmse_t=res.orac$rmse_t, orac.rmse_p=res.orac$rmse_p, orac.rmse_s=res.orac$rmse_s,
 			# full
-			#full.status=res.full$status, full.time=res.full$time, full.rmse_t=res.full$rmse_t, full.rmse_p=res.full$rmse_p, full.rmse_s=res.full$rmse_s,
+			full.status=res.full$status, full.time=res.full$time, full.rmse_t=res.full$rmse_t, full.rmse_p=res.full$rmse_p, full.rmse_s=res.full$rmse_s,
 			# ind/random
-			indr.status=res.indr$status, indr.time=res.indr$time, indr.rmse_t=res.indr$rmse_t, indr.rmse_s=res.indr$rmse_s,
-				indr.rmse_full_p=res.indr$rmse_full_p, #indr.rmse_block_p=res.indr$rmse_block_p, indr.rmse_local_p=res.indr$rmse_local_p,
+			#ir250.status=rir_250$status, ir250.time=rir_250$time, ir250.rmse_t=rir_250$rmse_t, ir250.rmse_s=rir_250$rmse_s, ir250.rmse_full_p=rir_250$rmse_full_p,
+			ir100.status=rir_100$status, ir100.time=rir_100$time, ir100.rmse_t=rir_100$rmse_t, ir100.rmse_s=rir_100$rmse_s, ir100.rmse_full_p=rir_100$rmse_full_p,
+			ir50.status=rir_50$status, ir50.time=rir_50$time, ir50.rmse_t=rir_50$rmse_t, ir50.rmse_s=rir_50$rmse_s, ir50.rmse_full_p=rir_50$rmse_full_p,
+			ir25.status=rir_25$status, ir25.time=rir_25$time, ir25.rmse_t=rir_25$rmse_t, ir25.rmse_s=rir_25$rmse_s, ir25.rmse_full_p=rir_25$rmse_full_p,
 			# ind/cluster
-			indc.status=res.indc$status, indc.time=res.indc$time, indc.rmse_t=res.indc$rmse_t, indc.rmse_s=res.indc$rmse_s,
-				indc.rmse_full_p=res.indc$rmse_full_p#, indc.rmse_block_p=res.indc$rmse_block_p, indc.rmse_local_p=res.indc$rmse_local_p,
+			#ic250.status=ric_250$status, ic250.time=ric_250$time, ic250.rmse_t=ric_250$rmse_t, ic250.rmse_s=ric_250$rmse_s, ic250.rmse_full_p=ric_250$rmse_full_p,
+			ic100.status=ric_100$status, ic100.time=ric_100$time, ic100.rmse_t=ric_100$rmse_t, ic100.rmse_s=ric_100$rmse_s, ic100.rmse_full_p=ric_100$rmse_full_p,
+			ic50.status=ric_50$status, ic50.time=ric_50$time, ic50.rmse_t=ric_50$rmse_t, ic50.rmse_s=ric_50$rmse_s, ic50.rmse_full_p=ric_50$rmse_full_p,
+			ic25.status=ric_25$status, ic25.time=ric_25$time, ic25.rmse_t=ric_25$rmse_t, ic25.rmse_s=ric_25$rmse_s, ic25.rmse_full_p=ric_25$rmse_full_p
+#			# ind/random
+#			indr.status=res.indr$status, indr.time=res.indr$time, indr.rmse_t=res.indr$rmse_t, indr.rmse_s=res.indr$rmse_s,
+#				indr.rmse_full_p=res.indr$rmse_full_p, #indr.rmse_block_p=res.indr$rmse_block_p, indr.rmse_local_p=res.indr$rmse_local_p,
+#			# ind/cluster
+#			indc.status=res.indc$status, indc.time=res.indc$time, indc.rmse_t=res.indc$rmse_t, indc.rmse_s=res.indc$rmse_s,
+#				indc.rmse_full_p=res.indc$rmse_full_p#, indc.rmse_block_p=res.indc$rmse_block_p, indc.rmse_local_p=res.indc$rmse_local_p,
 #			# dep/random
 #			depr.status=res.depr$status, depr.time=res.depr$time, depr.rmse_t=res.depr$rmse_t, depr.rmse_s=res.depr$rmse_s,
 #				depr.rmse_full_p=res.depr$rmse_full_p, depr.rmse_block_p=res.depr$rmse_block_p, depr.rmse_local_p=res.depr$rmse_local_p,
@@ -243,7 +275,7 @@ print(round(unlist(r),3))
 		#B    <- B[1:data$n]
 
 		# fit model
-		fit <- hd.estimate(data, nb, B, cbind(1:nb,1:nb), factors$p, log(init.theta), rep(FALSE,factors$p), ce_cov, ce_partial, TRUE)
+		fit <- hd.estimate(data, nb, B, cbind(1:nb,1:nb), factors$p, log(init.theta), rep(FALSE,factors$p), ce_cov, ce_partial, FALSE)
 	})
 	t2 <- proc.time()-t1
 
@@ -386,6 +418,8 @@ print(round(unlist(r),3))
 	)
 }
 
+if (FALSE) { # test sim design
+
 # fixed design parameters
 sim.design <- list(
 	# number of replications
@@ -412,6 +446,8 @@ sim.factors <- expand.grid(
 	# observation variance?
 	sigma2=1
 )
+
+}
 
 if (FALSE) {
 	set.seed(311)
@@ -478,7 +514,7 @@ if (FALSE) {
 
 #print(pred.full); print(pred.indr); print(pred.indc)
 
-if (TRUE) {
+if (FALSE) {  # test run sims
 	options(cores=4)
 
 	# run the experiment for each combination of factors
