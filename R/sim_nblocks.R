@@ -33,7 +33,7 @@ sim.factors <- expand.grid(
 	sigma2=1
 )
 
-options(cores=10)
+options(cores=1)
 
 # run the experiment for each combination of factors
 #res <- lapply(1:nrow(sim.factors), function(i) {
