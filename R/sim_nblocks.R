@@ -43,7 +43,7 @@ if (FALSE) {
 	done
 }
 
-options(cores=4)
+options(cores=5)
 
 # run the experiment for each combination of factors
 #res <- lapply(1:nrow(sim.factors), function(i) {

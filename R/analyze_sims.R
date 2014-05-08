@@ -27,10 +27,18 @@ cat("100:",mean(ir100.rmse_full_p,na.rm=TRUE),mean(ir100.rmse_full_p/full.rmse_p
 cat("50:",mean(ir50.rmse_full_p,na.rm=TRUE),mean(ir50.rmse_full_p/full.rmse_p,na.rm=TRUE),mean(ic50.rmse_full_p,na.rm=TRUE),mean(ic50.rmse_full_p/full.rmse_p,na.rm=TRUE),"\n")
 cat("25:",mean(ir25.rmse_full_p,na.rm=TRUE),mean(ir25.rmse_full_p/full.rmse_p,na.rm=TRUE),mean(ic25.rmse_full_p,na.rm=TRUE),mean(ic25.rmse_full_p/full.rmse_p,na.rm=TRUE),"\n")
 
+cat("RMSE sensitivity\n")
+cat("Oracle:",mean(orac.rmse_s),"\n")
+cat("Full:",mean(full.rmse_s),"\n")
+cat("250:",mean(ir250.rmse_s,na.rm=TRUE),mean(ir250.rmse_s/full.rmse_s,na.rm=TRUE),mean(ic250.rmse_s,na.rm=TRUE),mean(ic250.rmse_s/full.rmse_s,na.rm=TRUE),"\n")
+cat("100:",mean(ir100.rmse_s,na.rm=TRUE),mean(ir100.rmse_s/full.rmse_s,na.rm=TRUE),mean(ic100.rmse_s,na.rm=TRUE),mean(ic100.rmse_s/full.rmse_s,na.rm=TRUE),"\n")
+cat("50:",mean(ir50.rmse_s,na.rm=TRUE),mean(ir50.rmse_s/full.rmse_s,na.rm=TRUE),mean(ic50.rmse_s,na.rm=TRUE),mean(ic50.rmse_s/full.rmse_s,na.rm=TRUE),"\n")
+cat("25:",mean(ir25.rmse_s,na.rm=TRUE),mean(ir25.rmse_s/full.rmse_s,na.rm=TRUE),mean(ic25.rmse_s,na.rm=TRUE),mean(ic25.rmse_s/full.rmse_s,na.rm=TRUE),"\n")
+
 })
 
 }
 
-for (i in c(2,5)) {
+for (i in c(1)) {
 	analyze_sims(i)
 }
