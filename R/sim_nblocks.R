@@ -22,7 +22,7 @@ sim.factors <- expand.grid(
 	# tau: difficulty of problem
 	tau=c(3),
 	# number of observations per input
-	Nper_p=50,
+	Nper_p=c(50,100,500),
 	# number of locations to predict at
 	Npred=100,
 	# % of observations per block
@@ -33,7 +33,15 @@ sim.factors <- expand.grid(
 	sigma2=1
 )
 
-options(cores=1)
+if (FALSE) {
+	for (i in 1:nrow(sim.factors)) {
+		dat <- generate_data(sim.design, sim.factors[i,])
+		print(round(dat$theta,2))
+	}
+	done
+}
+
+options(cores=20)
 
 # run the experiment for each combination of factors
 #res <- lapply(1:nrow(sim.factors), function(i) {

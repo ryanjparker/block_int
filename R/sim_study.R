@@ -27,12 +27,12 @@ source("R/estimate.R")
 			# ... full
 			res.full <- eval.full(design, factors, data)
 
-#			# 250 obs per block
-#			factors$Nblock_obs_ind <- 250
-#				res.indr <- eval.indr(design, factors, data)
-#				res.indc <- eval.indc(design, factors, data, res.indr$theta)
-#				rir_250 <- res.indr
-#				ric_250 <- res.indc
+			# 250 obs per block
+			factors$Nblock_obs_ind <- 250
+				res.indr <- eval.indr(design, factors, data)
+				res.indc <- eval.indc(design, factors, data, res.indr$theta)
+				rir_250 <- res.indr
+				ric_250 <- res.indc
 
 			# 100 obs per block
 			factors$Nblock_obs_ind <- 100
@@ -55,11 +55,11 @@ source("R/estimate.R")
 				rir_25 <- res.indr
 				ric_25 <- res.indc
 
-#			# ... dependent blocks/random assignment
-#			res.depr <- eval.depr(design, factors, data)
-#
-#			# ... dependent blocks/cluster assignment
-#			res.depc <- eval.depc(design, factors, data)
+			# ... dependent blocks/random assignment
+			#res.depr <- eval.depr(design, factors, data)
+
+			# ... dependent blocks/cluster assignment
+			#res.depc <- eval.depc(design, factors, data, res.depr$theta)
 
 		# return results
 		r <- list(seed=seed, p=factors$p, tau=factors$tau,
@@ -68,12 +68,12 @@ source("R/estimate.R")
 			# full
 			full.status=res.full$status, full.time=res.full$time, full.rmse_t=res.full$rmse_t, full.rmse_p=res.full$rmse_p, full.rmse_s=res.full$rmse_s,
 			# ind/random
-			#ir250.status=rir_250$status, ir250.time=rir_250$time, ir250.rmse_t=rir_250$rmse_t, ir250.rmse_s=rir_250$rmse_s, ir250.rmse_full_p=rir_250$rmse_full_p,
+			ir250.status=rir_250$status, ir250.time=rir_250$time, ir250.rmse_t=rir_250$rmse_t, ir250.rmse_s=rir_250$rmse_s, ir250.rmse_full_p=rir_250$rmse_full_p,
 			ir100.status=rir_100$status, ir100.time=rir_100$time, ir100.rmse_t=rir_100$rmse_t, ir100.rmse_s=rir_100$rmse_s, ir100.rmse_full_p=rir_100$rmse_full_p,
 			ir50.status=rir_50$status, ir50.time=rir_50$time, ir50.rmse_t=rir_50$rmse_t, ir50.rmse_s=rir_50$rmse_s, ir50.rmse_full_p=rir_50$rmse_full_p,
 			ir25.status=rir_25$status, ir25.time=rir_25$time, ir25.rmse_t=rir_25$rmse_t, ir25.rmse_s=rir_25$rmse_s, ir25.rmse_full_p=rir_25$rmse_full_p,
 			# ind/cluster
-			#ic250.status=ric_250$status, ic250.time=ric_250$time, ic250.rmse_t=ric_250$rmse_t, ic250.rmse_s=ric_250$rmse_s, ic250.rmse_full_p=ric_250$rmse_full_p,
+			ic250.status=ric_250$status, ic250.time=ric_250$time, ic250.rmse_t=ric_250$rmse_t, ic250.rmse_s=ric_250$rmse_s, ic250.rmse_full_p=ric_250$rmse_full_p,
 			ic100.status=ric_100$status, ic100.time=ric_100$time, ic100.rmse_t=ric_100$rmse_t, ic100.rmse_s=ric_100$rmse_s, ic100.rmse_full_p=ric_100$rmse_full_p,
 			ic50.status=ric_50$status, ic50.time=ric_50$time, ic50.rmse_t=ric_50$rmse_t, ic50.rmse_s=ric_50$rmse_s, ic50.rmse_full_p=ric_50$rmse_full_p,
 			ic25.status=ric_25$status, ic25.time=ric_25$time, ic25.rmse_t=ric_25$rmse_t, ic25.rmse_s=ric_25$rmse_s, ic25.rmse_full_p=ric_25$rmse_full_p
@@ -362,7 +362,7 @@ print(round(unlist(r),3))
 }
 
 # dependent blocks/cluster assignment
-"eval.depc" <- function(design, factors, data) {
+"eval.depc" <- function(design, factors, data, init.theta) {
 	status <- FALSE
 	mse_t  <- NA
 	mse_full_p  <- NA
