@@ -9,7 +9,9 @@ source("R/sim_study.R")
 # fixed design parameters
 sim.design <- list(
 	# number of replications
-	Nreps=100
+	Nreps=100,
+	# number used in sensitivity analysis
+	Nsens=1000
 )
 
 sim.factors <- expand.grid(
@@ -22,7 +24,7 @@ sim.factors <- expand.grid(
 	# tau: difficulty of problem
 	tau=c(3),
 	# number of observations per input
-	Nper_p=c(50,100,500),
+	Nper_p=c(50,100,250),
 	# number of locations to predict at
 	Npred=100,
 	# % of observations per block
@@ -41,7 +43,7 @@ if (FALSE) {
 	done
 }
 
-options(cores=20)
+options(cores=4)
 
 # run the experiment for each combination of factors
 #res <- lapply(1:nrow(sim.factors), function(i) {

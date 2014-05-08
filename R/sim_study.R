@@ -3,6 +3,7 @@ library(fields)
 library(lhs)
 library(MASS)
 library(multicore)
+library(sensitivity)
 
 #source("R/create_blocks.R")
 source("R/cov.R")
@@ -117,6 +118,10 @@ print(round(unlist(r),3))
 	#data$Xpred <- randomLHS(factors$Npred, factors$p)
 	data$Xpred <- matrix(runif(factors$Npred*factors$p),nrow=factors$Npred,ncol=factors$p)
 
+	# locations for sensitivity analysis
+	data$X1_s <- data.frame(matrix(runif(factors$p*design$Nsens),nrow=design$Nsens,ncol=factors$p))
+	data$X2_s <- data.frame(matrix(runif(factors$p*design$Nsens),nrow=design$Nsens,ncol=factors$p))
+
 	# set covariance parameters
 	#b <- 3
 	jvec <- 1:factors$p
@@ -139,6 +144,10 @@ print(round(unlist(r),3))
 
 	data$Yobs  <- y[1:data$n]
 	data$Ypred <- y[data$n+1:factors$Npred]
+
+	# compute sensitivity indices
+	iy <- chol2inv(chol(data$Sigma[1:data$n,1:data$n])) %*% data$Yobs
+	data$Si <- sobol2002(model = ce_full_pred_X, data$X1_s, data$X2_s, nboot = 0, Xobs=data$Xobs, iy=iy, theta=data$theta)
 
 	data
 }
@@ -167,7 +176,7 @@ print(round(unlist(r),3))
 
 	list(
 		status=status, time=as.vector(t2[3]),
-		rmse_t=sqrt(0), rmse_p=sqrt(mse_p), rmse_s=sqrt(0)
+		rmse_t=sqrt(mse_t), rmse_p=sqrt(mse_p), rmse_s=sqrt(mse_s)
 	)
 }
 
@@ -177,6 +186,7 @@ print(round(unlist(r),3))
 	mse_t  <- NA
 	mse_p  <- NA
 	mse_s  <- NA
+	Si     <- NA
 
 	t1 <- proc.time()
 	try({
@@ -192,6 +202,11 @@ print(round(unlist(r),3))
 			preds <- ce_full_pred(data$Yobs, data$n, factors$Npred, fitSigma)
 			mse_p <- mean( (preds-data$Ypred)^2 )
 
+			# compute sensitivity indices
+			iy <- chol2inv(chol(fitSigma[1:data$n,1:data$n])) %*% data$Yobs
+			Si <- sobol2002(model = ce_full_pred_X, data$X1_s, data$X2_s, nboot = 0, Xobs=data$Xobs, iy=iy, theta=fit$theta)
+			mse_s <- mean( (data$Si$T[,1]-Si$T[,1])^2 )
+
 			status <- TRUE
 		}
 	})
@@ -199,19 +214,21 @@ print(round(unlist(r),3))
 
 	list(
 		status=status, time=as.vector(t2[3]),
-		rmse_t=sqrt(mse_t), rmse_p=sqrt(mse_p), rmse_s=sqrt(mse_s)
+		rmse_t=sqrt(mse_t), rmse_p=sqrt(mse_p), rmse_s=sqrt(mse_s),
+		Si=Si
 	)
 }
 
 # independent blocks/random assignment
 "eval.indr" <- function(design, factors, data) {
-	status <- FALSE
-	mse_t  <- NA
+	status      <- FALSE
+	mse_t       <- NA
 	mse_full_p  <- NA
-	mse_block_p  <- NA
-	mse_local_p  <- NA
-	mse_s  <- NA
-	theta <- NA
+	mse_block_p <- NA
+	mse_local_p <- NA
+	mse_s       <- NA
+	theta       <- NA
+	Si          <- NA
 
 	t1 <- proc.time()
 	try({
@@ -244,6 +261,11 @@ print(round(unlist(r),3))
 			#preds <- ce_local_pred(data$Yobs, data$n, factors$Npred, fitSigma)
 			#mse_local_p <- mean( (preds-data$Ypred)^2 )
 
+			# compute sensitivity indices
+			iy <- chol2inv(chol(fitSigma[1:data$n,1:data$n])) %*% data$Yobs
+			Si <- sobol2002(model = ce_full_pred_X, data$X1_s, data$X2_s, nboot = 0, Xobs=data$Xobs, iy=iy, theta=fit$theta)
+			mse_s <- mean( (data$Si$T[,1]-Si$T[,1])^2 )
+
 			status <- TRUE
 		}
 	})
@@ -251,18 +273,20 @@ print(round(unlist(r),3))
 	list(
 		status=status, time=as.vector(t2[3]), theta=theta,
 		rmse_t=sqrt(mse_t), rmse_s=sqrt(mse_s),
-		rmse_full_p=sqrt(mse_full_p) #, rmse_block_p=sqrt(mse_block_p), rmse_local_p=sqrt(mse_local_p)
+		rmse_full_p=sqrt(mse_full_p), #rmse_block_p=sqrt(mse_block_p), rmse_local_p=sqrt(mse_local_p),
+		Si=Si
 	)
 }
 
 # independent blocks/cluster assignment
 "eval.indc" <- function(design, factors, data, init.theta) {
-	status <- FALSE
-	mse_t  <- NA
+	status      <- FALSE
+	mse_t       <- NA
 	mse_full_p  <- NA
-	mse_block_p  <- NA
-	mse_local_p  <- NA
-	mse_s  <- NA
+	mse_block_p <- NA
+	mse_local_p <- NA
+	mse_s       <- NA
+	Si          <- NA
 
 	t1 <- proc.time()
 	try({
@@ -293,6 +317,11 @@ print(round(unlist(r),3))
 			#preds <- ce_local_pred(data$Yobs, data$n, factors$Npred, fitSigma)
 			#mse_local_p <- mean( (preds-data$Ypred)^2 )
 
+			# compute sensitivity indices
+			iy <- chol2inv(chol(fitSigma[1:data$n,1:data$n])) %*% data$Yobs
+			Si <- sobol2002(model = ce_full_pred_X, data$X1_s, data$X2_s, nboot = 0, Xobs=data$Xobs, iy=iy, theta=fit$theta)
+			mse_s <- mean( (data$Si$T[,1]-Si$T[,1])^2 )
+
 			status <- TRUE
 		}
 	})
@@ -300,7 +329,8 @@ print(round(unlist(r),3))
 	list(
 		status=status, time=as.vector(t2[3]),
 		rmse_t=sqrt(mse_t), rmse_s=sqrt(mse_s),
-		rmse_full_p=sqrt(mse_full_p) #, rmse_block_p=sqrt(mse_block_p), rmse_local_p=sqrt(mse_local_p)
+		rmse_full_p=sqrt(mse_full_p), #rmse_block_p=sqrt(mse_block_p), rmse_local_p=sqrt(mse_local_p)
+		Si=Si
 	)
 }
 

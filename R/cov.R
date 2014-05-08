@@ -17,10 +17,19 @@ library(compiler)
 	as.vector( Sigma[Nfit+1:Npred,1:Nfit] %*% chol2inv(chol(Sigma[1:Nfit,1:Nfit])) %*% y )
 }
 
-"ce_full_pred_X" <- function(X, b) {
+"ce_full_pred_X" <- function(X, Xobs, iy, theta) {
 	# compute covariance between prediction and observation locations
 
+	# compute covariance between X and Xobs
+	Sigma <- t(exp(-apply(X, 1, function(row) {
+		apply(Xobs, 1, function(obs) {
+			theta %*% (row-obs)^2
+		})
+	})))
+
+	as.vector(Sigma %*% iy)
 }
+
 
 "ce_local_pred" <- function(y, Nfit, Npred, Sigma, Nlocal=100) {
 	y_0 <- rep(0, Npred)
