@@ -119,8 +119,10 @@ print(round(unlist(r),3))
 	data$Xpred <- matrix(runif(factors$Npred*factors$p),nrow=factors$Npred,ncol=factors$p)
 
 	# locations for sensitivity analysis
-	data$X1_s <- data.frame(matrix(runif(factors$p*design$Nsens),nrow=design$Nsens,ncol=factors$p))
-	data$X2_s <- data.frame(matrix(runif(factors$p*design$Nsens),nrow=design$Nsens,ncol=factors$p))
+	#data$X1_s <- data.frame(matrix(runif(factors$p*design$Nsens),nrow=design$Nsens,ncol=factors$p))
+	#data$X2_s <- data.frame(matrix(runif(factors$p*design$Nsens),nrow=design$Nsens,ncol=factors$p))
+	data$X1_s <- data.frame(randomLHS(design$Nsens, factors$p))
+	data$X2_s <- data.frame(randomLHS(design$Nsens, factors$p))
 
 	# set covariance parameters
 	#b <- 3

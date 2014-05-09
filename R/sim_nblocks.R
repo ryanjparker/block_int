@@ -11,7 +11,7 @@ sim.design <- list(
 	# number of replications
 	Nreps=100,
 	# number used in sensitivity analysis
-	Nsens=1000
+	Nsens=5000
 )
 
 sim.factors <- expand.grid(
@@ -43,7 +43,7 @@ if (FALSE) {
 	done
 }
 
-options(cores=5)
+options(cores=20)
 
 # run the experiment for each combination of factors
 #res <- lapply(1:nrow(sim.factors), function(i) {

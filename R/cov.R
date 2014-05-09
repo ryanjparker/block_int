@@ -1,5 +1,9 @@
 # function to compute anisotropic squared exponential covariance
 library(compiler)
+library(Rcpp)
+sourceCpp("src/cov.cpp")
+print(ce_full_pred_X_cov)
+print(str(ce_full_pred_X_cov(matrix(runif(100*2),nrow=100), matrix(runif(100*2),nrow=100), c(0.3,0.3))))
 
 #"ce_cov" <- cmpfun( function(theta, X) {
 "ce_cov" <- function(theta, D) {
@@ -20,16 +24,17 @@ library(compiler)
 "ce_full_pred_X" <- function(X, Xobs, iy, theta) {
 	# compute covariance between prediction and observation locations
 
-	# compute covariance between X and Xobs
-	Sigma <- t(exp(-apply(X, 1, function(row) {
-		apply(Xobs, 1, function(obs) {
-			theta %*% (row-obs)^2
-		})
-	})))
+#	# compute covariance between X and Xobs
+#	Sigma <- t(exp(-apply(X, 1, function(row) {
+#		apply(Xobs, 1, function(obs) {
+#			theta %*% (row-obs)^2
+#		})
+#	})))
+
+	Sigma <- ce_full_pred_X_cov(as.matrix(X), as.matrix(Xobs), as.vector(theta))
 
 	as.vector(Sigma %*% iy)
 }
-
 
 "ce_local_pred" <- function(y, Nfit, Npred, Sigma, Nlocal=100) {
 	y_0 <- rep(0, Npred)
