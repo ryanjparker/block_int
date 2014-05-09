@@ -2,8 +2,8 @@
 library(compiler)
 library(Rcpp)
 sourceCpp("src/cov.cpp")
-print(ce_full_pred_X_cov)
-print(str(ce_full_pred_X_cov(matrix(runif(100*2),nrow=100), matrix(runif(100*2),nrow=100), c(0.3,0.3))))
+#print(ce_full_pred_X_cov)
+#print(str(ce_full_pred_X_cov(matrix(runif(100*2),nrow=100), matrix(runif(100*2),nrow=100), c(0.3,0.3))))
 
 #"ce_cov" <- cmpfun( function(theta, X) {
 "ce_cov" <- function(theta, D) {

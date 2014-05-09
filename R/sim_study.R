@@ -13,7 +13,9 @@ source("R/estimate.R")
 "sim_exp" <- function(design, factors, which.exp) {
 
 	res <- mclapply(1:design$Nreps, function(i) {
+	#res <- mclapply(1:3, function(i) {
 	#res <- lapply(1:design$Nreps, function(i) {
+	#res <- lapply(1:3, function(i) { #design$Nreps, function(i) {
 		seed <- 1983 + i + design$Nreps*(which.exp-1)
 		set.seed(seed)  # set a seed for reproducibility
 
@@ -25,6 +27,7 @@ source("R/estimate.R")
 			# .. oracle
 			res.orac <- eval.orac(design, factors, data)
 
+if (FALSE) {
 			# ... full
 			res.full <- eval.full(design, factors, data)
 
@@ -41,6 +44,7 @@ source("R/estimate.R")
 				res.indc <- eval.indc(design, factors, data, res.indr$theta)
 				rir_100 <- res.indr
 				ric_100 <- res.indc
+}
 
 			# 50 obs per block
 			factors$Nblock_obs_ind <- 50
@@ -66,18 +70,29 @@ source("R/estimate.R")
 		r <- list(seed=seed, p=factors$p, tau=factors$tau,
 			# oracle
 			orac.status=res.orac$status, orac.time=res.orac$time, orac.rmse_t=res.orac$rmse_t, orac.rmse_p=res.orac$rmse_p, orac.rmse_s=res.orac$rmse_s,
-			# full
-			full.status=res.full$status, full.time=res.full$time, full.rmse_t=res.full$rmse_t, full.rmse_p=res.full$rmse_p, full.rmse_s=res.full$rmse_s,
-			# ind/random
-			ir250.status=rir_250$status, ir250.time=rir_250$time, ir250.rmse_t=rir_250$rmse_t, ir250.rmse_s=rir_250$rmse_s, ir250.rmse_full_p=rir_250$rmse_full_p,
-			ir100.status=rir_100$status, ir100.time=rir_100$time, ir100.rmse_t=rir_100$rmse_t, ir100.rmse_s=rir_100$rmse_s, ir100.rmse_full_p=rir_100$rmse_full_p,
+#			# full
+#			full.status=res.full$status, full.time=res.full$time, full.rmse_t=res.full$rmse_t, full.rmse_p=res.full$rmse_p, full.rmse_s=res.full$rmse_s,
+			# ind random/cluster
+#			ir250.status=rir_250$status, ir250.time=rir_250$time, ir250.rmse_t=rir_250$rmse_t, ir250.rmse_s=rir_250$rmse_s, ir250.rmse_full_p=rir_250$rmse_full_p,
+#			ic250.status=ric_250$status, ic250.time=ric_250$time, ic250.rmse_t=ric_250$rmse_t, ic250.rmse_s=ric_250$rmse_s, ic250.rmse_full_p=ric_250$rmse_full_p,
+#			ir100.status=rir_100$status, ir100.time=rir_100$time, ir100.rmse_t=rir_100$rmse_t, ir100.rmse_s=rir_100$rmse_s, ir100.rmse_full_p=rir_100$rmse_full_p,
+#			ic100.status=ric_100$status, ic100.time=ric_100$time, ic100.rmse_t=ric_100$rmse_t, ic100.rmse_s=ric_100$rmse_s, ic100.rmse_full_p=ric_100$rmse_full_p,
 			ir50.status=rir_50$status, ir50.time=rir_50$time, ir50.rmse_t=rir_50$rmse_t, ir50.rmse_s=rir_50$rmse_s, ir50.rmse_full_p=rir_50$rmse_full_p,
-			ir25.status=rir_25$status, ir25.time=rir_25$time, ir25.rmse_t=rir_25$rmse_t, ir25.rmse_s=rir_25$rmse_s, ir25.rmse_full_p=rir_25$rmse_full_p,
-			# ind/cluster
-			ic250.status=ric_250$status, ic250.time=ric_250$time, ic250.rmse_t=ric_250$rmse_t, ic250.rmse_s=ric_250$rmse_s, ic250.rmse_full_p=ric_250$rmse_full_p,
-			ic100.status=ric_100$status, ic100.time=ric_100$time, ic100.rmse_t=ric_100$rmse_t, ic100.rmse_s=ric_100$rmse_s, ic100.rmse_full_p=ric_100$rmse_full_p,
 			ic50.status=ric_50$status, ic50.time=ric_50$time, ic50.rmse_t=ric_50$rmse_t, ic50.rmse_s=ric_50$rmse_s, ic50.rmse_full_p=ric_50$rmse_full_p,
-			ic25.status=ric_25$status, ic25.time=ric_25$time, ic25.rmse_t=ric_25$rmse_t, ic25.rmse_s=ric_25$rmse_s, ic25.rmse_full_p=ric_25$rmse_full_p
+			ir25.status=rir_25$status, ir25.time=rir_25$time, ir25.rmse_t=rir_25$rmse_t, ir25.rmse_s=rir_25$rmse_s, ir25.rmse_full_p=rir_25$rmse_full_p,
+			ic25.status=ric_25$status, ic25.time=ric_25$time, ic25.rmse_t=ric_25$rmse_t, ic25.rmse_s=ric_25$rmse_s, ic25.rmse_full_p=ric_25$rmse_full_p,
+
+			# sensitivity indices
+			orac.Si_S=data$Si$S[,1], orac.Si_T=data$Si$T[,1],
+#			full.Si_S=res.full$Si$S[,1], full.Si_T=res.full$Si$T[,1],
+#			ir250.Si_S=rir_250$Si$S[,1], ir250.Si_T=rir_250$Si$T[,1],
+#			ic250.Si_S=ric_250$Si$S[,1], ic250.Si_T=ric_250$Si$T[,1],
+#			ir100.Si_S=rir_100$Si$S[,1], ir100.Si_T=rir_100$Si$T[,1],
+#			ic100.Si_S=ric_100$Si$S[,1], ic100.Si_T=ric_100$Si$T[,1],
+			ir50.Si_S=rir_50$Si$S[,1], ir50.Si_T=rir_50$Si$T[,1],
+			ic50.Si_S=ric_50$Si$S[,1], ic50.Si_T=ric_50$Si$T[,1],
+			ir25.Si_S=rir_25$Si$S[,1], ir25.Si_T=rir_25$Si$T[,1],
+			ic25.Si_S=ric_25$Si$S[,1], ic25.Si_T=ric_25$Si$T[,1]
 #			# ind/random
 #			indr.status=res.indr$status, indr.time=res.indr$time, indr.rmse_t=res.indr$rmse_t, indr.rmse_s=res.indr$rmse_s,
 #				indr.rmse_full_p=res.indr$rmse_full_p, #indr.rmse_block_p=res.indr$rmse_block_p, indr.rmse_local_p=res.indr$rmse_local_p,
@@ -92,14 +107,16 @@ source("R/estimate.R")
 #				depc.rmse_full_p=res.depc$rmse_full_p, depc.rmse_block_p=res.depc$rmse_block_p, depc.rmse_local_p=res.depc$rmse_local_p
 
     )
-print(round(unlist(r),3))
+print(round(unlist(r),3)[1:20])
 
 		r
 	})
 
+
 	# return results
 	res.df <- as.data.frame(do.call("rbind",res))
-	for (i in 1:ncol(res.df)) { res.df[,i] <- unlist(res.df[,i]) }   # unlist the columns
+	start_Si <- which(colnames(res.df) == "orac.Si_S")
+	for (i in 1:(start_Si-1)) { res.df[,i] <- unlist(res.df[,i]) }   # unlist the columns
 
 	res.df
 }

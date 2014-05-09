@@ -35,6 +35,8 @@ cat("100:",mean(ir100.rmse_s,na.rm=TRUE),mean(ir100.rmse_s/full.rmse_s,na.rm=TRU
 cat("50:",mean(ir50.rmse_s,na.rm=TRUE),mean(ir50.rmse_s/full.rmse_s,na.rm=TRUE),mean(ic50.rmse_s,na.rm=TRUE),mean(ic50.rmse_s/full.rmse_s,na.rm=TRUE),"\n")
 cat("25:",mean(ir25.rmse_s,na.rm=TRUE),mean(ir25.rmse_s/full.rmse_s,na.rm=TRUE),mean(ic25.rmse_s,na.rm=TRUE),mean(ic25.rmse_s/full.rmse_s,na.rm=TRUE),"\n")
 
+#11-apply(do.call("rbind",res[[1]]$orac.Si),1,rank)
+
 })
 
 }
