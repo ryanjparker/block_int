@@ -13,6 +13,51 @@ double meanC(NumericVector x) {
 }
 
 // [[Rcpp::export]]
+NumericMatrix ce_cov_Rcpp(NumericVector theta, NumericMatrix X) {
+	int n      = X.nrow();
+	int Ntheta = theta.size();
+
+	NumericMatrix Sigma(n, n);
+
+	int i,j,k;
+
+	for (i = 0; i < n; i++) {
+		for (j = i; j < n; j++) {
+			Sigma(i,j) = 0;
+			for (k = 0; k < Ntheta; k++) {
+				Sigma(i,j) += theta[k]*pow(X(i,k)-X(j,k), 2);
+			}
+			Sigma(i,j) = exp(-Sigma(i,j));
+			Sigma(j,i) = Sigma(i,j);
+		}
+	}
+
+	return(Sigma);
+}
+
+// [[Rcpp::export]]
+NumericMatrix ce_partial_Rcpp(int e, NumericVector theta, NumericMatrix Sigma, NumericMatrix X) {
+	int n      = X.nrow();
+	int Ntheta = theta.size();
+
+	NumericMatrix P(n, n);
+
+	int i,j,k;
+	k = e-1;
+
+	double et = exp(theta[k]);
+
+	for (i = 0; i < n; i++) {
+		for (j = i; j < n; j++) {
+			P(i,j) = -pow(X(i,k)-X(j,k), 2) * et * Sigma(i,j);
+			P(j,i) = P(i,j);
+		}
+	}
+
+	return(P);
+}
+
+// [[Rcpp::export]]
 NumericMatrix ce_full_pred_X_cov(NumericMatrix X, NumericMatrix Xobs, NumericVector theta) {
 	int Npred  = X.nrow();
 	int Nobs   = Xobs.nrow();

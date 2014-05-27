@@ -6,15 +6,18 @@ sourceCpp("src/cov.cpp")
 #print(str(ce_full_pred_X_cov(matrix(runif(100*2),nrow=100), matrix(runif(100*2),nrow=100), c(0.3,0.3))))
 
 #"ce_cov" <- cmpfun( function(theta, X) {
-"ce_cov" <- function(theta, D) {
-	Sigma <- Reduce('+',
-		lapply(1:length(theta), function(k) { theta[k]*D[k,,] })
-	)
-	exp(-Sigma)
+#"ce_cov" <- function(theta, D) {
+"ce_cov" <- function(theta, X) {
+#	Sigma <- Reduce('+',
+#		lapply(1:length(theta), function(k) { theta[k]*D[k,,] })
+#	)
+#	exp(-Sigma)
+	ce_cov_Rcpp(theta, X)
 }#)
 
-"ce_partial" <- function(e, theta, Sigma, D) {
-	-D[e,,] * exp(theta[e]) * Sigma
+"ce_partial" <- function(e, theta, Sigma, X) {
+#	-D[e,,] * exp(theta[e]) * Sigma
+	ce_partial_Rcpp(as.integer(e), as.vector(theta), as.matrix(Sigma), as.matrix(X))
 }
 
 "ce_full_pred" <- function(y, Nfit, Npred, Sigma) {

@@ -24,7 +24,8 @@ sim.factors <- expand.grid(
 	# tau: difficulty of problem
 	tau=c(3),
 	# number of observations per input
-	Nper_p=c(50,100,250),
+	#Nper_p=c(50,100,250),
+	Nper_p=c(250),
 	# number of locations to predict at
 	Npred=100,
 	# % of observations per block
@@ -43,7 +44,7 @@ if (FALSE) {
 	done
 }
 
-options(cores=20)
+options(cores=1)
 
 # run the experiment for each combination of factors
 #res <- lapply(1:nrow(sim.factors), function(i) {
