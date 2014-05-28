@@ -5,6 +5,10 @@ sourceCpp("src/cov.cpp")
 #print(ce_full_pred_X_cov)
 #print(str(ce_full_pred_X_cov(matrix(runif(100*2),nrow=100), matrix(runif(100*2),nrow=100), c(0.3,0.3))))
 
+"sum_diag_mm" <- function(A, B) {
+	sum_diag_mm_Rcpp(as.matrix(A), as.matrix(B))
+}
+
 #"ce_cov" <- cmpfun( function(theta, X) {
 #"ce_cov" <- function(theta, D) {
 "ce_cov" <- function(theta, X) {

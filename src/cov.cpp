@@ -13,6 +13,21 @@ double meanC(NumericVector x) {
 }
 
 // [[Rcpp::export]]
+double sum_diag_mm_Rcpp(NumericMatrix A, NumericMatrix B) {
+	int n = A.nrow();
+	int i,j;
+	double s = 0;
+
+	for (i = 0; i < n; i++) {
+		for (j = 0; j < n; j++) {
+			s += A(i,j) * B(j,i);
+		}
+	}
+
+	return(s);
+}
+
+// [[Rcpp::export]]
 NumericMatrix ce_cov_Rcpp(NumericVector theta, NumericMatrix X) {
 	int n      = X.nrow();
 	int Ntheta = theta.size();

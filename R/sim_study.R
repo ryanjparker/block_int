@@ -12,10 +12,10 @@ source("R/estimate.R")
 # function to execte the simulation study based on given factors
 "sim_exp" <- function(design, factors, which.exp) {
 
-	#res <- mclapply(1:design$Nreps, function(i) {
+	res <- mclapply(1:design$Nreps, function(i) {
 	#res <- mclapply(1:3, function(i) {
 	#res <- lapply(1:design$Nreps, function(i) {
-	res <- lapply(1:1, function(i) { #design$Nreps, function(i) {
+	#res <- lapply(1:1, function(i) { #design$Nreps, function(i) {
 		seed <- 1983 + i + design$Nreps*(which.exp-1)
 		set.seed(seed)  # set a seed for reproducibility
 
@@ -29,6 +29,8 @@ source("R/estimate.R")
 
 			# ... full
 			res.full <- eval.full(design, factors, data)
+
+			# ... independent blocks
 
 			# 250 obs per block
 			factors$Nblock_obs_ind <- 250
@@ -57,6 +59,22 @@ source("R/estimate.R")
 				res.indc <- eval.indc(design, factors, data, res.indr$theta)
 				rir_25 <- res.indr
 				ric_25 <- res.indc
+
+			# ... dependent blocks
+
+			# 50 obs per block
+			factors$Nblock_obs_dep <- 50
+				res.depr <- eval.depr(design, factors, data)
+				res.depc <- eval.depc(design, factors, data, res.depr$theta)
+				rdr_50 <- res.depr
+				rdc_50 <- res.depc
+
+			# 25 obs per block
+			factors$Nblock_obs_dep <- 25
+				res.depr <- eval.depr(design, factors, data)
+				res.depc <- eval.depc(design, factors, data, res.depr$theta)
+				rdr_25 <- res.depr
+				rdc_25 <- res.depc
 
 			# ... dependent blocks/random assignment
 			#res.depr <- eval.depr(design, factors, data)
@@ -88,10 +106,20 @@ source("R/estimate.R")
 			ir25.rmse_s_S=rir_25$rmse_s_T, ir25.rmse_s_T=rir_25$rmse_s_T,
 			ic25.status=ric_25$status, ic25.time=ric_25$time, ic25.rmse_t=ric_25$rmse_t, ic25.rmse_full_p=ric_25$rmse_full_p,
 			ic25.rmse_s_S=ric_25$rmse_s_T, ic25.rmse_s_T=ric_25$rmse_s_T,
+			# dep random/cluster
+			dr50.status=rdr_50$status, dr50.time=rdr_50$time, dr50.rmse_t=rdr_50$rmse_t, dr50.rmse_full_p=rdr_50$rmse_full_p,
+			dr50.rmse_s_S=rdr_50$rmse_s_T, dr50.rmse_s_T=rdr_50$rmse_s_T,
+			dc50.status=rdc_50$status, dc50.time=rdc_50$time, dc50.rmse_t=rdc_50$rmse_t, dc50.rmse_full_p=rdc_50$rmse_full_p,
+			dc50.rmse_s_S=rdc_50$rmse_s_T, dc50.rmse_s_T=rdc_50$rmse_s_T,
+			dr25.status=rdr_25$status, dr25.time=rdr_25$time, dr25.rmse_t=rdr_25$rmse_t, dr25.rmse_full_p=rdr_25$rmse_full_p,
+			dr25.rmse_s_S=rdr_25$rmse_s_T, dr25.rmse_s_T=rdr_25$rmse_s_T,
+			dc25.status=rdc_25$status, dc25.time=rdc_25$time, dc25.rmse_t=rdc_25$rmse_t, dc25.rmse_full_p=rdc_25$rmse_full_p,
+			dc25.rmse_s_S=rdc_25$rmse_s_T, dc25.rmse_s_T=rdc_25$rmse_s_T,
 
 			# sensitivity indices
 			orac.Si_S=data$Si_S, orac.Si_T=data$Si_T,
 			full.Si_S=res.full$Si_S, full.Si_T=res.full$Si_T,
+			# ind
 			ir250.Si_S=rir_250$Si_S, ir250.Si_T=rir_250$Si_T,
 			ic250.Si_S=ric_250$Si_S, ic250.Si_T=ric_250$Si_T,
 			ir100.Si_S=rir_100$Si_S, ir100.Si_T=rir_100$Si_T,
@@ -99,7 +127,13 @@ source("R/estimate.R")
 			ir50.Si_S=rir_50$Si_S, ir50.Si_T=rir_50$Si_T,
 			ic50.Si_S=ric_50$Si_S, ic50.Si_T=ric_50$Si_T,
 			ir25.Si_S=rir_25$Si_S, ir25.Si_T=rir_25$Si_T,
-			ic25.Si_S=ric_25$Si_S, ic25.Si_T=ric_25$Si_T
+			ic25.Si_S=ric_25$Si_S, ic25.Si_T=ric_25$Si_T,
+			# dep
+			dr50.Si_S=rdr_50$Si_S, dr50.Si_T=rdr_50$Si_T,
+			dc50.Si_S=rdc_50$Si_S, dc50.Si_T=rdc_50$Si_T,
+			dr25.Si_S=rdr_25$Si_S, dr25.Si_T=rdr_25$Si_T,
+			dc25.Si_S=rdc_25$Si_S, dc25.Si_T=rdc_25$Si_T
+
 #			# ind/random
 #			indr.status=res.indr$status, indr.time=res.indr$time, indr.rmse_t=res.indr$rmse_t, indr.rmse_s=res.indr$rmse_s,
 #				indr.rmse_full_p=res.indr$rmse_full_p, #indr.rmse_block_p=res.indr$rmse_block_p, indr.rmse_local_p=res.indr$rmse_local_p,
@@ -220,7 +254,7 @@ print(colnames(res.df))
 	t1 <- proc.time()
 	try({
 		# fit full model
-		fit <- hd.estimate(data, 1, rep(1,data$n), matrix(1,nrow=1,ncol=1), factors$p, log(data$theta), rep(FALSE,factors$p), ce_cov, ce_partial, TRUE)
+		fit <- hd.estimate(data, 1, rep(1,data$n), matrix(1,nrow=1,ncol=1), factors$p, log(data$theta), rep(FALSE,factors$p), ce_cov, ce_partial, FALSE)
 
 		if (fit$convergence) {
 			mse_t <- mean( (fit$theta-data$theta)^2 )
@@ -383,12 +417,16 @@ print(colnames(res.df))
 
 # dependent blocks/random assignment
 "eval.depr" <- function(design, factors, data) {
-	status <- FALSE
-	mse_t  <- NA
+	status      <- FALSE
+	mse_t       <- NA
 	mse_full_p  <- NA
-	mse_block_p  <- NA
-	mse_local_p  <- NA
-	mse_s  <- NA
+	mse_block_p <- NA
+	mse_local_p <- NA
+	mse_s_S     <- NA
+	mse_s_T     <- NA
+	theta       <- NA
+	Si_S        <- NA
+	Si_T        <- NA
 
 	t1 <- proc.time()
 	try({
@@ -401,7 +439,7 @@ print(colnames(res.df))
 
 		# get neighbors
 		block_order <- sample(1:nb, nb)
-		lag <- 3
+		lag <- 2
 		nmat <- c()
 		sapply(1:nb, function(i) {
 			for (j in i+1:lag) {
@@ -412,54 +450,64 @@ print(colnames(res.df))
 
 		# fit model
 		fit <- hd.estimate(data, nb, B, nmat, factors$p, log(data$theta), rep(FALSE,factors$p), ce_cov, ce_partial, FALSE)
+	})
+	t2 <- proc.time()-t1
 
+	try({
 		if (fit$convergence) {
+			theta <- fit$theta
+
 			mse_t <- mean( (fit$theta-data$theta)^2 )
 
 			# compute covariance for fitted model
-#			fitSigma <- factors$sigma2 * ce_cov(fit$theta, data$D)
 			fitSigma <- factors$sigma2 * ce_cov(fit$theta, data$X)
 
 			preds <- ce_full_pred(data$Yobs, data$n, factors$Npred, fitSigma)
 			mse_full_p <- mean( (preds-data$Ypred)^2 )
-#			preds <- ce_block_pred(fit$theta, data$Yobs, data$n, factors$Npred, B, newB, data$D, nmat)
-			mse_block_p <- mean( (preds-data$Ypred)^2 )
-			preds <- ce_local_pred(data$Yobs, data$n, factors$Npred, fitSigma)
-			mse_local_p <- mean( (preds-data$Ypred)^2 )
+
+			# compute sensitivity indices
+			iy <- chol2inv(chol(fitSigma[1:data$n,1:data$n])) %*% data$Yobs
+			Si <- sobol2002(model = ce_full_pred_X, data$X1_s, data$X2_s, nboot = 0, Xobs=data$Xobs, iy=iy, theta=fit$theta)
+			Si_S <- Si$S[,1]
+			Si_T <- Si$T[,1]
+			mse_s_S <- mean( (data$Si_S-Si_S)^2 )
+			mse_s_T <- mean( (data$Si_T-Si_T)^2 )
 
 			status <- TRUE
 		}
 	})
-	t2 <- proc.time()-t1
 
 	list(
-		status=status, time=as.vector(t2[3]),
-		rmse_t=sqrt(mse_t), rmse_s=sqrt(mse_s),
-		rmse_full_p=sqrt(mse_full_p), rmse_block_p=sqrt(mse_block_p), rmse_local_p=sqrt(mse_local_p)
+		status=status, time=as.vector(t2[3]), theta=theta,
+		rmse_t=sqrt(mse_t), rmse_s_S=sqrt(mse_s_S), rmse_s_T=sqrt(mse_s_T),
+		rmse_full_p=sqrt(mse_full_p),
+		Si_S=Si_S, Si_T=Si_T
 	)
 }
 
 # dependent blocks/cluster assignment
 "eval.depc" <- function(design, factors, data, init.theta) {
-	status <- FALSE
-	mse_t  <- NA
+	status      <- FALSE
+	mse_t       <- NA
 	mse_full_p  <- NA
-	mse_block_p  <- NA
-	mse_local_p  <- NA
-	mse_s  <- NA
+	mse_block_p <- NA
+	mse_local_p <- NA
+	mse_s_S     <- NA
+	mse_s_T     <- NA
+	Si_S        <- NA
+	Si_T        <- NA
 
 	t1 <- proc.time()
 	try({
 		# assign to blocks
-		sy <- sort(data$Yobs,index.return=TRUE)$ix
+		initSigma <- factors$sigma2 * ce_cov(init.theta, data$X)
+		hc <- hclust( as.dist( 1-initSigma[1:data$n,1:data$n] ) )
 		nb <- ceiling(data$n/factors$Nblock_obs_dep)
-		oy <- unlist(lapply(1:factors$Nblock_obs_dep, function(b) seq(1:nb)[sample(nb)]))[1:data$n]
-		B  <- oy[sy]
-		newB <- sample(nb,factors$Npred,replace=TRUE)
+		B  <- cutree(hc, k=nb)
 
 		# get neighbors
 		block_order <- unique(B[hc$order])
-		lag <- 3
+		lag <- 2
 		nmat <- c()
 		sapply(1:nb, function(i) {
 			for (j in i+1:lag) {
@@ -469,31 +517,39 @@ print(colnames(res.df))
 		})
 
 		# fit model
-		fit <- hd.estimate(data, nb, B, nmat, factors$p, log(data$theta), rep(FALSE,factors$p), ce_cov, ce_partial, FALSE)
+		fit <- hd.estimate(data, nb, B, nmat, factors$p, log(init.theta), rep(FALSE,factors$p), ce_cov, ce_partial, FALSE)
 
+	})
+	t2 <- proc.time()-t1
+
+	try({
 		if (fit$convergence) {
 			mse_t <- mean( (fit$theta-data$theta)^2 )
 
 			# compute covariance for fitted model
-#			fitSigma <- factors$sigma2 * ce_cov(fit$theta, data$D)
 			fitSigma <- factors$sigma2 * ce_cov(fit$theta, data$X)
 
 			preds <- ce_full_pred(data$Yobs, data$n, factors$Npred, fitSigma)
 			mse_full_p <- mean( (preds-data$Ypred)^2 )
-#			preds <- ce_block_pred(fit$theta, data$Yobs, data$n, factors$Npred, B, newB, data$D, nmat)
-			mse_block_p <- mean( (preds-data$Ypred)^2 )
-			preds <- ce_local_pred(data$Yobs, data$n, factors$Npred, fitSigma)
-			mse_local_p <- mean( (preds-data$Ypred)^2 )
+
+			# compute sensitivity indices
+			iy <- chol2inv(chol(fitSigma[1:data$n,1:data$n])) %*% data$Yobs
+			Si <- sobol2002(model = ce_full_pred_X, data$X1_s, data$X2_s, nboot = 0, Xobs=data$Xobs, iy=iy, theta=fit$theta)
+			mse_s <- mean( (data$Si$T[,1]-Si$T[,1])^2 )
+			Si_S <- Si$S[,1]
+			Si_T <- Si$T[,1]
+			mse_s_S <- mean( (data$Si_S-Si_S)^2 )
+			mse_s_T <- mean( (data$Si_T-Si_T)^2 )
 
 			status <- TRUE
 		}
 	})
-	t2 <- proc.time()-t1
 
 	list(
 		status=status, time=as.vector(t2[3]),
-		rmse_t=sqrt(mse_t), rmse_s=sqrt(mse_s),
-		rmse_full_p=sqrt(mse_full_p), rmse_block_p=sqrt(mse_block_p), rmse_local_p=sqrt(mse_local_p)
+		rmse_t=sqrt(mse_t), rmse_s_S=sqrt(mse_s_S), rmse_s_T=sqrt(mse_s_T),
+		rmse_full_p=sqrt(mse_full_p),
+		Si_S=Si_S, Si_T=Si_T
 	)
 }
 

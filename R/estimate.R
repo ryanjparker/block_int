@@ -54,7 +54,8 @@
 		apply(neighbors, 1, function(row) {
 			in.pair <- which(B==row[1] | B==row[2])
 
-			Sigma <- f.cc(t_theta(theta), data$D[,in.pair,in.pair])
+			#Sigma <- f.cc(t_theta(theta), data$D[,in.pair,in.pair])
+			Sigma <- f.cc(t_theta(theta), data$X[in.pair,])
 			invSigma <- chol2inv(chol(Sigma))
 
 			q <- invSigma %*% data$Yobs[in.pair]
@@ -63,7 +64,8 @@
 			for (r in 1:R) {
 				if (theta_fixed[r]) { next; }
 
-				partial <- f.cp(r, theta, Sigma, data$D[,in.pair,in.pair])
+				#partial <- f.cp(r, theta, Sigma, data$D[,in.pair,in.pair])
+				partial <- f.cp(r, theta, Sigma, data$X[in.pair,])
 				W[[r]] <<- invSigma %*% partial
 				u[r] <<- u[r] -0.5 * sum( diag(W[[r]]) ) + 0.5 * t(q) %*% partial %*% q
 			}
@@ -74,7 +76,8 @@
 			sapply(seq.R, function(r) {
 				sapply(r:R, function(s) {
 					if (!theta_fixed[r] & !theta_fixed[s]) {
-						H[index] <<- H[index] + 0.5 * sum(diag( W[[r]] %*% W[[s]] ))
+						#H[index] <<- H[index] + 0.5 * sum(diag( W[[r]] %*% W[[s]] ))
+						H[index] <<- H[index] + 0.5 * sum_diag_mm(W[[r]], W[[s]]) #sum(diag( W[[r]] %*% W[[s]] ))
 					}
 					index <<- index+1
 				})
@@ -120,7 +123,8 @@
 		ll <- sum( apply(neighbors, 1, function(row) {
 			in.pair <- which(B==row[1] | B==row[2])
 
-			Sigma     <- f.cc(t_theta(theta), data$D[,in.pair,in.pair])
+			#Sigma     <- f.cc(t_theta(theta), data$D[,in.pair,in.pair])
+			Sigma     <- f.cc(t_theta(theta), data$X[in.pair,])
 			cholSigma <- chol(Sigma)
 			invSigma  <- chol2inv(cholSigma)
 
@@ -208,8 +212,11 @@ if (FALSE) {
 
 # full model
 "eval_full" <- function(x, design, factors, data) {
+cat("This is broken.\n")
+return(NA)
 	# compute covariance
-	Sigma <- factors$sigma2 * ce_cov(exp(x), data$D[,1:data$n,1:data$n])
+	#Sigma <- factors$sigma2 * ce_cov(exp(x), data$D[,1:data$n,1:data$n])
+	Sigma <- factors$sigma2 * ce_cov(exp(x), data$X[1:data$n,])
 	cholSigma <- chol(Sigma)
 	invSigma <- chol2inv(cholSigma)
 
@@ -219,6 +226,7 @@ print(nll)
 	q <- invSigma %*% data$Yobs
 	W <- vector("list", factors$p)
 	lapply(1:factors$p, function(t) {
+#ACK
 		partial <- -exp(x[t]) * data$D[t,1:data$n,1:data$n] * Sigma
 		W[[t]] <<- invSigma %*% partial
 		grad[t] <<- 0.5*sum(diag( W[[t]] )) -0.5 * t(q) %*% partial %*% q
