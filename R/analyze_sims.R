@@ -258,6 +258,43 @@ mean(good.dc25)
 	dr25  <- round_df(as.data.frame(dr25))
 	dc25  <- round_df(as.data.frame(dc25))
 
+"tex_show" <- function(t,r) {
+	str <- paste("& &",t)
+	for (i in 1:length(r)) {
+		if (colnames(r[i]) == "time") next
+		f <- 1
+		if (colnames(r[i]) == "top3") f <- 100
+
+		str <- paste(str, "& ",r[i]*f)
+	}
+	cat(str,"\\\\ \n")
+	str
+}
+
+	print(full)
+	tex_show("Ind R 250",ir250)
+	tex_show("Ind C 250",ic250)
+	tex_show("Ind R 100",ir100)
+	tex_show("Ind C 100",ic100)
+	tex_show("Ind R 50",ir50)
+	tex_show("Ind C 50",ic50)
+	tex_show("Ind R 25",ir25)
+	tex_show("Ind C 25",ic25)
+	tex_show("Dep R 50",dr50)
+	tex_show("Dep C 50",dc50)
+	tex_show("Dep R 25",dr25)
+	tex_show("Dep C 25",dc25)
+return(NA)
+
+done
+	print(full)
+	print(rbind(
+		ir250,ic250,ir100,ic100,ir50,ic50,
+		ir25,ic25,dr50,dc50,dr25,dc25
+	))
+
+return(NA)
+
 cat("Full:\n");print(full)
 cat("IR 250:\n");print(ir250)
 cat("IC 250:\n");print(ic250)
@@ -327,6 +364,6 @@ cat("25:",round(mean(ir25.time),2),round(mean(full.time/ir25.time),2),round(mean
 
 }
 
-for (i in c(2,5,8)) {
+for (i in c(7,8,9)) {
 	analyze_sims(i)
 }
