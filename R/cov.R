@@ -16,7 +16,7 @@ sourceCpp("src/cov.cpp")
 #		lapply(1:length(theta), function(k) { theta[k]*D[k,,] })
 #	)
 #	exp(-Sigma)
-	ce_cov_Rcpp(theta, X)
+	ce_cov_Rcpp(as.vector(theta), as.matrix(X)) + diag(nrow(X))*0.001
 }#)
 
 "ce_partial" <- function(e, theta, Sigma, X) {
