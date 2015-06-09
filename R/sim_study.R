@@ -4,6 +4,7 @@ library(lhs)
 library(MASS)
 library(multicore)
 library(sensitivity)
+library(spacious)
 
 #source("R/create_blocks.R")
 source("R/cov.R")
@@ -168,8 +169,8 @@ print(colnames(res.df))
 
 	#res <- mclapply(1:design$Nreps, function(i) {
 	#res <- mclapply(1:3, function(i) {
-	#res <- lapply(1:design$Nreps, function(i) {
-	res <- lapply(1:1, function(i) { #design$Nreps, function(i) {
+	res <- lapply(1:design$Nreps, function(i) {
+	#res <- lapply(1:1, function(i) { #design$Nreps, function(i) {
 		seed <- 1983 + i + design$Nreps*(which.exp-1)
 		set.seed(seed)  # set a seed for reproducibility
 
@@ -183,49 +184,133 @@ print(colnames(res.df))
 
 if (TRUE) {
 			# all data
-				res <- pred.full(design, factors, data); r <- c(r, full.time=res$time, full.rmse=res$rmse)
+				res <- pred.full(design, factors, data); r <- c(r, full=res)
+print(r)
+}
 
+if (TRUE) {
 			# ... local kriging
 				# 25
-				res <- pred.local(design, factors, data, 25);  r <- c(r, l25.time=res$time, l25.rmse=res$rmse)
+				res <- pred.local(design, factors, data, 25);  r <- c(r, l25=res)
 				# 50
-				res <- pred.local(design, factors, data, 50);  r <- c(r, l50.time=res$time, l50.rmse=res$rmse)
+				res <- pred.local(design, factors, data, 50);  r <- c(r, l50=res)
 				# 100
-				res <- pred.local(design, factors, data, 100); r <- c(r, l100.time=res$time, l100.rmse=res$rmse)
+				res <- pred.local(design, factors, data, 100); r <- c(r, l100=res)
 				# 250
-				res <- pred.local(design, factors, data, 250); r <- c(r, l250.time=res$time, l250.rmse=res$rmse)
+				#res <- pred.local(design, factors, data, 250); r <- c(r, l250=res)
+				# 500
+				#res <- pred.local(design, factors, data, 500); r <- c(r, l500=res)
+				# 1000
+				#res <- pred.local(design, factors, data, 1000); r <- c(r, l1000=res)
 }
 
 			# ... block kriging
-				# ordered
+if (FALSE) {
+				# independent ordered
 					# 25
-					res <- pred.order(design, factors, data, 25);  r <- c(r, o25.time=res$time, o25.rmse=res$rmse)
+					res <- pred.order(design, factors, data, 25, FALSE);  r <- c(r, o25_i=res)
 					# 50
-					res <- pred.order(design, factors, data, 50);  r <- c(r, o50.time=res$time, o50.rmse=res$rmse)
+					res <- pred.order(design, factors, data, 50, FALSE);  r <- c(r, o50_i=res)
 					# 100
-					res <- pred.order(design, factors, data, 100);  r <- c(r, o100.time=res$time, o100.rmse=res$rmse)
+					res <- pred.order(design, factors, data, 100, FALSE);  r <- c(r, o100_i=res)
 					# 250
-					res <- pred.order(design, factors, data, 250);  r <- c(r, o250.time=res$time, o250.rmse=res$rmse)
-				# clustering
-					# 25
-					res <- pred.clust(design, factors, data, 25);  r <- c(r, c25.time=res$time, c25.rmse=res$rmse)
-					# 50
-					res <- pred.clust(design, factors, data, 50);  r <- c(r, c50.time=res$time, c50.rmse=res$rmse)
-					# 100
-					res <- pred.clust(design, factors, data, 100);  r <- c(r, c100.time=res$time, c100.rmse=res$rmse)
-					# 250
-					res <- pred.clust(design, factors, data, 250);  r <- c(r, c250.time=res$time, c250.rmse=res$rmse)
+					res <- pred.order(design, factors, data, 250, FALSE);  r <- c(r, o250_i=res)
+}
 
+if (FALSE) {
+				# dependent ordered
+					# 25
+					res <- pred.order(design, factors, data, 25, TRUE);  r <- c(r, o25_d=res)
+					# 50
+					res <- pred.order(design, factors, data, 50, TRUE);  r <- c(r, o50_d=res)
+					# 100
+					res <- pred.order(design, factors, data, 100, TRUE);  r <- c(r, o100_d=res)
+					# 250
+					res <- pred.order(design, factors, data, 250, TRUE);  r <- c(r, o250_d=res)
+}
+
+if (FALSE) {
+if (FALSE) {
+				# perform the clustering once
+				t1 <- proc.time()
+				try({
+					hc <- hclust( as.dist( 1-data$Sigma[1:data$n,1:data$n] ) )
+				})
+				t2 <- proc.time()-t1
+				r <- c(r, clust.time=t2[3])
+print(r)
+}
+
+if (FALSE) {
+str(data$Xobs)
+				t1 <- proc.time()
+				try({
+str(km)
+				})
+				t2 <- proc.time()-t1
+				r <- c(r, clust.time=t2[3])
+print(r)
+done
+}
+
+if (TRUE) {
+				# independent clustering
+					# 25
+					res <- pred.clust(design, factors, data, 25, FALSE);  r <- c(r, c25_i=res)
+					# 50
+					res <- pred.clust(design, factors, data, 50, FALSE);  r <- c(r, c50_i=res)
+					# 100
+					res <- pred.clust(design, factors, data, 100, FALSE);  r <- c(r, c100_i=res)
+					# 250
+					res <- pred.clust(design, factors, data, 250, FALSE);  r <- c(r, c250_i=res)
+					# 500
+					res <- pred.clust(design, factors, data, 500, FALSE);  r <- c(r, c500_i=res)
+}
+
+if (TRUE) {
+				# dependent clustering
+					# 25
+#					res <- pred.clust(design, factors, data, 25, TRUE);  r <- c(r, c25_d=res)
+					# 50
+#					res <- pred.clust(design, factors, data, 50, TRUE);  r <- c(r, c50_d=res)
+					# 100
+					res <- pred.clust(design, factors, data, 100, TRUE);  r <- c(r, c100_d=res)
+					# 250
+					res <- pred.clust(design, factors, data, 250, TRUE);  r <- c(r, c250_d=res)
+					# 500
+					res <- pred.clust(design, factors, data, 500, TRUE);  r <- c(r, c500_d=res)
+					# 1000
+#					res <- pred.clust(design, factors, data, 1000, TRUE);  r <- c(r, c1000_d=res)
+}
+}
+
+if (FALSE) {
 			# ... best subset
 				# 25
+				res <- pred.sub(design, factors, data, 25);  r <- c(r, s25=res)
 				# 50
+				res <- pred.sub(design, factors, data, 50);  r <- c(r, s50=res)
 				# 100
+				res <- pred.sub(design, factors, data, 100);  r <- c(r, s100=res)
+				# 250
+				res <- pred.sub(design, factors, data, 250);  r <- c(r, s250=res)
+				# 500
+				res <- pred.sub(design, factors, data, 500);  r <- c(r, s500=res)
+				# 1000
+				res <- pred.sub(design, factors, data, 1000);  r <- c(r, s1000=res)
+				# 2000
+				res <- pred.sub(design, factors, data, 2000);  r <- c(r, s2000=res)
+				# 3000
+				res <- pred.sub(design, factors, data, 3000);  r <- c(r, s3000=res)
+print(r)
+done
+}
 
 		# return results
 		r <- c(seed=seed, p=factors$p, r)
 print(round(unlist(r),3))
 
-		r
+		unlist(r)
 	})
 
 	# return results
@@ -240,23 +325,36 @@ print(round(unlist(r),3))
 "generate_data" <- function(design, factors) {
 	data <- list()
 
-	data$n <- factors$p*factors$Nper_p
+	isp <- factors$pred
+
+	if (isp) {
+		# prediction study
+		data$n <- factors$Nper_p
+	} else {
+		# estimation study
+		data$n <- factors$p*factors$Nper_p
+	}
 
 	# locations to sample from
-	#data$Xobs <- matrix(seq(0,1,length=data$n), nrow=data$n, ncol=1)
-	data$Xobs <- randomLHS(data$n, factors$p)
+	if (isp & exists("predXobs")) {
+		data$Xobs <- predXobs
+	} else {
+		#data$Xobs <- matrix(seq(0,1,length=data$n), nrow=data$n, ncol=1)
+		data$Xobs <- randomLHS(data$n, factors$p+factors$Fzero)
+		#data$Xobs <- maximinLHS(data$n, factors$p)
+		if (isp) predXobs  <<- data$Xobs
+	}
 
 	# locations to predict at
-	#data$Xpred <- randomLHS(factors$Npred, factors$p)
-	data$Xpred <- matrix(runif(factors$Npred*factors$p),nrow=factors$Npred,ncol=factors$p)
+	if (isp & exists("predXpred")) {
+		data$Xpred <- predXpred
+	} else {
+		#data$Xpred <- randomLHS(factors$Npred, factors$p)
+		data$Xpred <- matrix(runif(factors$Npred*(factors$p+factors$Fzero)),nrow=factors$Npred,ncol=factors$p+factors$Fzero)
+		if (isp) predXpred  <<- data$Xpred
+	}
 
 	data$X <- rbind(data$Xobs, data$Xpred)
-
-	# locations for sensitivity analysis
-	#data$X1_s <- data.frame(matrix(runif(factors$p*design$Nsens),nrow=design$Nsens,ncol=factors$p))
-	#data$X2_s <- data.frame(matrix(runif(factors$p*design$Nsens),nrow=design$Nsens,ncol=factors$p))
-	data$X1_s <- data.frame(randomLHS(design$Nsens, factors$p))
-	data$X2_s <- data.frame(randomLHS(design$Nsens, factors$p))
 
 	# set covariance parameters
 	#b <- 3
@@ -264,6 +362,18 @@ print(round(unlist(r),3))
 	#data$theta <- 400
 	data$theta <- factors$tau * ( (1 - (jvec-1)/factors$p)^factors$b - (1 - jvec/factors$p)^factors$b )
 	#data$theta[factors$Fzero] <- 0.01    # set some to have small effect
+#print( round(data$theta, 4)); done
+
+if (FALSE) {
+print(sum( data$theta^2 ))
+
+fx <- function(x) { sum( (factors$tau * ( (1 - (jvec-1)/factors$p)^x - (1 - jvec/factors$p)^x ))^2 ) - 0.5 }
+print(uniroot(fx, c(1,100)))
+
+print(sum( data$theta ))
+print(sum( data$theta^2 ))
+done
+}
 
 if (FALSE) {
 cat("Constructing D\n")
@@ -275,32 +385,59 @@ cat("Constructing D\n")
 	})
 }
 
-cat("Computing Sigma\n")
+	if (isp & exists("predSigma")) {
+		data$Sigma     <- predSigma
+		data$cholSigma <- predCholSigma
+	} else {
+#cat("Computing Sigma\n")
 	# construct covariance
 #	data$Sigma <- factors$sigma2 * ce_cov(data$theta, data$D)
-	data$Sigma <- factors$sigma2 * ce_cov(data$theta, data$X)
 
-cat("Generating y\n")
+		data$Sigma     <- factors$sigma2 * ce_cov(data$theta, data$X)
+		data$cholSigma <- gpuChol(data$Sigma)
+
+		if (isp) {
+			predSigma     <<- data$Sigma
+			predCholSigma <<- data$cholSigma
+		}
+	}
+
+	if (isp & !exists("predInvSigma")) {
+		predInvSigma <<- gpuChol2Inv(data$Sigma[1:data$n,1:data$n])
+	}
+
+#cat("Generating y\n")
 	# generate response
 	#y <- t(chol(data$Sigma)) %*% rnorm(data$n+factors$Npred)
-library(spacious)
-	cholSigma <- gpuChol(data$Sigma[1:2000,1:2000])
-print(cholSigma[250+1:10,250+1:10])
-	cholSigma <- chol(data$Sigma[1:2000,1:2000])
-print(cholSigma[250+1:10,250+1:10])
-done
-	y <- gpuMM( t(gpuChol(data$Sigma)),  matrix(norm(data$n+factors$Npred), ncol=1) )
-print(y)
-done
+	#cholSigma <- chol(data$Sigma) #[1:2000,1:2000])
+	z <- matrix(rnorm(data$n+factors$Npred), ncol=1)
+#t1 <- proc.time()
+#	y <- as.vector( gpuMM( t(data$cholSigma), z ) )
+#print(proc.time()-t1)
+#print( summary(y) )
+#t1 <- proc.time()
+	y <- as.vector( t(data$cholSigma) %*% z )
+print(sd(y))
+#print(proc.time()-t1)
+#print( summary(y) )
+#done
 
 	data$Yobs  <- y[1:data$n]
 	data$Ypred <- y[data$n+1:factors$Npred]
 
-	# compute sensitivity indices
-	iy <- chol2inv(chol(data$Sigma[1:data$n,1:data$n])) %*% data$Yobs
-	Si <- sobol2002(model = ce_full_pred_X, data$X1_s, data$X2_s, nboot = 0, Xobs=data$Xobs, iy=iy, theta=data$theta)
-	data$Si_S <- Si$S[,1]
-	data$Si_T <- Si$T[,1]
+	if (!isp) {
+		# locations for sensitivity analysis
+		#data$X1_s <- data.frame(matrix(runif(factors$p*design$Nsens),nrow=design$Nsens,ncol=factors$p))
+		#data$X2_s <- data.frame(matrix(runif(factors$p*design$Nsens),nrow=design$Nsens,ncol=factors$p))
+		data$X1_s <- data.frame(randomLHS(design$Nsens, factors$p+factors$Fzero))
+		data$X2_s <- data.frame(randomLHS(design$Nsens, factors$p+factors$Fzero))
+
+		# compute sensitivity indices
+		iy <- chol2inv(chol(data$Sigma[1:data$n,1:data$n])) %*% data$Yobs
+		Si <- sobol2002(model = ce_full_pred_X, data$X1_s, data$X2_s, nboot = 0, Xobs=data$Xobs, iy=iy, theta=data$theta)
+		data$Si_S <- Si$S[,1]
+		data$Si_T <- Si$T[,1]
+	}
 
 	data
 }
@@ -652,7 +789,9 @@ done
 
 	t1 <- proc.time()
 	try({
-		preds <- ce_full_pred(data$Yobs, data$n, factors$Npred, data$Sigma)
+		#preds <- ce_full_pred(data$Yobs, data$n, factors$Npred, data$Sigma)
+#as.vector( Sigma[Nfit+1:Npred,1:Nfit] %*% chol2inv(chol(Sigma[1:Nfit,1:Nfit])) %*% y )
+		preds <- gpuMM(data$Sigma[data$n+1:factors$Npred,1:data$n], predInvSigma) %*% data$Yobs
 		mse <- mean( (preds-data$Ypred)^2 )
 	})
 	t2 <- proc.time()-t1
@@ -671,18 +810,36 @@ done
 
 		# determine Nlocal closest observations
 		#with(data, print(D[1,1,n+1:factors$Npred]) )
+if (FALSE) {
+		# closest by distance
 		closest <- lapply(1:factors$Npred, function(px) {
 			#dists <- apply(data$D[,data$n+px,1:data$n], 2, function(col) { sqrt( sum(col^2) ) })
-			dists <- apply(data$D[,data$n+px,1:data$n], 2, function(col) { sum(data$theta*col) })
+			#dists <- apply(data$D[,data$n+px,1:data$n], 2, function(col) { sum(data$theta*col) })
+			dists <- colSums( data$theta * sqrt( ( t(data$Xobs) - data$Xpred[px,])^2 ) )
 			locs  <- sort(dists,index.return=TRUE)$ix[1:Nlocal]
 			#print(round(dists,3)); print(locs)
 
 			locs
 		})
+} else {
+		# closest by covariance
+		closest <- lapply(1:factors$Npred, function(px) {
+			#dists <- apply(data$D[,data$n+px,1:data$n], 2, function(col) { sqrt( sum(col^2) ) })
+			#dists <- apply(data$D[,data$n+px,1:data$n], 2, function(col) { sum(data$theta*col) })
+			dists <- 1-data$Sigma[data$n+px,1:data$n]
+			locs  <- sort(dists,index.return=TRUE)$ix[1:Nlocal]
+			#print(round(dists,3)); print(locs)
+
+			locs
+		})
+#print(closest)
+}
 
 		# get predictions
+		#if (Nlocal >= 500) gpu <- TRUE
+		#else               gpu <- FALSE
 		preds <- sapply(1:factors$Npred, function(px) {
-			ce_full_pred(data$Yobs[closest[[px]]], Nlocal, 1, data$Sigma[c(closest[[px]],data$n+px),c(closest[[px]],data$n+px)])
+			ce_full_pred(data$Yobs[closest[[px]]], Nlocal, 1, data$Sigma[c(closest[[px]],data$n+px),c(closest[[px]],data$n+px)]) #,gpu=gpu)
 		})
 
 		mse <- mean( (preds-data$Ypred)^2 )
@@ -692,7 +849,164 @@ done
 	list( time=as.vector(t2[3]), rmse=sqrt(mse) )
 }
 
-"pred.order" <- function(design, factors, data, NperB) {
+"do.pred_blocks" <- function(design, factors, data, NperB, Nclose, centerB, nb, B) {
+	newB <- apply(data$Xpred, 1, function(row) {
+		#print( ( data$theta*sqrt( (row-centerB)^2 ) ) )
+		which.min( colSums( data$theta*sqrt( (row-centerB)^2 ) ) )
+	})
+#print(newB)
+
+	closestB <- apply(data$Xpred, 1, function(row) {
+		#print( ( data$theta*sqrt( (row-centerB)^2 ) ) )
+		sorted <- sort( colSums( data$theta*sqrt( (row-centerB)^2 ) ), index.return=TRUE )
+
+		list(vals=sorted$x[1:Nclose], id=sorted$ix[1:Nclose])
+	})
+#print(closestB[[1]])
+#print( (1/closestB[[1]]$vals)/sum(1/closestB[[1]]$vals))
+
+	# get inverses
+	invs <- lapply(1:nb, function(b) {
+		idb1 <- which(B==b)
+
+		N1 <- length(idb1)
+
+		if (N1 > 0) {
+			chol2inv(chol(data$Sigma[idb1,idb1]))
+		} else {
+			NA
+		}
+	})
+
+	# get predictions
+	preds <- rep(NA, factors$Npred)
+
+if (FALSE) { # closest block
+	sapply(1:nb, function(b) {
+		idb1 <- which(B==b)
+		idb2 <- which(newB==b)
+
+		N1 <- length(idb1)
+		N2 <- length(idb2)
+
+		if (N1 > 0 & N2 > 0) {
+			preds[idb2] <<- ce_full_pred(data$Yobs[idb1], N1, N2, data$Sigma[c(idb1,data$n+idb2),c(idb1,data$n+idb2)])
+		}
+	})
+} else {  # Nclose blocks
+#as.vector( Sigma[Nfit+1:Npred,1:Nfit] %*% chol2inv(chol(Sigma[1:Nfit,1:Nfit])) %*% y )
+	preds <- sapply(1:factors$Npred, function(i) {
+		w <- (1/closestB[[i]]$vals)/sum(1/closestB[[i]]$vals)
+		y <- sapply(1:Nclose, function(b) {
+			idb1 <- which(B==closestB[[i]]$id[b])
+			data$Sigma[data$n+i,idb1] %*% invs[[ closestB[[i]]$id[b] ]] %*% data$Yobs[idb1]
+		})
+
+		sum(w*y)
+#print(y); print(sum(w*y)); print(data$Ypred[i]); done
+	})
+}
+#print(preds)
+
+	mse <- mean( (preds-data$Ypred)^2 )
+#print(mse)
+
+	mse
+}
+
+# do independent block prediction
+"do.pred_blocks_ind" <- function(design, factors, data, centerB, nb, B, invy) {
+	newB <- apply(data$Xpred, 1, function(row) {
+		#print( ( data$theta*sqrt( (row-centerB)^2 ) ) )
+		which.min( colSums( data$theta*sqrt( (row-centerB)^2 ) ) )
+	})
+#print(newB)
+
+	# get predictions
+	preds <- rep(NA, factors$Npred)
+
+	sapply(1:nb, function(b) {
+		idb1 <- which(B==b)
+		idb2 <- which(newB==b)
+
+		N1 <- length(idb1)
+		N2 <- length(idb2)
+
+		if (N1 > 0 & N2 > 0) {
+			preds[idb2] <<- data$Sigma[data$n+idb2,idb1] %*% invy[[b]]
+		}
+	})
+#print(preds)
+
+	mse <- mean( (preds-data$Ypred)^2 )
+#print(mse)
+
+	mse
+}
+
+# do dependent block prediction
+"do.pred_blocks_dep" <- function(design, factors, data, centerB, nb, B, nmat) {
+	newB <- apply(data$Xpred, 1, function(row) {
+		#print( ( data$theta*sqrt( (row-centerB)^2 ) ) )
+		which.min( colSums( data$theta*sqrt( (row-centerB)^2 ) ) )
+	})
+#print(newB)
+
+	# get predictions
+	y_0 <- rep(NA, factors$Npred)
+
+	unewB <- sort(unique(newB))
+#print(unewB)
+
+	sapply(unewB, function(b) {
+		# neighbors of this block
+		neighbors <- as.vector(nmat[which( rowSums( nmat==b ) == 1 ),])
+		neighbors <- sort(neighbors[neighbors != b])
+
+		# what new points are in this block?
+		in.new   <- which(newB == b)+data$n
+		n.in.new <- length(in.new)
+
+		# what observed points are in this block?
+		in.obs   <- which(B == b)
+		n.in.obs <- length(in.obs)
+
+		# new and observed in this block
+		in.b   <- c(in.new, in.obs)
+		n.in.b <- n.in.new + n.in.obs
+
+		A_0 <- matrix(0, nrow=n.in.new, ncol=n.in.new)
+		b_0 <- rep(0, n.in.new)
+
+		sapply(neighbors, function(n1) {
+			in.n1   <- which(B == n1)
+			n.in.n1 <- length(in.n1)
+
+			# take points so that we have Y = (Y_{b,new}, Y_{b,obs}, Y_{n1})
+			in.pair.n1 <- c(in.b, in.n1)
+
+			# covariance for b and n1
+			Sigma.n1    <- data$Sigma[in.pair.n1,in.pair.n1]
+			invSigma.n1 <- chol2inv(chol(Sigma.n1))
+
+			A_0 <<- A_0 + invSigma.n1[1:n.in.new,1:n.in.new]
+			b_0 <<- b_0 +
+				matrix(invSigma.n1[1:n.in.new,n.in.new+1:n.in.obs],nrow=n.in.new,ncol=n.in.obs) %*% data$Yobs[in.obs] +
+				matrix(invSigma.n1[1:n.in.new,n.in.new+n.in.obs+1:n.in.n1],nrow=n.in.new,ncol=n.in.n1) %*% data$Yobs[in.n1]
+		})
+
+		# complete predictions
+		b_0 <- -b_0
+		y_0[in.new-data$n] <<- chol2inv(chol(A_0)) %*% b_0
+	})
+
+	mse <- mean( (y_0-data$Ypred)^2 )
+#print(sqrt(mse))
+
+	mse
+}
+
+"pred.order" <- function(design, factors, data, NperB, dep) {
 	mse  <- NA
 
 	t1 <- proc.time()
@@ -704,81 +1018,183 @@ done
 		B  <- rep(NA, length(sy))
 		B[sy]  <- oy
 
-		# get prediciton blocks using block centroids
+		# get prediction blocks using block centroids
 		centerB <- do.call("cbind", lapply(1:nb, function(b) { colMeans(data$Xobs[B==b,]) }))
 #print(centerB)
 
-		newB <- apply(data$Xpred, 1, function(row) {
-			#print( ( data$theta*sqrt( (row-centerB)^2 ) ) )
-			which.min( colSums( data$theta*sqrt( (row-centerB)^2 ) ) )
-		})
-#print(newB)
+		if (dep) {
+			# create neighbor structure
 
-		# get predictions
-		preds <- rep(NA, factors$Npred)
-		sapply(1:nb, function(b) {
-			idb1 <- which(B==b)
-			idb2 <- which(newB==b)
+			nmat <- c()
 
-			N1 <- length(idb1)
-			N2 <- length(idb2)
+if (FALSE) {
+			block_order <- sample(1:nb, nb)
+			lag <- 2
+			sapply(1:nb, function(i) {
+				for (j in i+1:lag) {
+					if (j > nb) break;
+					nmat <<- rbind( nmat, c(block_order[i],block_order[j]) )
+				}
+			})
+}
 
-			if (N1 > 0 & N2 > 0) {
-				preds[idb2] <<- ce_full_pred(data$Yobs[idb1], N1, N2, data$Sigma[c(idb1,data$n+idb2),c(idb1,data$n+idb2)])
-			}
-		})
-#print(preds)
+if (TRUE) {
+			sapply(1:nb, function(b) {
+				# get closest neighbors in each direction
+				closest <- apply(abs(centerB[,b] - centerB), 1, function(row) { sort(row, index.return=TRUE)$ix[2] })
+				# get p closest neighbors
+#				dists   <- sqrt( colSums( (centerB[,b] - centerB)^2 ) )
+#				sorted  <- sort(dists, index.return=TRUE)
+#				closest <- sorted$ix[1 + 1:factors$p]
+#print(closest)
 
-		mse <- mean( (preds-data$Ypred)^2 )
-#print(mse)
+				larger <- unique(closest[which(closest > b)])
+#print(larger)
+
+				if (length(larger) > 0) {
+					nmat <<- rbind(nmat, cbind(b, larger))
+#print(larger); print(cbind(b,larger))
+				}
+			})
+}
+
+		} else {
+			# get inverses x y
+			invy <- lapply(1:nb, function(b) {
+				idb1 <- which(B==b)
+
+				N1 <- length(idb1)
+
+				if (N1 > 0) {
+					chol2inv(chol(data$Sigma[idb1,idb1])) %*% data$Yobs[idb1]
+				} else {
+					NA
+				}
+			})
+		}
+	})
+	t2 <- proc.time()-t1
+	ptime <- as.vector(t2[3])
+
+	t1 <- proc.time()
+	try({
+		if (dep) {
+			mse <- do.pred_blocks_dep(design, factors, data, centerB, nb, B, nmat)
+		} else {
+			mse <- do.pred_blocks_ind(design, factors, data, centerB, nb, B, invy)
+		}
 	})
 	t2 <- proc.time()-t1
 
-	list( time=as.vector(t2[3]), rmse=sqrt(mse) )
+	list(ptime=ptime, time=as.vector(t2[3]), rmse=sqrt(mse) )
 }
 
-"pred.clust" <- function(design, factors, data, NperB) {
+"pred.clust" <- function(design, factors, data, NperB, dep) {
 	mse  <- NA
 
 	t1 <- proc.time()
 	try({
 		# assign to blocks
-		hc <- hclust( as.dist( 1-data$Sigma[1:data$n,1:data$n] ) )
 		nb <- ceiling(data$n/NperB)
-		B  <- cutree(hc, k=nb)
+		#B  <- cutree(hc, k=nb)
+		km <- kmeans(data$Xobs, nb, iter.max=100)
+		B  <- km$cluster
 
-		# get prediciton blocks using block centroids
-		centerB <- do.call("cbind", lapply(1:nb, function(b) { colMeans(data$Xobs[B==b,]) }))
+		# get prediction blocks using block centroids
+#		centerB <- do.call("cbind", lapply(1:nb, function(b) { colMeans(data$Xobs[B==b,]) }))
+		centerB <- t(km$centers)
 #print(centerB)
 
-		newB <- apply(data$Xpred, 1, function(row) {
-			#print( ( data$theta*sqrt( (row-centerB)^2 ) ) )
-			which.min( colSums( data$theta*sqrt( (row-centerB)^2 ) ) )
+		if (dep) {
+			# create neighbor structure
+
+			nmat <- c()
+
+if (FALSE) {
+			block_order <- sample(1:nb, nb)
+			lag <- 2
+			sapply(1:nb, function(i) {
+				for (j in i+1:lag) {
+					if (j > nb) break;
+					nmat <<- rbind( nmat, c(block_order[i],block_order[j]) )
+				}
+			})
+}
+
+			sapply(1:nb, function(b) {
+				# get closest neighbors in each direction
+				closest <- apply(abs(centerB[,b] - centerB), 1, function(row) {
+					sort(row, index.return=TRUE)$ix[2]
+				})
+#print(closest)
+
+				larger <- unique(closest[which(closest > b)])
+#print(larger)
+
+				if (length(larger) > 0) {
+					nmat <<- rbind(nmat, cbind(b, larger))
+#print(larger); print(cbind(b,larger))
+				}
+			})
+
+		} else {
+			# get inverses x y
+			invy <- lapply(1:nb, function(b) {
+				idb1 <- which(B==b)
+
+				N1 <- length(idb1)
+
+				if (N1 > 0) {
+					chol2inv(chol(data$Sigma[idb1,idb1])) %*% data$Yobs[idb1]
+				} else {
+					NA
+				}
+			})
+		}
+	})
+	t2 <- proc.time()-t1
+	ptime <- as.vector(t2[3])
+
+	t1 <- proc.time()
+	try({
+		if (dep) {
+			mse <- do.pred_blocks_dep(design, factors, data, centerB, nb, B, nmat)
+		} else {
+			mse <- do.pred_blocks_ind(design, factors, data, centerB, nb, B, invy)
+		}
+	})
+	t2 <- proc.time()-t1
+
+	list(ptime=ptime, time=as.vector(t2[3]), rmse=sqrt(mse) )
+}
+
+# predict on subset
+"pred.sub" <- function(design, factors, data, Nsub) {
+	# create subset
+	t1 <- proc.time()
+	try({
+#		p <- seq(0,1,length=Nsub)
+#		s <- sample.int(data$n, Nsub)
+		km <- kmeans(data$Xobs, Nsub, iter.max=100)
+		s <- sapply(1:Nsub, function(b) {
+			which(km$cluster == b)[1]
 		})
-#print(newB)
 
-		# get predictions
-		preds <- rep(NA, factors$Npred)
-		sapply(1:nb, function(b) {
-			idb1 <- which(B==b)
-			idb2 <- which(newB==b)
+		invy <- chol2inv(chol(data$Sigma[s,s])) %*% data$Yobs[s]
+	})
+	t2 <- proc.time()-t1
+	ptime <- as.vector(t2[3])
 
-			N1 <- length(idb1)
-			N2 <- length(idb2)
-
-			if (N1 > 0 & N2 > 0) {
-				preds[idb2] <<- ce_full_pred(data$Yobs[idb1], N1, N2, data$Sigma[c(idb1,data$n+idb2),c(idb1,data$n+idb2)])
-			}
-		})
-#print(preds)
-
+	t1 <- proc.time()
+	try({
+		#preds <- gpuMM(data$Sigma[data$n+1:factors$Npred,1:data$n], predInvSigma) %*% data$Yobs
+		preds <- data$Sigma[data$n+1:factors$Npred,s] %*% invy
 		mse <- mean( (preds-data$Ypred)^2 )
 	})
 	t2 <- proc.time()-t1
 
-	list( time=as.vector(t2[3]), rmse=sqrt(mse) )
+	list(ptime=ptime, time=as.vector(t2[3]), rmse=sqrt(mse) )
 }
-
 
 if (FALSE) { # test sim design
 

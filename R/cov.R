@@ -24,8 +24,12 @@ sourceCpp("src/cov.cpp")
 	ce_partial_Rcpp(as.integer(e), as.vector(theta), as.matrix(Sigma), as.matrix(X))
 }
 
-"ce_full_pred" <- function(y, Nfit, Npred, Sigma) {
-	as.vector( Sigma[Nfit+1:Npred,1:Nfit] %*% chol2inv(chol(Sigma[1:Nfit,1:Nfit])) %*% y )
+"ce_full_pred" <- function(y, Nfit, Npred, Sigma, gpu=FALSE) {
+	if (gpu) {
+		as.vector( gpuMM( matrix(Sigma[Nfit+1:Npred,1:Nfit], nrow=Npred, ncol=Nfit), gpuChol2Inv(Sigma[1:Nfit,1:Nfit]) %*% y ) )
+	} else {
+		as.vector( Sigma[Nfit+1:Npred,1:Nfit] %*% chol2inv(chol(Sigma[1:Nfit,1:Nfit])) %*% y )
+	}
 }
 
 "ce_full_pred_X" <- function(X, Xobs, iy, theta) {
