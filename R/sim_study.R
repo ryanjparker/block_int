@@ -534,13 +534,21 @@ print(sd(y))
 	t1 <- proc.time()
 	try({
 		# assign to blocks
-		sy <- sort(data$Yobs,index.return=TRUE)$ix
 		nb <- ceiling(data$n/factors$Nblock_obs_ind)
+
+if (FALSE) {
+		sy <- sort(data$Yobs,index.return=TRUE)$ix
 		oy <- unlist(lapply(1:factors$Nblock_obs_ind, function(b) seq(1:nb)[sample(nb)]))[1:data$n]
 		#B  <- oy[sy]
 		B  <- rep(NA, length(sy))
 		B[sy]  <- oy
 		newB <- sample(nb,factors$Npred,replace=TRUE)
+} else { # no randomness
+		sy <- sort(data$Yobs,index.return=TRUE)$ix
+		oy <- unlist(lapply(1:factors$Nblock_obs_ind, function(b) seq(1:nb)))[1:data$n]
+		B  <- rep(NA, length(sy))
+		B[sy]  <- oy
+}
 
 		# fit model
 		fit <- hd.estimate(data, nb, B, cbind(1:nb,1:nb), factors$p, log(data$theta), rep(FALSE,factors$p), ce_cov, ce_partial, FALSE)
@@ -600,16 +608,22 @@ print(sd(y))
 	t1 <- proc.time()
 	try({
 		# assign to blocks
+		nb <- ceiling(data$n/factors$Nblock_obs_ind)
+
+if (FALSE) { # use estimated cov matrix
 #		initSigma <- factors$sigma2 * ce_cov(init.theta, data$D)
 		initSigma <- factors$sigma2 * ce_cov(init.theta, data$X)
 		hc <- hclust( as.dist( 1-initSigma[1:data$n,1:data$n] ) )
-		nb <- ceiling(data$n/factors$Nblock_obs_ind)
 		B  <- cutree(hc, k=nb)
 		#newB <- B[data$n+1:factors$Npred]
 		#B    <- B[1:data$n]
+} else { # use observation locations
+		km <- kmeans(data$Xobs, nb, iter.max=100)
+		B  <- km$cluster
+}
 
 		# fit model
-		fit <- hd.estimate(data, nb, B, cbind(1:nb,1:nb), factors$p, log(init.theta), rep(FALSE,factors$p), ce_cov, ce_partial, FALSE)
+		fit <- hd.estimate(data, nb, B, cbind(1:nb,1:nb), factors$p, log(data$theta), rep(FALSE,factors$p), ce_cov, ce_partial, FALSE)
 	})
 	t2 <- proc.time()-t1
 
@@ -665,8 +679,10 @@ print(sd(y))
 	t1 <- proc.time()
 	try({
 		# assign to blocks
-		sy <- sort(data$Yobs,index.return=TRUE)$ix
 		nb <- ceiling(data$n/factors$Nblock_obs_dep)
+
+if (FALSE) {
+		sy <- sort(data$Yobs,index.return=TRUE)$ix
 		oy <- unlist(lapply(1:factors$Nblock_obs_dep, function(b) seq(1:nb)[sample(nb)]))[1:data$n]
 		#B  <- oy[sy]
 		B  <- rep(NA, length(sy))
@@ -683,6 +699,39 @@ print(sd(y))
 				nmat <<- rbind( nmat, c(block_order[i],block_order[j]) )
 			}
 		})
+} else {
+		sy <- sort(data$Yobs,index.return=TRUE)$ix
+		oy <- unlist(lapply(1:factors$Nblock_obs_dep, function(b) seq(1:nb)))[1:data$n]
+		B  <- rep(NA, length(sy))
+		B[sy]  <- oy
+
+		centerB <- do.call("cbind", lapply(1:nb, function(b) { colMeans(data$Xobs[B==b,]) }))
+
+		# order blocks based on (1) distance from 0, then (2) distance from each other
+		to0 <- rdist(matrix(0, nrow=1, ncol=factors$p), centerB)
+		blockD <- rdist(centerB)
+		diag(blockD) <- Inf
+
+		Border <- rep(NA, nb)
+		Border[1] <- which.min(to0)
+
+		for (b in 2:nb) {
+			Border[b] <- which.min(blockD[Border[b-1],])
+			blockD[Border[1:(b-1)],] <- Inf
+			blockD[,Border[1:(b-1)]] <- Inf
+		}
+
+		# get neighbors
+		block_order <- Border
+		lag <- 1
+		nmat <- c()
+		sapply(1:nb, function(i) {
+			for (j in i+1:lag) {
+				if (j > nb) break;
+				nmat <<- rbind( nmat, c(block_order[i],block_order[j]) )
+			}
+		})
+}
 
 		# fit model
 		fit <- hd.estimate(data, nb, B, nmat, factors$p, log(data$theta), rep(FALSE,factors$p), ce_cov, ce_partial, FALSE)
@@ -736,9 +785,11 @@ print(sd(y))
 	t1 <- proc.time()
 	try({
 		# assign to blocks
+		nb <- ceiling(data$n/factors$Nblock_obs_dep)
+
+if (FALSE) { # estimated cov matrix
 		initSigma <- factors$sigma2 * ce_cov(init.theta, data$X)
 		hc <- hclust( as.dist( 1-initSigma[1:data$n,1:data$n] ) )
-		nb <- ceiling(data$n/factors$Nblock_obs_dep)
 		B  <- cutree(hc, k=nb)
 
 		# get neighbors
@@ -751,9 +802,38 @@ print(sd(y))
 				nmat <<- rbind( nmat, c(block_order[i],block_order[j]) )
 			}
 		})
+} else { # k-means on observation locations
+		km <- kmeans(data$Xobs, nb, iter.max=100)
+		B  <- km$cluster
+
+		# order blocks based on (1) distance from 0, then (2) distance from each other
+		to0 <- rdist(matrix(0, nrow=1, ncol=factors$p), km$centers)
+		blockD <- rdist(km$centers)
+		diag(blockD) <- Inf
+
+		Border <- rep(NA, nb)
+		Border[1] <- which.min(to0)
+
+		for (b in 2:nb) {
+			Border[b] <- which.min(blockD[Border[b-1],])
+			blockD[Border[1:(b-1)],] <- Inf
+			blockD[,Border[1:(b-1)]] <- Inf
+		}
+
+		# get neighbors
+		block_order <- Border
+		lag <- 1
+		nmat <- c()
+		sapply(1:nb, function(i) {
+			for (j in i+1:lag) {
+				if (j > nb) break;
+				nmat <<- rbind( nmat, c(block_order[i],block_order[j]) )
+			}
+		})
+}
 
 		# fit model
-		fit <- hd.estimate(data, nb, B, nmat, factors$p, log(init.theta), rep(FALSE,factors$p), ce_cov, ce_partial, FALSE)
+		fit <- hd.estimate(data, nb, B, nmat, factors$p, log(data$theta), rep(FALSE,factors$p), ce_cov, ce_partial, FALSE)
 
 	})
 	t2 <- proc.time()-t1
