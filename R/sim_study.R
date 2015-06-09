@@ -4,19 +4,25 @@ library(lhs)
 library(MASS)
 library(multicore)
 library(sensitivity)
-library(spacious)
+#library(spacious)
 
 #source("R/create_blocks.R")
 source("R/cov.R")
 source("R/estimate.R")
 
 # function to execte the estimation simulation study based on given factors
-"sim_exp_est" <- function(design, factors, which.exp) {
+"sim_exp_est" <- function(design, factors, which.exp, which.part) {
+
+	exp.step  <- design$Nreps/20
+	exp.start <- ((which.part-1)*exp.step+1)
+	exp.end   <- exp.start+exp.step-1
 
 	#res <- mclapply(1:design$Nreps, function(i) {
 	#res <- mclapply(1:3, function(i) {
 	#res <- lapply(1:design$Nreps, function(i) {
-	res <- lapply(1:1, function(i) { #design$Nreps, function(i) {
+	#res <- lapply(1:1, function(i) { #design$Nreps, function(i) {
+	res <- lapply(exp.start:exp.end, function(i) {
+
 		seed <- 1983 + i + design$Nreps*(which.exp-1)
 		set.seed(seed)  # set a seed for reproducibility
 
@@ -394,11 +400,13 @@ cat("Constructing D\n")
 #	data$Sigma <- factors$sigma2 * ce_cov(data$theta, data$D)
 
 		data$Sigma     <- factors$sigma2 * ce_cov(data$theta, data$X)
-		data$cholSigma <- gpuChol(data$Sigma)
 
 		if (isp) {
+			data$cholSigma <- gpuChol(data$Sigma)
 			predSigma     <<- data$Sigma
 			predCholSigma <<- data$cholSigma
+		} else {
+			data$cholSigma <- chol(data$Sigma)
 		}
 	}
 
@@ -1299,9 +1307,10 @@ if (FALSE) {  # test run sims
 
 	# run the experiment for each combination of factors
 	#res <- lapply(1:nrow(sim.factors), function(i) {
-	res <- lapply(1:1, function(i) {
+	#res <- lapply(1:1, function(i) {
+	res <- lapply(which_exp, function(i) {
 	  print(sim.factors[i,])
-	  exp_res <- sim_exp_pred(sim.design, sim.factors[i,], i)
+	  exp_res <- sim_exp_pred(sim.design, sim.factors[i,], i, which_part)
 		save(exp_res, file=paste0("output/exp_pred_",i,".RData"))
 
 print(head(exp_res))

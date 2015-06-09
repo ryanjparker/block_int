@@ -50,8 +50,8 @@ options(cores=3)
 #res <- lapply(1:1, function(i) {
 res <- lapply(which_exp, function(i) {
 	print(sim.factors[i,])
-	exp_res <- sim_exp_est(sim.design, sim.factors[i,], i)
-	save(exp_res, file=paste0("output/nblocks_exp_",i,".RData"))
+	exp_res <- sim_exp_est(sim.design, sim.factors[i,], i, which_part)
+	save(exp_res, file=paste0("output/nblocks_exp_",i,"_",which_part,".RData"))
 
 print(head(exp_res))
 
