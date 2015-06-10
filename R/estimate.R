@@ -5,7 +5,7 @@
 	R,
 	theta, theta_fixed,
 	f.cc, f.cp,
-	verbose, tol=1e-8, maxIter=50
+	verbose, tol=1e-8, maxIter=500
 ) {
 	# f.cc: function to compute covariance
 	# f.cp: function to compute partial derivatives
