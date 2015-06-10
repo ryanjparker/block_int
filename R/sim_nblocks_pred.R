@@ -9,7 +9,7 @@ source("R/sim_study.R")
 # fixed design parameters
 sim.design <- list(
 	# number of replications
-	Nreps=25,
+	Nreps=100,
 	# number used in sensitivity analysis
 	Nsens=5000
 )
@@ -31,6 +31,7 @@ sim.factors <- expand.grid(
 	tau=c(10),
 	# number of observations per input
 	Nper_p=c(1000,2500,5000,10000),
+	#Nper_p=c(10000),
 	#Nper_p=c(2000),
 	# number of locations to predict at
 	Npred=1000,
@@ -46,10 +47,10 @@ options(cores=3)
 #res <- lapply(1:nrow(sim.factors), function(i) {
 #res <- lapply(1:1, function(i) {
 res <- lapply(which_exp, function(i) {
-	try({ rm("predXobs", "predXpred", "predSigma", "predInvSigma", pos = ".GlobalEnv") })
+#	try({ rm("predXobs", "predXpred", "predSigma", "predInvSigma", pos = ".GlobalEnv") })
 	print(sim.factors[i,])
-	exp_res <- sim_exp_pred(sim.design, sim.factors[i,], i)
-	save(exp_res, file=paste0("output/nblocks_exp_pred_",i,".RData"))
+	exp_res <- sim_exp_pred(sim.design, sim.factors[i,], i, which_part)
+	save(exp_res, file=paste0("output/nblocks_exp_pred_",i,"_",which_part,".RData"))
 
 print(head(exp_res))
 

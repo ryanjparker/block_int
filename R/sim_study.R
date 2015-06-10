@@ -171,18 +171,24 @@ print(colnames(res.df))
 }
 
 # function to execte the prediction simulation study based on given factors
-"sim_exp_pred" <- function(design, factors, which.exp) {
+"sim_exp_pred" <- function(design, factors, which.exp, which.part) {
+
+	exp.step  <- design$Nreps/20
+	exp.start <- ((which.part-1)*exp.step+1)
+	exp.end   <- exp.start+exp.step-1
 
 	#res <- mclapply(1:design$Nreps, function(i) {
 	#res <- mclapply(1:3, function(i) {
-	res <- lapply(1:design$Nreps, function(i) {
+	#res <- lapply(1:design$Nreps, function(i) {
 	#res <- lapply(1:1, function(i) { #design$Nreps, function(i) {
+	res <- lapply(exp.start:exp.end, function(i) {
 		seed <- 1983 + i + design$Nreps*(which.exp-1)
 		set.seed(seed)  # set a seed for reproducibility
 
 		# generate data
 		data <- generate_data(design, factors)
 #str(data)
+done
 
 		r <- list()
 
@@ -259,7 +265,7 @@ print(r)
 done
 }
 
-if (TRUE) {
+if (FALSE) {
 				# independent clustering
 					# 25
 					res <- pred.clust(design, factors, data, 25, FALSE);  r <- c(r, c25_i=res)
@@ -273,7 +279,7 @@ if (TRUE) {
 					res <- pred.clust(design, factors, data, 500, FALSE);  r <- c(r, c500_i=res)
 }
 
-if (TRUE) {
+if (FALSE) {
 				# dependent clustering
 					# 25
 #					res <- pred.clust(design, factors, data, 25, TRUE);  r <- c(r, c25_d=res)
@@ -290,7 +296,7 @@ if (TRUE) {
 }
 }
 
-if (FALSE) {
+if (TRUE) {
 			# ... best subset
 				# 25
 				res <- pred.sub(design, factors, data, 25);  r <- c(r, s25=res)
@@ -305,11 +311,10 @@ if (FALSE) {
 				# 1000
 				res <- pred.sub(design, factors, data, 1000);  r <- c(r, s1000=res)
 				# 2000
-				res <- pred.sub(design, factors, data, 2000);  r <- c(r, s2000=res)
+#				res <- pred.sub(design, factors, data, 2000);  r <- c(r, s2000=res)
 				# 3000
-				res <- pred.sub(design, factors, data, 3000);  r <- c(r, s3000=res)
+#				res <- pred.sub(design, factors, data, 3000);  r <- c(r, s3000=res)
 print(r)
-done
 }
 
 		# return results
@@ -402,7 +407,8 @@ cat("Constructing D\n")
 		data$Sigma     <- factors$sigma2 * ce_cov(data$theta, data$X)
 
 		if (isp) {
-			data$cholSigma <- gpuChol(data$Sigma)
+			#data$cholSigma <- gpuChol(data$Sigma)
+			data$cholSigma <- chol(data$Sigma)
 			predSigma     <<- data$Sigma
 			predCholSigma <<- data$cholSigma
 		} else {
@@ -411,7 +417,8 @@ cat("Constructing D\n")
 	}
 
 	if (isp & !exists("predInvSigma")) {
-		predInvSigma <<- gpuChol2Inv(data$Sigma[1:data$n,1:data$n])
+		#predInvSigma <<- gpuChol2Inv(data$Sigma[1:data$n,1:data$n])
+		predInvSigma <<- chol2inv(data$Sigma[1:data$n,1:data$n])
 	}
 
 #cat("Generating y\n")
@@ -879,7 +886,9 @@ if (FALSE) { # estimated cov matrix
 	try({
 		#preds <- ce_full_pred(data$Yobs, data$n, factors$Npred, data$Sigma)
 #as.vector( Sigma[Nfit+1:Npred,1:Nfit] %*% chol2inv(chol(Sigma[1:Nfit,1:Nfit])) %*% y )
-		preds <- gpuMM(data$Sigma[data$n+1:factors$Npred,1:data$n], predInvSigma) %*% data$Yobs
+
+		#preds <- gpuMM(data$Sigma[data$n+1:factors$Npred,1:data$n], predInvSigma) %*% data$Yobs
+		preds <- data$Sigma[data$n+1:factors$Npred,1:data$n] %*% (predInvSigma %*% data$Yobs)
 		mse <- mean( (preds-data$Ypred)^2 )
 	})
 	t2 <- proc.time()-t1
