@@ -212,11 +212,11 @@ if (TRUE) {
 				# 500
 				res <- pred.local(design, factors, data, 500); r <- c(r, l500=res)
 				# 1000
-				res <- pred.local(design, factors, data, 1000); r <- c(r, l1000=res)
+				#res <- pred.local(design, factors, data, 1000); r <- c(r, l1000=res)
 }
 
 			# ... block kriging
-if (FALSE) {
+if (TRUE) {
 				# independent ordered
 					# 25
 					res <- pred.order(design, factors, data, 25, FALSE);  r <- c(r, o25_i=res)
@@ -226,9 +226,11 @@ if (FALSE) {
 					res <- pred.order(design, factors, data, 100, FALSE);  r <- c(r, o100_i=res)
 					# 250
 					res <- pred.order(design, factors, data, 250, FALSE);  r <- c(r, o250_i=res)
+					# 500
+					res <- pred.order(design, factors, data, 500, FALSE);  r <- c(r, o500_i=res)
 }
 
-if (FALSE) {
+if (TRUE) {
 				# dependent ordered
 					# 25
 					res <- pred.order(design, factors, data, 25, TRUE);  r <- c(r, o25_d=res)
@@ -238,33 +240,11 @@ if (FALSE) {
 					res <- pred.order(design, factors, data, 100, TRUE);  r <- c(r, o100_d=res)
 					# 250
 					res <- pred.order(design, factors, data, 250, TRUE);  r <- c(r, o250_d=res)
+					# 500
+					res <- pred.order(design, factors, data, 500, TRUE);  r <- c(r, o500_d=res)
 }
 
-if (FALSE) {
-if (FALSE) {
-				# perform the clustering once
-				t1 <- proc.time()
-				try({
-					hc <- hclust( as.dist( 1-data$Sigma[1:data$n,1:data$n] ) )
-				})
-				t2 <- proc.time()-t1
-				r <- c(r, clust.time=t2[3])
-print(r)
-}
-
-if (FALSE) {
-str(data$Xobs)
-				t1 <- proc.time()
-				try({
-str(km)
-				})
-				t2 <- proc.time()-t1
-				r <- c(r, clust.time=t2[3])
-print(r)
-done
-}
-
-if (FALSE) {
+if (TRUE) {
 				# independent clustering
 					# 25
 					res <- pred.clust(design, factors, data, 25, FALSE);  r <- c(r, c25_i=res)
@@ -278,12 +258,12 @@ if (FALSE) {
 					res <- pred.clust(design, factors, data, 500, FALSE);  r <- c(r, c500_i=res)
 }
 
-if (FALSE) {
+if (TRUE) {
 				# dependent clustering
 					# 25
-#					res <- pred.clust(design, factors, data, 25, TRUE);  r <- c(r, c25_d=res)
+					res <- pred.clust(design, factors, data, 25, TRUE);  r <- c(r, c25_d=res)
 					# 50
-#					res <- pred.clust(design, factors, data, 50, TRUE);  r <- c(r, c50_d=res)
+					res <- pred.clust(design, factors, data, 50, TRUE);  r <- c(r, c50_d=res)
 					# 100
 					res <- pred.clust(design, factors, data, 100, TRUE);  r <- c(r, c100_d=res)
 					# 250
@@ -293,7 +273,7 @@ if (FALSE) {
 					# 1000
 #					res <- pred.clust(design, factors, data, 1000, TRUE);  r <- c(r, c1000_d=res)
 }
-}
+print(res);done
 
 if (TRUE) {
 			# ... best subset
@@ -313,8 +293,10 @@ if (TRUE) {
 				# 2500
 				res <- pred.sub(design, factors, data, 2500);  r <- c(r, s2500=res)
 			}
-				# 3000
-#				res <- pred.sub(design, factors, data, 3000);  r <- c(r, s3000=res)
+			if (data$n > 5000) {
+				# 5000
+				res <- pred.sub(design, factors, data, 5000);  r <- c(r, s5000=res)
+			}
 print(r)
 }
 
@@ -717,8 +699,8 @@ if (FALSE) {
 		centerB <- do.call("cbind", lapply(1:nb, function(b) { colMeans(data$Xobs[B==b,]) }))
 
 		# order blocks based on (1) distance from 0, then (2) distance from each other
-		to0 <- rdist(matrix(0, nrow=1, ncol=factors$p), centerB)
-		blockD <- rdist(centerB)
+		to0 <- rdist(matrix(0, nrow=1, ncol=factors$p), t(centerB) )
+		blockD <- rdist( t(centerB) )
 		diag(blockD) <- Inf
 
 		Border <- rep(NA, nb)
@@ -1125,39 +1107,31 @@ if (FALSE) { # closest block
 		if (dep) {
 			# create neighbor structure
 
-			nmat <- c()
+			# order blocks based on (1) distance from 0, then (2) distance from each other
+			to0 <- rdist(matrix(0, nrow=1, ncol=factors$p), t(centerB) )
+			blockD <- rdist( t(centerB) )
+			diag(blockD) <- Inf
 
-if (FALSE) {
-			block_order <- sample(1:nb, nb)
-			lag <- 2
+			Border <- rep(NA, nb)
+			Border[1] <- which.min(to0)
+
+			for (b in 2:nb) {
+				Border[b] <- which.min(blockD[Border[b-1],])
+				blockD[Border[1:(b-1)],] <- Inf
+				blockD[,Border[1:(b-1)]] <- Inf
+			}
+
+			# get neighbors
+			block_order <- Border
+			lag <- 1
+			nmat <- c()
 			sapply(1:nb, function(i) {
 				for (j in i+1:lag) {
 					if (j > nb) break;
 					nmat <<- rbind( nmat, c(block_order[i],block_order[j]) )
 				}
 			})
-}
-
-if (TRUE) {
-			sapply(1:nb, function(b) {
-				# get closest neighbors in each direction
-				closest <- apply(abs(centerB[,b] - centerB), 1, function(row) { sort(row, index.return=TRUE)$ix[2] })
-				# get p closest neighbors
-#				dists   <- sqrt( colSums( (centerB[,b] - centerB)^2 ) )
-#				sorted  <- sort(dists, index.return=TRUE)
-#				closest <- sorted$ix[1 + 1:factors$p]
-#print(closest)
-
-				larger <- unique(closest[which(closest > b)])
-#print(larger)
-
-				if (length(larger) > 0) {
-					nmat <<- rbind(nmat, cbind(b, larger))
-#print(larger); print(cbind(b,larger))
-				}
-			})
-}
-
+#print(nmat); print(Border); print(nb); str(centerB);done
 		} else {
 			# get inverses x y
 			invy <- lapply(1:nb, function(b) {
@@ -1208,35 +1182,30 @@ if (TRUE) {
 		if (dep) {
 			# create neighbor structure
 
-			nmat <- c()
+			# order blocks based on (1) distance from 0, then (2) distance from each other
+			to0 <- rdist(matrix(0, nrow=1, ncol=factors$p), km$centers)
+			blockD <- rdist(km$centers)
+			diag(blockD) <- Inf
 
-if (FALSE) {
-			block_order <- sample(1:nb, nb)
-			lag <- 2
+			Border <- rep(NA, nb)
+			Border[1] <- which.min(to0)
+
+			for (b in 2:nb) {
+				Border[b] <- which.min(blockD[Border[b-1],])
+				blockD[Border[1:(b-1)],] <- Inf
+				blockD[,Border[1:(b-1)]] <- Inf
+			}
+
+			# get neighbors
+			block_order <- Border
+			lag <- 1
+			nmat <- c()
 			sapply(1:nb, function(i) {
 				for (j in i+1:lag) {
 					if (j > nb) break;
 					nmat <<- rbind( nmat, c(block_order[i],block_order[j]) )
 				}
 			})
-}
-
-			sapply(1:nb, function(b) {
-				# get closest neighbors in each direction
-				closest <- apply(abs(centerB[,b] - centerB), 1, function(row) {
-					sort(row, index.return=TRUE)$ix[2]
-				})
-#print(closest)
-
-				larger <- unique(closest[which(closest > b)])
-#print(larger)
-
-				if (length(larger) > 0) {
-					nmat <<- rbind(nmat, cbind(b, larger))
-#print(larger); print(cbind(b,larger))
-				}
-			})
-
 		} else {
 			# get inverses x y
 			invy <- lapply(1:nb, function(b) {
