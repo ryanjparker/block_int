@@ -439,7 +439,11 @@ cat("25:",round(mean(ir25.time),2),round(mean(full.time/ir25.time),2),round(mean
 
 }
 
-tmp<-analyze_sims(4)
+pres <- vector("list", 6)
+for (i in c(1,2,3,4,6)) {#,8,9)) {
+	tmp<-analyze_sims(i)
+	pres[[i]] <- colMeans(tmp)
+}
 done
 
 for (i in c(6)) {#,8,9)) {
