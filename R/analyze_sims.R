@@ -15,13 +15,15 @@
 		cer <- data.frame()
 		for (part in 1:Nparts) {
 		#for (part in (1:Nparts)[-c(9,20)]) {
-			load(paste0("output/nblocks_exp_",exp,"_",part,".RData"))
+			load(paste0("output/nblocks_exp_pred_",exp,"_",part,".RData"))
 			cer <- rbind(cer, exp_res)
 		}
 		exp_res <- cer
 	} else {
 		load(paste0("output/nblocks_exp_",exp,".RData"))
 	}
+
+return(exp_res)
 
 with(exp_res, {
 
@@ -436,6 +438,9 @@ cat("25:",round(mean(ir25.time),2),round(mean(full.time/ir25.time),2),round(mean
 })
 
 }
+
+tmp<-analyze_sims(4)
+done
 
 for (i in c(6)) {#,8,9)) {
 	analyze_sims(i)

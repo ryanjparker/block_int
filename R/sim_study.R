@@ -188,7 +188,6 @@ print(colnames(res.df))
 		# generate data
 		data <- generate_data(design, factors)
 #str(data)
-done
 
 		r <- list()
 
@@ -209,11 +208,11 @@ if (TRUE) {
 				# 100
 				res <- pred.local(design, factors, data, 100); r <- c(r, l100=res)
 				# 250
-				#res <- pred.local(design, factors, data, 250); r <- c(r, l250=res)
+				res <- pred.local(design, factors, data, 250); r <- c(r, l250=res)
 				# 500
-				#res <- pred.local(design, factors, data, 500); r <- c(r, l500=res)
+				res <- pred.local(design, factors, data, 500); r <- c(r, l500=res)
 				# 1000
-				#res <- pred.local(design, factors, data, 1000); r <- c(r, l1000=res)
+				res <- pred.local(design, factors, data, 1000); r <- c(r, l1000=res)
 }
 
 			# ... block kriging
@@ -310,8 +309,10 @@ if (TRUE) {
 				res <- pred.sub(design, factors, data, 500);  r <- c(r, s500=res)
 				# 1000
 				res <- pred.sub(design, factors, data, 1000);  r <- c(r, s1000=res)
-				# 2000
-#				res <- pred.sub(design, factors, data, 2000);  r <- c(r, s2000=res)
+			if (data$n > 2500) {
+				# 2500
+				res <- pred.sub(design, factors, data, 2500);  r <- c(r, s2500=res)
+			}
 				# 3000
 #				res <- pred.sub(design, factors, data, 3000);  r <- c(r, s3000=res)
 print(r)
@@ -416,11 +417,6 @@ cat("Constructing D\n")
 		}
 	}
 
-	if (isp & !exists("predInvSigma")) {
-		#predInvSigma <<- gpuChol2Inv(data$Sigma[1:data$n,1:data$n])
-		predInvSigma <<- chol2inv(data$Sigma[1:data$n,1:data$n])
-	}
-
 #cat("Generating y\n")
 	# generate response
 	#y <- t(chol(data$Sigma)) %*% rnorm(data$n+factors$Npred)
@@ -439,6 +435,12 @@ print(sd(y))
 
 	data$Yobs  <- y[1:data$n]
 	data$Ypred <- y[data$n+1:factors$Npred]
+
+	if (isp & !exists("predMat")) {
+		#predInvSigma <<- gpuChol2Inv(data$Sigma[1:data$n,1:data$n])
+		#predInvSigmaY <<- chol2inv(data$Sigma[1:data$n,1:data$n]) %*% data$Yobs
+		predMat <<- data$Sigma[data$n+1:factors$Npred,1:data$n] %*% chol2inv(chol(data$Sigma[1:data$n,1:data$n]))
+	}
 
 	if (!isp) {
 		# locations for sensitivity analysis
@@ -888,7 +890,8 @@ if (FALSE) { # estimated cov matrix
 #as.vector( Sigma[Nfit+1:Npred,1:Nfit] %*% chol2inv(chol(Sigma[1:Nfit,1:Nfit])) %*% y )
 
 		#preds <- gpuMM(data$Sigma[data$n+1:factors$Npred,1:data$n], predInvSigma) %*% data$Yobs
-		preds <- data$Sigma[data$n+1:factors$Npred,1:data$n] %*% (predInvSigma %*% data$Yobs)
+		#preds <- data$Sigma[data$n+1:factors$Npred,1:data$n] %*% (predInvSigma %*% data$Yobs)
+		preds <- predMat %*% data$Yobs
 		mse <- mean( (preds-data$Ypred)^2 )
 	})
 	t2 <- proc.time()-t1

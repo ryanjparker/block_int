@@ -30,7 +30,8 @@ sim.factors <- expand.grid(
 	#tau=c(3,10,20),
 	tau=c(10),
 	# number of observations per input
-	Nper_p=c(1000,2500,5000,10000),
+	#Nper_p=c(1000,2500,5000,10000),
+	Nper_p=c(2500,5000,10000),
 	#Nper_p=c(10000),
 	#Nper_p=c(2000),
 	# number of locations to predict at
