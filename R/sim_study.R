@@ -273,7 +273,6 @@ if (TRUE) {
 					# 1000
 #					res <- pred.clust(design, factors, data, 1000, TRUE);  r <- c(r, c1000_d=res)
 }
-print(res);done
 
 if (TRUE) {
 			# ... best subset
