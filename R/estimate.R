@@ -1,3 +1,5 @@
+library(parallel)
+
 # function to run algorithm for fitting a high domensiontal block composite model
 "hd.estimate" <- function(
 	data,
@@ -5,7 +7,7 @@
 	R,
 	theta, theta_fixed,
 	f.cc, f.cp,
-	verbose, tol=1e-8, maxIter=500
+	verbose, tol=1e-8, maxIter=500, parallel=FALSE
 ) {
 	# f.cc: function to compute covariance
 	# f.cp: function to compute partial derivatives
@@ -19,6 +21,7 @@
 	# verbose: print messages?
 	# tol: error tolerance for identifying convergence
 	# maxIter: maximum number of Fisher scoring iterations
+	# parallel: run operations in parallel?
 
 	Ntheta <- R
 
@@ -42,6 +45,12 @@
 	H <- rep(0, R*(R+1)/2)
 	FI <- matrix(0, nrow=R, ncol=R)
 
+	if (parallel) {
+		par_lapply <- mclapply
+	} else {
+		par_lapply <- lapply
+	}
+
 	"update_theta" <- function(theta) {
 		if (Nnot_fixed == 0) {   # don't do any updating
 			return(theta)
@@ -51,7 +60,14 @@
 		H[seq.RH]  <<- 0
 		FI[seq.R2] <<- 0
 
-		apply(neighbors, 1, function(row) {
+		#apply(neighbors, 1, function(row) {
+		bres <- par_lapply(1:nrow(neighbors), function(irow) {
+			u <- rep(0, R)
+			W <- vector("list", R)
+			H <- rep(0, R*(R+1)/2)
+
+			row <- neighbors[irow,]
+
 			in.pair <- which(B==row[1] | B==row[2])
 
 			#Sigma <- f.cc(t_theta(theta), data$D[,in.pair,in.pair])
@@ -66,8 +82,8 @@
 
 				#partial <- f.cp(r, theta, Sigma, data$D[,in.pair,in.pair])
 				partial <- f.cp(r, theta, Sigma, data$X[in.pair,])
-				W[[r]] <<- invSigma %*% partial
-				u[r] <<- u[r] -0.5 * sum( diag(W[[r]]) ) + 0.5 * t(q) %*% partial %*% q
+				W[[r]] <- invSigma %*% partial
+				u[r]   <- u[r] -0.5 * sum( diag(W[[r]]) ) + 0.5 * t(q) %*% partial %*% q
 			}
 
 			# compute the hessian H
@@ -83,6 +99,21 @@
 				})
 			})
 
+			list(u=u, H=H)
+		})
+
+		# gather results
+		sapply(1:length(bres), function(i) {
+			u <<- u+bres[[i]]$u
+
+			index <- 1
+			sapply(1:R, function(r) {
+				sapply(r:R, function(s) {
+					H[index] <<- H[index] + bres[[i]]$H[index]
+
+					index <<- index+1
+				})
+			})
 		})
 
 		index <- 1
