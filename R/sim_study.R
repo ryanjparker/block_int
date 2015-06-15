@@ -193,12 +193,14 @@ print(colnames(res.df))
 
 		# compute prediction error...
 
+cat("Full...\n")
 if (TRUE) {
 			# all data
 				res <- pred.full(design, factors, data); r <- c(r, full=res)
 print(r)
 }
 
+cat("Local...\n")
 if (TRUE) {
 			# ... local kriging
 				# 25
@@ -216,6 +218,7 @@ if (TRUE) {
 }
 
 			# ... block kriging
+cat("Block IO\n")
 if (TRUE) {
 				# independent ordered
 					# 25
@@ -230,6 +233,7 @@ if (TRUE) {
 					res <- pred.order(design, factors, data, 500, FALSE);  r <- c(r, o500_i=res)
 }
 
+cat("Block DO\n")
 if (TRUE) {
 				# dependent ordered
 					# 25
@@ -244,6 +248,7 @@ if (TRUE) {
 					res <- pred.order(design, factors, data, 500, TRUE);  r <- c(r, o500_d=res)
 }
 
+cat("Block IC\n")
 if (TRUE) {
 				# independent clustering
 					# 25
@@ -258,6 +263,7 @@ if (TRUE) {
 					res <- pred.clust(design, factors, data, 500, FALSE);  r <- c(r, c500_i=res)
 }
 
+cat("Block DC\n")
 if (TRUE) {
 				# dependent clustering
 					# 25
@@ -274,6 +280,7 @@ if (TRUE) {
 #					res <- pred.clust(design, factors, data, 1000, TRUE);  r <- c(r, c1000_d=res)
 }
 
+cat("Subset\n")
 if (TRUE) {
 			# ... best subset
 				# 25
@@ -872,8 +879,11 @@ if (FALSE) { # estimated cov matrix
 
 		#preds <- gpuMM(data$Sigma[data$n+1:factors$Npred,1:data$n], predInvSigma) %*% data$Yobs
 		#preds <- data$Sigma[data$n+1:factors$Npred,1:data$n] %*% (predInvSigma %*% data$Yobs)
+str(predMat)
+str(data$Yobs)
 		preds <- predMat %*% data$Yobs
 		mse <- mean( (preds-data$Ypred)^2 )
+str(mse)
 	})
 	t2 <- proc.time()-t1
 

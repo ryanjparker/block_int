@@ -7,7 +7,7 @@ library(parallel)
 	R,
 	theta, theta_fixed,
 	f.cc, f.cp,
-	verbose, tol=1e-8, maxIter=500, parallel=FALSE
+	verbose, tol=1e-8, maxIter=50, parallel=FALSE
 ) {
 	# f.cc: function to compute covariance
 	# f.cp: function to compute partial derivatives

@@ -15,15 +15,13 @@
 		cer <- data.frame()
 		for (part in 1:Nparts) {
 		#for (part in (1:Nparts)[-c(9,20)]) {
-			load(paste0("output/nblocks_exp_pred_",exp,"_",part,".RData"))
+			load(paste0("output/nblocks_exp_",exp,"_",part,".RData"))
 			cer <- rbind(cer, exp_res)
 		}
 		exp_res <- cer
 	} else {
 		load(paste0("output/nblocks_exp_",exp,".RData"))
 	}
-
-return(exp_res)
 
 with(exp_res, {
 
@@ -88,8 +86,8 @@ print(length(sub))
 		b <- sort(sort(full.Si_T[[i]],dec=T,index.return=TRUE)$ix[1:3])
 		sum(a-b)==0
 	}) ) )
-	full$speedup_mu <- 1
-	full$time <- mean(full.time[sub])/60
+	full$rel_speedup_mu <- 1
+	full$speedup_mu <- mean(full.time[sub])/60
 
 	# ir 250
 	sub <- which(good.orac&good.full&good.ir250)
@@ -105,8 +103,8 @@ print(length(sub))
 		b <- sort(sort(ir250.Si_T[[i]],dec=T,index.return=TRUE)$ix[1:3])
 		sum(a-b)==0
 	}) ) )
-	ir250$speedup_mu <- mean(full.time[sub]/ir250.time[sub])
-	ir250$time <- mean(ir250.time[sub])/60
+	ir250$rel_speedup_mu <- mean(full.time[sub]/ir250.time[sub])
+	ir250$speedup_mu <- mean(ir250.time[sub])/60
 	#ir250$rel_rmse_t_se <- sd(ir250.rmse_t[sub]/full.rmse_p[sub])/sqrt(length(sub))*se.mult.factor
 	#ir250$rel_rmse_p_se <- sd(ir250.rmse_full_p[sub]/orac.rmse_p[sub])/sqrt(length(sub))*se.mult.factor
 	#ir250$rel_rmse_s_se <- sd(ir250.rmse_s_T[sub]/full.rmse_s_T[sub])/sqrt(length(sub))*se.mult.factor
@@ -127,8 +125,8 @@ print(length(sub))
 		sum(a-b)==0
 	}) ) )
 	#ic250$speedup_mu <- mean(full.time[sub]/(ir250.time[sub]+ic250.time[sub]))
-	ic250$speedup_mu <- mean(full.time[sub]/(ic250.time[sub]))
-	ic250$time <- mean(ic250.time[sub])/60
+	ic250$rel_speedup_mu <- mean(full.time[sub]/(ic250.time[sub]))
+	ic250$speedup_mu <- mean(ic250.time[sub])/60
 
 	# ir 100
 	sub <- which(good.orac&good.full&good.ir100)
@@ -144,8 +142,8 @@ print(length(sub))
 		b <- sort(sort(ir100.Si_T[[i]],dec=T,index.return=TRUE)$ix[1:3])
 		sum(a-b)==0
 	}) ) )
-	ir100$speedup_mu <- mean(full.time[sub]/ir100.time[sub])
-	ir100$time <- mean(ir100.time[sub])/60
+	ir100$rel_speedup_mu <- mean(full.time[sub]/ir100.time[sub])
+	ir100$speedup_mu <- mean(ir100.time[sub])/60
 
 	# ic 100
 	sub <- which(good.orac&good.full&good.ir100&good.ic100)
@@ -162,8 +160,8 @@ print(length(sub))
 		sum(a-b)==0
 	}) ) )
 	#ic100$speedup_mu <- mean(full.time[sub]/(ir100.time[sub]+ic100.time[sub]))
-	ic100$speedup_mu <- mean(full.time[sub]/(ic100.time[sub]))
-	ic100$time <- mean(ic100.time[sub])/60
+	ic100$rel_speedup_mu <- mean(full.time[sub]/(ic100.time[sub]))
+	ic100$speedup_mu <- mean(ic100.time[sub])/60
 
 	# ir 50
 	sub <- which(good.orac&good.full&good.ir50)
@@ -179,8 +177,8 @@ print(length(sub))
 		b <- sort(sort(ir50.Si_T[[i]],dec=T,index.return=TRUE)$ix[1:3])
 		sum(a-b)==0
 	}) ) )
-	ir50$speedup_mu <- mean(full.time[sub]/ir50.time[sub])
-	ir50$time <- mean(ir50.time[sub])/60
+	ir50$rel_speedup_mu <- mean(full.time[sub]/ir50.time[sub])
+	ir50$speedup_mu <- mean(ir50.time[sub])/60
 
 	# ic 50
 	sub <- which(good.orac&good.full&good.ir50&good.ic50)
@@ -197,8 +195,8 @@ print(length(sub))
 		sum(a-b)==0
 	}) ) )
 	#ic50$speedup_mu <- mean(full.time[sub]/(ir50.time[sub]+ic50.time[sub]))
-	ic50$speedup_mu <- mean(full.time[sub]/(ic50.time[sub]))
-	ic50$time <- mean(ic50.time[sub])/60
+	ic50$rel_speedup_mu <- mean(full.time[sub]/(ic50.time[sub]))
+	ic50$speedup_mu <- mean(ic50.time[sub])/60
 
 	# ir 25
 	sub <- which(good.orac&good.full&good.ir25)
@@ -217,8 +215,8 @@ print(length(sub))
 		b <- sort(sort(ir25.Si_T[[i]],dec=T,index.return=TRUE)$ix[1:3])
 		sum(a-b)==0
 	}) ) )
-	ir25$speedup_mu <- mean(full.time[sub]/ir25.time[sub])
-	ir25$time <- mean(ir25.time[sub])/60
+	ir25$rel_speedup_mu <- mean(full.time[sub]/ir25.time[sub])
+	ir25$speedup_mu <- mean(ir25.time[sub])/60
 
 	# ic 25
 	sub <- which(good.orac&good.full&good.ir25&good.ic25)
@@ -235,8 +233,8 @@ print(length(sub))
 		sum(a-b)==0
 	}) ) )
 	#ic25$speedup_mu <- mean(full.time[sub]/(ir25.time[sub]+ic25.time[sub]))
-	ic25$speedup_mu <- mean(full.time[sub]/(ic25.time[sub]))
-	ic25$time <- mean(ic25.time[sub])/60
+	ic25$rel_speedup_mu <- mean(full.time[sub]/(ic25.time[sub]))
+	ic25$speedup_mu <- mean(ic25.time[sub])/60
 
 	# dr 50
 	sub <- which(good.orac&good.full&good.dr50)
@@ -252,8 +250,8 @@ print(length(sub))
 		b <- sort(sort(dr50.Si_T[[i]],dec=T,index.return=TRUE)$ix[1:3])
 		sum(a-b)==0
 	}) ) )
-	dr50$speedup_mu <- mean(full.time[sub]/dr50.time[sub])
-	dr50$time <- mean(dr50.time[sub])/60
+	dr50$rel_speedup_mu <- mean(full.time[sub]/dr50.time[sub])
+	dr50$speedup_mu <- mean(dr50.time[sub])/60
 
 	# dc 50
 	sub <- which(good.orac&good.full&good.dr50&good.dc50)
@@ -270,8 +268,8 @@ print(length(sub))
 		sum(a-b)==0
 	}) ) )
 	#dc50$speedup_mu <- mean(full.time[sub]/(dr50.time[sub]+dc50.time[sub]))
-	dc50$speedup_mu <- mean(full.time[sub]/(dc50.time[sub]))
-	dc50$time <- mean(dc50.time[sub])/60
+	dc50$rel_speedup_mu <- mean(full.time[sub]/(dc50.time[sub]))
+	dc50$speedup_mu <- mean(dc50.time[sub])/60
 
 	# dr 25
 	sub <- which(good.orac&good.full&good.dr25)
@@ -287,8 +285,8 @@ print(length(sub))
 		b <- sort(sort(dr25.Si_T[[i]],dec=T,index.return=TRUE)$ix[1:3])
 		sum(a-b)==0
 	}) ) )
-	dr25$speedup_mu <- mean(full.time[sub]/dr25.time[sub])
-	dr25$time <- mean(dr25.time[sub])/60
+	dr25$rel_speedup_mu <- mean(full.time[sub]/dr25.time[sub])
+	dr25$speedup_mu <- mean(dr25.time[sub])/60
 
 	# dc 25
 	sub <- which(good.orac&good.full&good.dr25&good.dc25)
@@ -305,8 +303,8 @@ print(length(sub))
 		sum(a-b)==0
 	}) ) )
 	#dc25$speedup_mu <- mean(full.time[sub]/(dr25.time[sub]+dc25.time[sub]))
-	dc25$speedup_mu <- mean(full.time[sub]/(dc25.time[sub]))
-	dc25$time <- mean(dc25.time[sub])/60
+	dc25$rel_speedup_mu <- mean(full.time[sub]/(dc25.time[sub]))
+	dc25$speedup_mu <- mean(dc25.time[sub])/60
 
 	# round numeric fields
 	full <- round_df(as.data.frame(full))
@@ -439,9 +437,6 @@ cat("25:",round(mean(ir25.time),2),round(mean(full.time/ir25.time),2),round(mean
 
 }
 
-tmp<-analyze_sims(4)
-done
-
-for (i in c(6)) {#,8,9)) {
+for (i in c(1:4)) {#,8,9)) {
 	analyze_sims(i)
 }
