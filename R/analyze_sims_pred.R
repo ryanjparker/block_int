@@ -439,13 +439,40 @@ cat("25:",round(mean(ir25.time),2),round(mean(full.time/ir25.time),2),round(mean
 
 }
 
+if (FALSE) {
 pres <- vector("list", 6)
-for (i in c(1,2,3,4,6)) {#,8,9)) {
+for (i in c(1,2,3,4,5,6)) {#,8,9)) {
 	tmp<-analyze_sims(i)
 	pres[[i]] <- colMeans(tmp)
 }
-done
-
-for (i in c(6)) {#,8,9)) {
-	analyze_sims(i)
 }
+
+t1 <- c(1,3,5)
+t2 <- c(2,4,6)
+
+# plot results
+
+# RMSE
+# x-axis: n
+# y-axis: rmse
+# lines for each method
+
+# max rmse
+max.rmse <- 0
+for (i in 1:length(pres)) {
+	vars <- grep("rmse", names(pres[[i]]))
+	max.rmse <- max(max.rmse, max(pres[[i]][vars]))
+}
+
+ss <- c(2500, 5000, 10000)
+pdf("pdf/pred/rmse_1.pdf")
+	# full RMSE
+	rmse <- c()
+	for (i in t1) rmse <- c(rmse, pres[[i]]["full.rmse"])
+
+	plot(ss, rmse, ylim=c(0,max.rmse))
+graphics.off()
+
+# timings
+
+
