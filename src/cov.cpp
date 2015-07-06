@@ -51,6 +51,30 @@ NumericMatrix ce_cov_Rcpp(NumericVector theta, NumericMatrix X) {
 }
 
 // [[Rcpp::export]]
+NumericMatrix ce_cov_single_Rcpp(NumericVector theta, NumericMatrix X, NumericMatrix X2) {
+	// compute Cov(X, X2)
+	int n      = X.nrow();
+	int Ntheta = theta.size();
+	int n2     = X2.nrow();
+
+	NumericMatrix Sigma(n, n2);
+
+	int i,j,k;
+
+	for (i = 0; i < n; i++) {
+		for (j = 0; j < n2; j++) {
+			Sigma(i,j) = 0;
+			for (k = 0; k < Ntheta; k++) {
+				Sigma(i,j) += theta[k]*pow(X(i,k)-X2(j,k), 2);
+			}
+			Sigma(i,j) = exp(-Sigma(i,j));
+		}
+	}
+
+	return(Sigma);
+}
+
+// [[Rcpp::export]]
 NumericMatrix ce_partial_Rcpp(int e, NumericVector theta, NumericMatrix Sigma, NumericMatrix X) {
 	int n      = X.nrow();
 	int Ntheta = theta.size();

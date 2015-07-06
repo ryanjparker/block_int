@@ -19,6 +19,12 @@ sourceCpp("src/cov.cpp")
 	ce_cov_Rcpp(as.vector(theta), as.matrix(X)) + diag(nrow(X))*0.001
 }#)
 
+"ce_cov_single" <- function(theta, X, X2) {
+#str(as.matrix(X))
+#str(as.matrix(X2))
+	ce_cov_single_Rcpp(as.vector(theta), as.matrix(X), as.matrix(X2))
+}
+
 "ce_partial" <- function(e, theta, Sigma, X) {
 #	-D[e,,] * exp(theta[e]) * Sigma
 	ce_partial_Rcpp(as.integer(e), as.vector(theta), as.matrix(Sigma), as.matrix(X))

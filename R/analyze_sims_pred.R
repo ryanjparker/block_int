@@ -1,8 +1,11 @@
 # analyze output
 
+specify_decimal <- function(x, k) as.numeric( format(round(x, k), nsmall=k) )
+
 "round_df" <- function(df) {
 	for (i in 1:ncol(df)) {
-		if (is.numeric(df[,i])) df[,i] <- round(df[,i], 2)
+		#if (is.numeric(df[,i])) df[,i] <- round(df[,i], 2)
+		if (is.numeric(df[,i])) df[,i] <- specify_decimal(df[,i], 2)
 	}
 
 	df
@@ -439,16 +442,147 @@ cat("25:",round(mean(ir25.time),2),round(mean(full.time/ir25.time),2),round(mean
 
 }
 
-if (FALSE) {
+if (TRUE) {
+
 pres <- vector("list", 6)
 for (i in c(1,2,3,4,5,6)) {#,8,9)) {
 	tmp<-analyze_sims(i)
 	pres[[i]] <- colMeans(tmp)
 }
+
 }
 
+t <- list(c(1,3,5), c(2,4,6))
 t1 <- c(1,3,5)
 t2 <- c(2,4,6)
+
+ss     <- c(2500, 5000, 10000)
+local  <- c("l250","l500")
+ind    <- c("c250_i","c500_i")
+dep    <- c("c250_d","c500_d")
+subset <- c("s500","s1000","s2500","s5000")
+
+# create TeX
+
+# RMSE
+for (it in 1:length(t)) {
+	for (iss in 1:length(ss)) {
+		if (iss == 1) {
+			cat("\\multirow{3}{*}{$",it,"$}",sep="")
+		}
+
+		cat(" &",ss[iss],"& ")
+
+		f <- pres[[t[[it]][iss]]]["full.rmse"]
+
+		# full
+		cat(round(f,2))
+		# local
+		for (i in 1:length(local)) { cat(" & "); l<-pres[[t[[it]][iss]]][paste0(local[i],".rmse")]; cat(round(l,2)) }
+		# ind
+		for (i in 1:length(ind)) { cat(" & "); l<-pres[[t[[it]][iss]]][paste0(ind[i],".rmse")]; cat(round(l,2)) }
+		# dep
+		for (i in 1:length(dep)) { cat(" & "); l<-pres[[t[[it]][iss]]][paste0(dep[i],".rmse")]; cat(round(l,2)) }
+		# subset
+		for (i in 1:length(subset)) { cat(" & "); l<-pres[[t[[it]][iss]]][paste0(subset[i],".rmse")]; cat(round(l,2)) }
+
+		cat(" \\\\ \n")
+	}
+	cat("\\hline\n")
+}
+
+# relative RMSE
+for (it in 1:length(t)) {
+	for (iss in 1:length(ss)) {
+		if (iss == 1) {
+			cat("\\multirow{3}{*}{$",it,"$}",sep="")
+		}
+
+		cat(" &",ss[iss],"& ")
+
+		f <- pres[[t[[it]][iss]]]["full.rmse"]
+
+		# full
+		cat("1.00")
+		# local
+		for (i in 1:length(local)) { cat(" & "); l<-pres[[t[[it]][iss]]][paste0(local[i],".rmse")]; cat(round(l/f,2)) }
+		# ind
+		for (i in 1:length(ind)) { cat(" & "); l<-pres[[t[[it]][iss]]][paste0(ind[i],".rmse")]; cat(round(l/f,2)) }
+		# dep
+		for (i in 1:length(dep)) { cat(" & "); l<-pres[[t[[it]][iss]]][paste0(dep[i],".rmse")]; cat(round(l/f,2)) }
+		# subset
+		for (i in 1:length(subset)) { cat(" & "); l<-pres[[t[[it]][iss]]][paste0(subset[i],".rmse")]; cat(round(l/f,2)) }
+
+		cat(" \\\\ \n")
+	}
+	cat("\\hline\n")
+}
+
+# Timing
+cat("Timing:\n")
+full.ptimes <- c(12.4374,106.4146,968.9088)
+for (it in 1:length(t)) {
+	for (iss in 1:length(ss)) {
+		if (iss == 1) {
+			cat("\\multirow{3}{*}{$",it,"$}",sep="")
+		}
+
+		cat(" &",ss[iss],"& ")
+
+		f <- pres[[t[[it]][iss]]]["full.time"]+full.ptimes[iss]
+
+		# full
+		cat(round(f,2))
+		# local
+		for (i in 1:length(local)) { cat(" & "); l<-pres[[t[[it]][iss]]][paste0(local[i],".time")]; cat(round(l,2)) }
+		# ind
+		for (i in 1:length(ind)) { cat(" & ");
+			l<-pres[[t[[it]][iss]]][paste0(ind[i],".time")]+pres[[t[[it]][iss]]][paste0(ind[i],".ptime")]; cat(round(l,2)) }
+		# dep
+		for (i in 1:length(dep)) { cat(" & ");
+			l<-pres[[t[[it]][iss]]][paste0(dep[i],".time")]+pres[[t[[it]][iss]]][paste0(dep[i],".ptime")]; cat(round(l,2)) }
+		# subset
+		for (i in 1:length(subset)) { cat(" & ");
+			l<-pres[[t[[it]][iss]]][paste0(subset[i],".time")]+pres[[t[[it]][iss]]][paste0(subset[i],".ptime")]; cat(round(l,2)) }
+
+		cat(" \\\\ \n")
+	}
+	cat("\\hline\n")
+}
+
+# relative timing
+cat("Relative Timing:\n")
+full.ptimes <- c(12.4374,106.4146,968.9088)
+for (it in 1:length(t)) {
+	for (iss in 1:length(ss)) {
+		if (iss == 1) {
+			cat("\\multirow{3}{*}{$",it,"$}",sep="")
+		}
+
+		cat(" &",ss[iss],"& ")
+
+		f <- pres[[t[[it]][iss]]]["full.time"]+full.ptimes[iss]
+
+		# full
+		cat("1.00") #round(f,2))
+		# local
+		for (i in 1:length(local)) { cat(" & "); l<-pres[[t[[it]][iss]]][paste0(local[i],".time")]; cat(round(f/l,2)) }
+		# ind
+		for (i in 1:length(ind)) { cat(" & ");
+			l<-pres[[t[[it]][iss]]][paste0(ind[i],".time")]+pres[[t[[it]][iss]]][paste0(ind[i],".ptime")]; cat(round(f/l,2)) }
+		# dep
+		for (i in 1:length(dep)) { cat(" & ");
+			l<-pres[[t[[it]][iss]]][paste0(dep[i],".time")]+pres[[t[[it]][iss]]][paste0(dep[i],".ptime")]; cat(round(f/l,2)) }
+		# subset
+		for (i in 1:length(subset)) { cat(" & ");
+			l<-pres[[t[[it]][iss]]][paste0(subset[i],".time")]+pres[[t[[it]][iss]]][paste0(subset[i],".ptime")]; cat(round(f/l,2)) }
+
+		cat(" \\\\ \n")
+	}
+	cat("\\hline\n")
+}
+
+done
 
 # plot results
 
@@ -464,13 +598,51 @@ for (i in 1:length(pres)) {
 	max.rmse <- max(max.rmse, max(pres[[i]][vars]))
 }
 
-ss <- c(2500, 5000, 10000)
-pdf("pdf/pred/rmse_1.pdf")
-	# full RMSE
-	rmse <- c()
-	for (i in t1) rmse <- c(rmse, pres[[i]]["full.rmse"])
+# [1] "seed"         "p"            "full.time"    "full.rmse"    "l25.time"     "l25.rmse"     "l50.time"     "l50.rmse"     "l100.time"    "l100.rmse"    "l250.time"    "l250.rmse"    "l500.time"    "l500.rmse"    "o25_i.ptime" 
+#[16] "o25_i.time"   "o25_i.rmse"   "o50_i.ptime"  "o50_i.time"   "o50_i.rmse"   "o100_i.ptime" "o100_i.time"  "o100_i.rmse"  "o250_i.ptime" "o250_i.time"  "o250_i.rmse"  "o500_i.ptime" "o500_i.time"  "o500_i.rmse"  "o25_d.ptime" 
+#[31] "o25_d.time"   "o25_d.rmse"   "o50_d.ptime"  "o50_d.time"   "o50_d.rmse"   "o100_d.ptime" "o100_d.time"  "o100_d.rmse"  "o250_d.ptime" "o250_d.time"  "o250_d.rmse"  "o500_d.ptime" "o500_d.time"  "o500_d.rmse"  "c25_i.ptime" 
+#[46] "c25_i.time"   "c25_i.rmse"   "c50_i.ptime"  "c50_i.time"   "c50_i.rmse"   "c100_i.ptime" "c100_i.time"  "c100_i.rmse"  "c250_i.ptime" "c250_i.time"  "c250_i.rmse"  "c500_i.ptime" "c500_i.time"  "c500_i.rmse"  "c25_d.ptime" 
+#[61] "c25_d.time"   "c25_d.rmse"   "c50_d.ptime"  "c50_d.time"   "c50_d.rmse"   "c100_d.ptime" "c100_d.time"  "c100_d.rmse"  "c250_d.ptime" "c250_d.time"  "c250_d.rmse"  "c500_d.ptime" "c500_d.time"  "c500_d.rmse"  "s25.ptime"   
+#[76] "s25.time"     "s25.rmse"     "s50.ptime"    "s50.time"     "s50.rmse"     "s100.ptime"   "s100.time"    "s100.rmse"    "s250.ptime"   "s250.time"    "s250.rmse"    "s500.ptime"   "s500.time"    "s500.rmse"    "s1000.ptime" 
+#[91] "s1000.time"   "s1000.rmse"  
 
-	plot(ss, rmse, ylim=c(0,max.rmse))
+
+pdf("pdf/pred/rmse_1.pdf")
+#	# full RMSE
+#	rmse <- c()
+#	for (i in t1) rmse <- c(rmse, pres[[i]]["full.rmse"])
+#	plot(ss, rmse, ylim=c(0,max.rmse), type="b")
+
+	plot(ss, rep(NA, 3), ylim=c(1,3), xlab='Sample Size', ylab='Relative RMSE')
+
+	# local
+	for (l in local) {
+		rmse <- c()
+		for (i in t1) rmse <- c(rmse, pres[[i]][paste0(l,".rmse")]/pres[[i]]["full.rmse"])
+		lines(ss, rmse, type="b", lty=2)
+	}
+
+	# order
+	for (o in order) {
+		rmse <- c()
+		for (i in t1) rmse <- c(rmse, pres[[i]][paste0(o,".rmse")]/pres[[i]]["full.rmse"])
+		lines(ss, rmse, type="b", lty=3)
+	}
+
+	# cluster
+	for (c in clust) {
+		rmse <- c()
+		for (i in t1) rmse <- c(rmse, pres[[i]][paste0(c,".rmse")]/pres[[i]]["full.rmse"])
+		lines(ss, rmse, type="b", lty=4)
+	}
+
+	# subset
+	for (s in subset) {
+		rmse <- c()
+		for (i in t1) rmse <- c(rmse, pres[[i]][paste0(s,".rmse")]/pres[[i]]["full.rmse"])
+		lines(ss, rmse, type="b", lty=5)
+	}
+
 graphics.off()
 
 # timings

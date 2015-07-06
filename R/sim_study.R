@@ -362,7 +362,7 @@ print(round(unlist(r),3))
 	#data$theta <- 400
 	data$theta <- factors$tau * ( (1 - (jvec-1)/factors$p)^factors$b - (1 - jvec/factors$p)^factors$b )
 	#data$theta[factors$Fzero] <- 0.01    # set some to have small effect
-#print( round(data$theta, 4)); done
+#print( round(data$theta, 2)); done
 
 if (FALSE) {
 print(sum( data$theta^2 ))
