@@ -1,0 +1,1398 @@
+
+R version 3.0.3 (2014-03-06) -- "Warm Puppy"
+Copyright (C) 2014 The R Foundation for Statistical Computing
+Platform: x86_64-unknown-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> print(.libPaths())
+[1] "/usr/local/r-3.0.3/lib64/R/library"
+> .libPaths("/mnt/home/rjparker/Rlib")
+> print(.libPaths())
+[1] "/mnt/home/rjparker/Rlib"            "/usr/local/r-3.0.3/lib64/R/library"
+> 
+> which_exp <- 8
+> source("R/sim_nblocks.R")
+Loading required package: spam
+Loading required package: grid
+Spam version 0.41-0 (2014-02-26) is loaded.
+Type 'help( Spam)' or 'demo( spam)' for a short introduction 
+and overview of this package.
+Help for individual functions is also obtained by adding the
+suffix '.spam' to the function name, e.g. 'help( chol.spam)'.
+
+Attaching package: ‘spam’
+
+The following objects are masked from ‘package:base’:
+
+    backsolve, forwardsolve
+
+Loading required package: maps
+   p b tau Nper_p Npred Nblock_obs_ind Fzero sigma2
+8 10 3   3    250   100            100     1      1
+             seed                 p               tau       orac.status 
+         2684.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.085             0.003             1.000           953.435 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.010             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            10.014             0.046             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            10.226 
+             seed                 p               tau       orac.status 
+         2687.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           10.133             0.002             1.000          1048.027 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.010             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             9.332             0.038             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            13.633 
+             seed                 p               tau       orac.status 
+         2685.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           16.279             0.002             1.000          1355.759 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.008             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            11.079             0.066             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            26.730 
+             seed                 p               tau       orac.status 
+         2688.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           10.701             0.002             1.000          1643.430 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.009             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            10.294             0.068             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            12.633 
+             seed                 p               tau       orac.status 
+         2686.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           15.962             0.002             1.000          1565.928 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.010             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            15.138             0.028             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            25.231 
+             seed                 p               tau       orac.status 
+         2689.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.058             0.002             1.000           954.182 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.009             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             8.671             0.011             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000             9.990 
+             seed                 p               tau       orac.status 
+         2692.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           13.783             0.003             1.000          1539.506 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.008             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             8.357             0.035             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            12.110 
+             seed                 p               tau       orac.status 
+         2694.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.238             0.002             1.000           954.948 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.010             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             8.645             0.028             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            10.486 
+             seed                 p               tau       orac.status 
+         2693.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           13.044             0.003             1.000          1472.345 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.020             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            10.035             0.062             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            12.193 
+             seed                 p               tau       orac.status 
+         2690.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           14.005             0.003             1.000          1947.615 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.012             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            12.971             0.053             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            13.139 
+             seed                 p               tau       orac.status 
+         2691.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           20.035             0.003             1.000          1914.150 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.011             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            14.863             0.026             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            17.205 
+             seed                 p               tau       orac.status 
+         2699.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.141             0.003             1.000           740.924 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.011             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            10.653             0.053             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            10.282 
+             seed                 p               tau       orac.status 
+         2697.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           14.322             0.003             1.000          1607.504 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.012             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             7.626             0.050             0.004 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            11.369 
+             seed                 p               tau       orac.status 
+         2698.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           10.313             0.002             1.000          1396.085 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.009             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            15.829             0.027             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            13.808 
+             seed                 p               tau       orac.status 
+         2695.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           12.940             0.003             1.000          1497.503 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.017             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            16.841             0.056             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            11.777 
+             seed                 p               tau       orac.status 
+         2696.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           17.573             0.002             1.000          1448.706 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.010             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            10.735             0.023             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            15.509 
+             seed                 p               tau       orac.status 
+         2704.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.575             0.002             1.000          1056.356 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.008             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             9.113             0.010             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            12.366 
+             seed                 p               tau       orac.status 
+         2702.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           10.091             0.003             1.000          1056.450 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.013             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            14.958             0.042             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            12.093 
+             seed                 p               tau       orac.status 
+         2709.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.545             0.003             1.000           801.088 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.007             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             7.604             0.048             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000             8.386 
+             seed                 p               tau       orac.status 
+         2703.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           11.445             0.003             1.000          1449.294 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.010             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            12.316             0.051             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            17.860 
+             seed                 p               tau       orac.status 
+         2700.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           10.821             0.003             1.000          1159.795 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.010             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            14.731             0.032             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            10.264 
+             seed                 p               tau       orac.status 
+         2707.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           10.054             0.002             1.000          1043.014 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.014             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             9.070             0.042             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            11.317 
+             seed                 p               tau       orac.status 
+         2701.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           11.039             0.003             1.000          1383.647 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.017             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            10.287             0.037             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            10.701 
+             seed                 p               tau       orac.status 
+         2714.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.933             0.003             1.000          1083.884 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.007             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             9.194             0.062             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            13.242 
+             seed                 p               tau       orac.status 
+         2712.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.281             0.003             1.000           983.180 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.011             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             8.888             0.011             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000             8.513 
+             seed                 p               tau       orac.status 
+         2708.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           11.099             0.003             1.000          1483.878 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.021             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             7.740             0.020             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            10.748 
+             seed                 p               tau       orac.status 
+         2705.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           15.594             0.002             1.000          1443.385 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.017             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            10.387             0.072             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            13.364 
+             seed                 p               tau       orac.status 
+         2706.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           16.785             0.002             1.000          1501.720 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.014             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            10.131             0.038             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            10.230 
+             seed                 p               tau       orac.status 
+         2719.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           10.237             0.004             1.000          1096.035 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.007             0.004             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            13.641             0.056             0.004 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            13.268 
+             seed                 p               tau       orac.status 
+         2717.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.276             0.002             1.000           982.459 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.009             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             7.480             0.022             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000             9.063 
+             seed                 p               tau       orac.status 
+         2710.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           13.740             0.002             1.000          1386.796 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.021             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            11.932             0.043             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            15.445 
+             seed                 p               tau       orac.status 
+         2713.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           10.433             0.002             1.000          1464.975 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.007             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            12.019             0.061             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            13.297 
+Error in eval(expr, envir, enclos) : not a matrix
+Error in try({ : object 'fit' not found
+             seed                 p               tau       orac.status 
+         2722.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.015             0.003             1.000           951.912 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.010             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            11.367             0.063             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000             9.444 
+             seed                 p               tau       orac.status 
+         2724.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.918             0.004             1.000          1058.857 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.010             0.004             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             8.792             0.030             0.004 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000             9.748 
+             seed                 p               tau       orac.status 
+         2711.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           13.375             0.003             1.000          1723.839 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.016             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            14.298             0.084             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            17.273 
+             seed                 p               tau       orac.status 
+         2715.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           13.720             0.002             1.000          1449.375 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.007             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            10.032             0.033             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            12.706 
+             seed                 p               tau       orac.status 
+         2727.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.877             0.003             1.000          1062.722 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.010             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             7.174             0.042             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            14.926 
+             seed                 p               tau       orac.status 
+         2718.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           14.101             0.002             1.000          1450.072 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.006             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             9.614             0.032             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            16.350 
+             seed                 p               tau       orac.status 
+         2729.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           10.381             0.002             1.000          1113.354 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.008             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            10.239             0.036             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            11.505 
+             seed                 p               tau       orac.status 
+         2716.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           14.250             0.003             1.000          1385.265 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.016             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            14.262             0.045             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            26.968 
+             seed                 p               tau       orac.status 
+         2732.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.035             0.002             1.000           954.625 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.009             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             7.175             0.034             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            10.376 
+             seed                 p               tau       orac.status 
+         2720.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           11.094             0.002             1.000           958.359 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.007             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            15.067             0.018             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            16.424 
+             seed                 p               tau       orac.status 
+         2734.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.982             0.003             1.000          1059.500 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.010             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             7.366             0.023             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            11.094 
+             seed                 p               tau       orac.status 
+         2723.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           16.640             0.002             1.000          1266.837 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.014             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             9.198             0.039             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            11.597 
+             seed                 p               tau       orac.status 
+         2737.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.000             0.002             1.000           960.968 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.012             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             8.890             0.083             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            10.681 
+             seed                 p               tau       orac.status 
+         2721.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           12.275             0.003             1.000          1097.568 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.004             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            13.544             0.035             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            19.422 
+             seed                 p               tau       orac.status 
+         2739.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           10.539             0.002             1.000          1091.681 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.010             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             8.761             0.045             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000             9.080 
+             seed                 p               tau       orac.status 
+         2725.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           17.249             0.002             1.000          1394.962 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.011             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            11.464             0.045             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            15.937 
+             seed                 p               tau       orac.status 
+         2728.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           11.038             0.002             1.000           963.681 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.008             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            15.375             0.049             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            17.914 
+             seed                 p               tau       orac.status 
+         2742.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.119             0.003             1.000           726.465 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.007             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             8.563             0.042             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            15.027 
+Error in eval(expr, envir, enclos) : not a matrix
+Error in try({ : object 'fit' not found
+             seed                 p               tau       orac.status 
+         2744.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.900             0.003             1.000          1059.247 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.008             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             8.806             0.053             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            10.390 
+             seed                 p               tau       orac.status 
+         2726.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           14.772             0.003             1.000          1175.376 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.008             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            19.906             0.043             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            21.886 
+             seed                 p               tau       orac.status 
+         2730.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           11.531             0.003             1.000          1212.691 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.009             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             8.291             0.037             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            11.370 
+             seed                 p               tau       orac.status 
+         2747.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            8.983             0.002             1.000          1184.643 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.019             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             8.602             0.038             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            10.206 
+             seed                 p               tau       orac.status 
+         2733.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           18.655             0.003             1.000          1609.849 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.009             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            12.427             0.027             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            20.714 
+             seed                 p               tau       orac.status 
+         2749.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.887             0.002             1.000          1059.846 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.015             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             8.850             0.058             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            12.880 
+             seed                 p               tau       orac.status 
+         2735.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           11.448             0.003             1.000          1211.649 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.007             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            11.556             0.036             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            10.471 
+             seed                 p               tau       orac.status 
+         2752.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.026             0.002             1.000           956.769 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.014             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             8.548             0.043             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            10.304 
+             seed                 p               tau       orac.status 
+         2731.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           17.831             0.003             1.000          1609.355 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.010             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            17.651             0.055             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            19.226 
+             seed                 p               tau       orac.status 
+         2754.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.993             0.003             1.000          1061.105 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.015             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            14.548             0.057             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            12.537 
+             seed                 p               tau       orac.status 
+         2757.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.004             0.003             1.000           968.707 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.011             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            11.345             0.036             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000             8.464 
+             seed                 p               tau       orac.status 
+         2738.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           17.592             0.003             1.000          1544.727 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.007             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            15.023             0.024             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            26.030 
+             seed                 p               tau       orac.status 
+         2740.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           11.426             0.002             1.000          1212.381 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.020             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             9.935             0.058             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            12.677 
+             seed                 p               tau       orac.status 
+         2759.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.886             0.002             1.000          1060.642 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.012             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             7.365             0.037             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000             9.698 
+             seed                 p               tau       orac.status 
+         2736.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           17.745             0.003             1.000          1546.405 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.013             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            12.532             0.030             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            19.266 
+             seed                 p               tau       orac.status 
+         2762.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.626             0.003             1.000           956.962 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.016             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             9.969             0.054             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            10.593 
+             seed                 p               tau       orac.status 
+         2745.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           11.377             0.003             1.000          1212.673 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.010             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            11.462             0.026             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            13.248 
+             seed                 p               tau       orac.status 
+         2764.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            8.800             0.003             1.000          1017.092 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.018             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            10.188             0.072             0.004 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            10.110 
+             seed                 p               tau       orac.status 
+         2743.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           17.354             0.003             1.000          1606.973 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.023             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            14.891             0.055             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            23.569 
+             seed                 p               tau       orac.status 
+         2767.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.883             0.002             1.000           782.783 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.005             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             7.177             0.039             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000             9.200 
+             seed                 p               tau       orac.status 
+         2741.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           17.620             0.003             1.000          1567.208 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.018             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            19.962             0.045             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            24.940 
+             seed                 p               tau       orac.status 
+         2750.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           11.388             0.002             1.000          1209.021 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.011             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            11.444             0.048             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            11.590 
+             seed                 p               tau       orac.status 
+         2769.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.225             0.002             1.000          1037.043 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.019             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            10.195             0.052             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000             9.803 
+             seed                 p               tau       orac.status 
+         2772.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.879             0.002             1.000          1037.031 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.021             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             9.943             0.047             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            10.558 
+             seed                 p               tau       orac.status 
+         2748.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           17.631             0.002             1.000          1145.316 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.006             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            19.186             0.053             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            22.721 
+             seed                 p               tau       orac.status 
+         2774.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.684             0.003             1.000          1051.648 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.010             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             9.119             0.056             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000             9.476 
+             seed                 p               tau       orac.status 
+         2755.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           11.385             0.002             1.000          1205.870 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.022             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            13.098             0.043             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            10.980 
+             seed                 p               tau       orac.status 
+         2777.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           10.093             0.003             1.000          1066.813 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.009             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             7.584             0.033             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            10.546 
+             seed                 p               tau       orac.status 
+         2746.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           12.126             0.002             1.000          1594.161 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.006             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            19.914             0.055             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            28.522 
+             seed                 p               tau       orac.status 
+         2753.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           17.473             0.002             1.000          1574.619 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.006             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            17.178             0.058             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            11.628 
+             seed                 p               tau       orac.status 
+         2779.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           10.515             0.002             1.000          1227.748 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.008             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            12.969             0.046             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            11.348 
+             seed                 p               tau       orac.status 
+         2782.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           11.249             0.002             1.000          1231.456 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.009             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             9.696             0.035             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000             9.268 
+             seed                 p               tau       orac.status 
+         2751.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           12.289             0.002             1.000          1384.347 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.008             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            11.130             0.047             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            11.411 
+             seed                 p               tau       orac.status 
+         2760.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           11.319             0.002             1.000          1647.209 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.010             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            17.159             0.025             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            18.928 
+             seed                 p               tau       orac.status 
+         2758.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           11.320             0.003             1.000          1243.294 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.011             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            14.592             0.038             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            14.624 
+             seed                 p               tau       orac.status 
+         2756.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           10.516             0.002             1.000          1186.668 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.011             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             9.813             0.028             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            10.481 
+             seed                 p               tau       orac.status 
+         2765.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           12.423             0.002             1.000          1645.843 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.013             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            14.663             0.038             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            18.185 
+             seed                 p               tau       orac.status 
+         2763.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           17.571             0.003             1.000          1656.223 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.009             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            14.857             0.054             0.004 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            23.827 
+             seed                 p               tau       orac.status 
+         2761.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           11.164             0.003             1.000          1464.908 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.012             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            13.116             0.059             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            11.510 
+             seed                 p               tau       orac.status 
+         2770.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           16.556             0.003             1.000          1621.789 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.015             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            12.567             0.010             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            17.914 
+             seed                 p               tau       orac.status 
+         2766.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           11.298             0.002             1.000          1184.118 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.009             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             9.859             0.039             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000             8.927 
+             seed                 p               tau       orac.status 
+         2768.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           17.451             0.003             1.000          1633.323 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.007             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            13.230             0.035             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            13.542 
+             seed                 p               tau       orac.status 
+         2775.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           12.981             0.003             1.000          1586.112 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.012             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             9.843             0.049             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000             9.220 
+             seed                 p               tau       orac.status 
+         2771.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           11.311             0.002             1.000          1386.564 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.014             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            12.482             0.046             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            27.641 
+             seed                 p               tau       orac.status 
+         2773.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           17.469             0.002             1.000          1700.002 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.008             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            11.070             0.024             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            14.483 
+             seed                 p               tau       orac.status 
+         2780.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           11.265             0.002             1.000          1176.266 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.005             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            11.445             0.036             0.002 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            16.383 
+             seed                 p               tau       orac.status 
+         2776.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           12.799             0.002             1.000          1493.315 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.011             0.002             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             9.750             0.066             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            13.853 
+             seed                 p               tau       orac.status 
+         2778.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           17.491             0.003             1.000          1372.366 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.012             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            11.324             0.025             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000             9.157 
+             seed                 p               tau       orac.status 
+         2781.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+            9.968             0.003             1.000          1115.240 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.008             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            11.409             0.050             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000            11.310 
+             seed                 p               tau       orac.status 
+         2783.000            10.000             3.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           10.951             0.003             1.000          1121.840 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.015             0.003             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000             8.160             0.037             0.003 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.000             0.000             1.000             9.666 
+  [1] "seed"              "p"                 "tau"              
+  [4] "orac.status"       "orac.time"         "orac.rmse_p"      
+  [7] "full.status"       "full.time"         "full.rmse_t"      
+ [10] "full.rmse_p"       "full.rmse_s_S"     "full.rmse_s_T"    
+ [13] "ir250.status"      "ir250.time"        "ir250.rmse_t"     
+ [16] "ir250.rmse_full_p" "ir250.rmse_s_S"    "ir250.rmse_s_T"   
+ [19] "ic250.status"      "ic250.time"        "ic250.rmse_t"     
+ [22] "ic250.rmse_full_p" "ic250.rmse_s_S"    "ic250.rmse_s_T"   
+ [25] "ir100.status"      "ir100.time"        "ir100.rmse_t"     
+ [28] "ir100.rmse_full_p" "ir100.rmse_s_S"    "ir100.rmse_s_T"   
+ [31] "ic100.status"      "ic100.time"        "ic100.rmse_t"     
+ [34] "ic100.rmse_full_p" "ic100.rmse_s_S"    "ic100.rmse_s_T"   
+ [37] "ir50.status"       "ir50.time"         "ir50.rmse_t"      
+ [40] "ir50.rmse_full_p"  "ir50.rmse_s_S"     "ir50.rmse_s_T"    
+ [43] "ic50.status"       "ic50.time"         "ic50.rmse_t"      
+ [46] "ic50.rmse_full_p"  "ic50.rmse_s_S"     "ic50.rmse_s_T"    
+ [49] "ir25.status"       "ir25.time"         "ir25.rmse_t"      
+ [52] "ir25.rmse_full_p"  "ir25.rmse_s_S"     "ir25.rmse_s_T"    
+ [55] "ic25.status"       "ic25.time"         "ic25.rmse_t"      
+ [58] "ic25.rmse_full_p"  "ic25.rmse_s_S"     "ic25.rmse_s_T"    
+ [61] "dr50.status"       "dr50.time"         "dr50.rmse_t"      
+ [64] "dr50.rmse_full_p"  "dr50.rmse_s_S"     "dr50.rmse_s_T"    
+ [67] "dc50.status"       "dc50.time"         "dc50.rmse_t"      
+ [70] "dc50.rmse_full_p"  "dc50.rmse_s_S"     "dc50.rmse_s_T"    
+ [73] "dr25.status"       "dr25.time"         "dr25.rmse_t"      
+ [76] "dr25.rmse_full_p"  "dr25.rmse_s_S"     "dr25.rmse_s_T"    
+ [79] "dc25.status"       "dc25.time"         "dc25.rmse_t"      
+ [82] "dc25.rmse_full_p"  "dc25.rmse_s_S"     "dc25.rmse_s_T"    
+ [85] "orac.Si_S"         "orac.Si_T"         "full.Si_S"        
+ [88] "full.Si_T"         "ir250.Si_S"        "ir250.Si_T"       
+ [91] "ic250.Si_S"        "ic250.Si_T"        "ir100.Si_S"       
+ [94] "ir100.Si_T"        "ic100.Si_S"        "ic100.Si_T"       
+ [97] "ir50.Si_S"         "ir50.Si_T"         "ic50.Si_S"        
+[100] "ic50.Si_T"         "ir25.Si_S"         "ir25.Si_T"        
+[103] "ic25.Si_S"         "ic25.Si_T"         "dr50.Si_S"        
+[106] "dr50.Si_T"         "dc50.Si_S"         "dc50.Si_T"        
+[109] "dr25.Si_S"         "dr25.Si_T"         "dc25.Si_S"        
+[112] "dc25.Si_T"        
+  seed  p tau orac.status orac.time orac.rmse_p full.status full.time
+1 2684 10   3        TRUE     9.085 0.002711973        TRUE   953.435
+2 2685 10   3        TRUE    16.279 0.002222773        TRUE  1355.759
+3 2686 10   3        TRUE    15.962 0.002428828        TRUE  1565.928
+4 2687 10   3        TRUE    10.133 0.002172870        TRUE  1048.027
+5 2688 10   3        TRUE    10.701 0.002478696        TRUE  1643.430
+6 2689 10   3        TRUE     9.058 0.002377000        TRUE   954.182
+  full.rmse_t full.rmse_p full.rmse_s_S full.rmse_s_T ir250.status ir250.time
+1 0.009729178 0.002664240  3.015022e-06  2.935963e-06         TRUE     10.014
+2 0.008025972 0.002218098  6.597041e-06  5.213668e-06         TRUE     11.079
+3 0.009752375 0.002437893  4.955314e-06  2.437045e-06         TRUE     15.138
+4 0.009986080 0.002166266  6.402872e-06  8.374855e-06         TRUE      9.332
+5 0.009321537 0.002486287  4.543304e-06  5.753648e-06         TRUE     10.294
+6 0.008870244 0.002360278  6.154437e-06  4.591612e-06         TRUE      8.671
+  ir250.rmse_t ir250.rmse_full_p ir250.rmse_s_S ir250.rmse_s_T ic250.status
+1   0.04642514       0.002922275   1.775365e-05   1.775365e-05         TRUE
+2   0.06561953       0.002204110   2.231038e-05   2.231038e-05         TRUE
+3   0.02793605       0.002461960   2.250716e-05   2.250716e-05         TRUE
+4   0.03798989       0.002204117   2.438333e-05   2.438333e-05         TRUE
+5   0.06769118       0.002901317   2.050006e-05   2.050006e-05         TRUE
+6   0.01142892       0.002314349   8.933516e-06   8.933516e-06         TRUE
+  ic250.time ic250.rmse_t ic250.rmse_full_p ic250.rmse_s_S ic250.rmse_s_T
+1     10.226   0.03202327       0.002828539   9.556927e-06   9.556927e-06
+2     26.730   0.05811863       0.002223722   1.846984e-05   1.846984e-05
+3     25.231   0.01950534       0.002525564   1.759113e-05   1.759113e-05
+4     13.633   0.04121619       0.002254156   3.013354e-05   3.013354e-05
+5     12.633   0.05397649       0.002745420   1.860147e-05   1.860147e-05
+6      9.990   0.03462165       0.002352608   9.841485e-06   9.841485e-06
+  ir100.status ir100.time ir100.rmse_t ir100.rmse_full_p ir100.rmse_s_S
+1         TRUE      4.266   0.08464918       0.003138669   2.298121e-05
+2         TRUE      9.026   0.09634782       0.002456980   2.973094e-05
+3         TRUE      8.446   0.04527969       0.002401157   3.504379e-05
+4         TRUE      4.120   0.05623246       0.002538575   6.580951e-05
+5         TRUE      4.439   0.13055850       0.003759628   2.881279e-05
+6         TRUE      6.435   0.04450394       0.002386376   2.648100e-05
+  ir100.rmse_s_T ic100.status ic100.time ic100.rmse_t ic100.rmse_full_p
+1   2.298121e-05         TRUE      4.733   0.07324959       0.003046711
+2   2.973094e-05         TRUE      7.422   0.08361343       0.002438247
+3   3.504379e-05         TRUE      6.494   0.04966506       0.002384026
+4   6.580951e-05         TRUE      4.620   0.07398360       0.002249123
+5   2.881279e-05         TRUE      5.799   0.11006998       0.003209422
+6   2.648100e-05         TRUE      5.169   0.03790190       0.002321524
+  ic100.rmse_s_S ic100.rmse_s_T ir50.status ir50.time ir50.rmse_t
+1   2.214710e-05   2.214710e-05        TRUE    10.145   0.1458498
+2   2.909099e-05   2.909099e-05        TRUE     7.415   0.1319141
+3   3.590167e-05   3.590167e-05        TRUE     6.943   0.1024494
+4   4.935569e-05   4.935569e-05        TRUE     6.140   0.1180272
+5   3.132527e-05   3.132527e-05        TRUE     9.587   0.1688995
+6   1.660504e-05   1.660504e-05        TRUE     5.630   0.1069914
+  ir50.rmse_full_p ir50.rmse_s_S ir50.rmse_s_T ic50.status ic50.time
+1      0.005881865  4.324238e-05  4.324238e-05        TRUE     6.144
+2      0.002911184  4.693481e-05  4.693481e-05        TRUE     7.126
+3      0.002961487  1.150263e-04  1.150263e-04        TRUE     7.096
+4      0.002850433  9.129751e-05  9.129751e-05        TRUE     6.324
+5      0.004311096  4.116347e-05  4.116347e-05        TRUE     5.363
+6      0.003183010  5.709365e-05  5.709365e-05        TRUE     5.841
+  ic50.rmse_t ic50.rmse_full_p ic50.rmse_s_S ic50.rmse_s_T ir25.status
+1  0.15204087      0.003428821  4.268099e-05  4.268099e-05        TRUE
+2  0.12227079      0.002816740  3.783660e-05  3.783660e-05        TRUE
+3  0.07107211      0.002384902  4.678705e-05  4.678705e-05        TRUE
+4  0.09518846      0.002448254  7.613682e-05  7.613682e-05        TRUE
+5  0.17361176      0.003727020  3.713089e-05  3.713089e-05        TRUE
+6  0.07108613      0.002556316  3.096124e-05  3.096124e-05        TRUE
+  ir25.time ir25.rmse_t ir25.rmse_full_p ir25.rmse_s_S ir25.rmse_s_T
+1    23.723   0.2118930      0.007368515  0.0001092794  0.0001092794
+2    23.646   0.2123720      0.004102957  0.0001140212  0.0001140212
+3    11.254   0.2132767      0.003994692  0.0001224536  0.0001224536
+4    11.796   0.1841444      0.015043533  0.0001978143  0.0001978143
+5    25.181   0.2355395      0.050352154  0.0012186281  0.0012186281
+6    20.397   0.1920248      0.003716513  0.0001169763  0.0001169763
+  ic25.status ic25.time ic25.rmse_t ic25.rmse_full_p ic25.rmse_s_S
+1        TRUE    10.529  0.31309221      0.004311755  7.576146e-05
+2        TRUE    10.697  0.19281880      0.003298358  6.499390e-05
+3        TRUE    13.534  0.14756657      0.002701401  6.473728e-05
+4        TRUE    16.655  0.09491351      0.002413185  8.852981e-05
+5        TRUE    30.855  0.21592407      0.004256060  4.534726e-05
+6        TRUE     8.778  0.15708754      0.002973860  5.029187e-05
+  ic25.rmse_s_T dr50.status dr50.time dr50.rmse_t dr50.rmse_full_p
+1  7.576146e-05        TRUE    14.248  0.09325378      0.003270532
+2  6.499390e-05        TRUE    25.729  0.09078993      0.002424179
+3  6.473728e-05        TRUE    25.977  0.04746980      0.002422533
+4  8.852981e-05        TRUE    18.325  0.07229280      0.002500394
+5  4.534726e-05        TRUE    17.327  0.12641459      0.003559061
+6  5.029187e-05        TRUE    16.523  0.04700415      0.002517229
+  dr50.rmse_s_S dr50.rmse_s_T dc50.status dc50.time dc50.rmse_t
+1  2.570021e-05  2.570021e-05        TRUE    12.154  0.10172570
+2  2.791291e-05  2.791291e-05        TRUE    27.334  0.08073263
+3  4.078285e-05  4.078285e-05        TRUE    21.641  0.04552625
+4  7.127816e-05  7.127816e-05        TRUE    13.904  0.06771081
+5  2.777665e-05  2.777665e-05        TRUE    17.558  0.12039174
+6  2.984533e-05  2.984533e-05        TRUE    14.771  0.04840933
+  dc50.rmse_full_p dc50.rmse_s_S dc50.rmse_s_T dr25.status dr25.time
+1      0.003237020  2.930300e-05  2.930300e-05        TRUE    28.470
+2      0.002389533  2.741471e-05  2.741471e-05        TRUE    29.494
+3      0.002370197  3.323569e-05  3.323569e-05        TRUE    29.724
+4      0.002243556  4.466855e-05  4.466855e-05        TRUE    38.036
+5      0.003340638  3.244718e-05  3.244718e-05        TRUE    37.118
+6      0.002372711  1.760062e-05  1.760062e-05        TRUE    21.948
+  dr25.rmse_t dr25.rmse_full_p dr25.rmse_s_S dr25.rmse_s_T dc25.status
+1  0.12983032      0.004591516  4.253589e-05  4.253589e-05        TRUE
+2  0.13479348      0.003065809  5.138527e-05  5.138527e-05        TRUE
+3  0.10041953      0.002807463  9.642047e-05  9.642047e-05        TRUE
+4  0.12134964      0.002732232  7.863735e-05  7.863735e-05        TRUE
+5  0.18208131      0.004195026  4.232475e-05  4.232475e-05        TRUE
+6  0.09856825      0.003147193  6.146414e-05  6.146414e-05        TRUE
+  dc25.time dc25.rmse_t dc25.rmse_full_p dc25.rmse_s_S dc25.rmse_s_T
+1    15.632  0.15236940      0.003524413  4.297708e-05  4.297708e-05
+2    22.775  0.12478889      0.002773835  3.802991e-05  3.802991e-05
+3    31.923  0.06998036      0.002383977  4.646042e-05  4.646042e-05
+4    19.713  0.09906551      0.002545172  8.078986e-05  8.078986e-05
+5    16.467  0.16824455      0.003738589  3.731393e-05  3.731393e-05
+6    16.231  0.07680384      0.002490202  2.839543e-05  2.839543e-05
+                                                                                                                                    orac.Si_S
+1 2.055980e-01, 1.787515e-01, 1.119533e-01, 4.242275e-01, 1.143721e-02, -2.864975e-03, 1.703251e-02, 9.432865e-04, 3.187759e-03, 7.714606e-05
+2           0.086673776, 0.081141612, -0.003993212, 0.109189268, 0.423774969, 0.131743339, 0.003364880, 0.002863962, 0.004364498, 0.002481362
+3  0.6389564072, 0.0198263093, 0.0425185493, 0.0155319413, 0.0084291300, 0.0176802703, 0.0035004022, 0.0387141472, 0.0351071296, 0.0003160008
+4  0.2539888925, 0.0820570610, 0.1067458304, 0.0127101840, 0.3037365155, 0.0015701877, 0.0098993998, 0.0024486693, 0.0009706386, 0.0006529494
+5  6.193839e-01, 4.247518e-02, 1.626627e-02, 4.230418e-02, 8.169261e-02, 1.888979e-02, 6.927510e-03, 7.279649e-02, 1.220023e-03, 2.500348e-05
+6            0.064031103, 0.007070018, 0.012555025, 0.526522638, 0.051310428, 0.016830272, 0.043235724, 0.004424338, 0.003620464, 0.005378722
+                                                                                                                                    orac.Si_T
+1  0.2227063030, 0.2133190544, 0.1380600441, 0.4322216645, 0.0210169454, 0.0067748296, 0.0242946725, 0.0040695066, 0.0050157368, 0.0003411484
+2            0.130540292, 0.147761709, 0.045265657, 0.154570667, 0.455734328, 0.149433883, 0.020401629, 0.011715096, 0.013708959, 0.001287977
+3  0.7186955582, 0.0502711964, 0.1472110764, 0.0874671706, 0.0429100015, 0.0320067128, 0.0226501044, 0.0366517110, 0.0353378307, 0.0009827486
+4 4.327433e-01, 1.875167e-01, 1.544291e-01, 5.662462e-02, 3.387397e-01, 6.716322e-02, 2.813144e-02, 2.392958e-02, 2.405507e-03, -1.593781e-05
+5  0.6632528607, 0.1327683370, 0.0781541147, 0.0812555645, 0.0974523394, 0.0336822669, 0.0115366580, 0.0657574705, 0.0039302392, 0.0004537809
+6            0.210964938, 0.101414377, 0.068156464, 0.568068339, 0.086954762, 0.072198523, 0.074899520, 0.024775719, 0.004560160, 0.006492171
+                                                                                                                                    full.Si_S
+1 2.055956e-01, 1.787574e-01, 1.119527e-01, 4.242246e-01, 1.143151e-02, -2.862896e-03, 1.703365e-02, 9.418359e-04, 3.187486e-03, 7.782697e-05
+2           0.086674967, 0.081137322, -0.003997016, 0.109188048, 0.423787465, 0.131728527, 0.003366191, 0.002862334, 0.004364925, 0.002476966
+3  0.6389528237, 0.0198239159, 0.0425088262, 0.0155342601, 0.0084196107, 0.0176811858, 0.0035034740, 0.0387180265, 0.0351102220, 0.0003172509
+4  0.2539748118, 0.0820536623, 0.1067374626, 0.0127068317, 0.3037369507, 0.0015742206, 0.0098982575, 0.0024403044, 0.0009652432, 0.0006515169
+5  6.193720e-01, 4.247661e-02, 1.626360e-02, 4.230327e-02, 8.169799e-02, 1.888876e-02, 6.931221e-03, 7.279671e-02, 1.222091e-03, 2.227112e-05
+6            0.064039764, 0.007071343, 0.012553536, 0.526507906, 0.051310215, 0.016825212, 0.043231333, 0.004418487, 0.003619054, 0.005379979
+                                                                                                                                    full.Si_T
+1  0.2227066245, 0.2133211442, 0.1380589267, 0.4322151455, 0.0210135919, 0.0067719648, 0.0242983129, 0.0040714018, 0.0050159618, 0.0003424267
+2            0.130544660, 0.147759465, 0.045264483, 0.154573476, 0.455723810, 0.149426700, 0.020397717, 0.011720581, 0.013707564, 0.001293349
+3  0.7186920992, 0.0502722903, 0.1472130776, 0.0874689034, 0.0429129101, 0.0320099292, 0.0226500730, 0.0366504019, 0.0353335836, 0.0009835637
+4 4.327421e-01, 1.875110e-01, 1.544245e-01, 5.663134e-02, 3.387177e-01, 6.717263e-02, 2.813416e-02, 2.393347e-02, 2.407589e-03, -1.674954e-05
+5  0.6632574134, 0.1327774602, 0.0781525787, 0.0812498061, 0.0974643431, 0.0336806545, 0.0115370888, 0.0657554587, 0.0039254155, 0.0004496126
+6            0.210972523, 0.101414631, 0.068154937, 0.568060060, 0.086957598, 0.072201293, 0.074898443, 0.024768596, 0.004562883, 0.006489465
+                                                                                                                                   ir250.Si_S
+1 2.056347e-01, 1.787150e-01, 1.119760e-01, 4.242189e-01, 1.145056e-02, -2.870050e-03, 1.703034e-02, 9.620909e-04, 3.190456e-03, 7.154364e-05
+2           0.086667961, 0.081146449, -0.003995010, 0.109173060, 0.423766654, 0.131752397, 0.003375428, 0.002853456, 0.004358627, 0.002471142
+3  0.6389235087, 0.0197999166, 0.0425506664, 0.0155359455, 0.0084282932, 0.0176823985, 0.0034982850, 0.0387236318, 0.0351245361, 0.0003162246
+4  0.2539833840, 0.0820732727, 0.1067378962, 0.0127229147, 0.3036972291, 0.0015731580, 0.0099046017, 0.0024531566, 0.0009563907, 0.0006531358
+5  6.194040e-01, 4.246004e-02, 1.625898e-02, 4.230292e-02, 8.162259e-02, 1.888846e-02, 6.911927e-03, 7.280069e-02, 1.228803e-03, 2.776975e-05
+6            0.064022586, 0.007081757, 0.012550643, 0.526487232, 0.051306382, 0.016830905, 0.043237247, 0.004437154, 0.003610383, 0.005378558
+                                                                                                                                  ir250.Si_T
+1 0.2227149299, 0.2132808721, 0.1380737377, 0.4322499484, 0.0210249448, 0.0067948998, 0.0242994373, 0.0040604978, 0.0050180584, 0.0003336607
+2           0.130555373, 0.147738951, 0.045291521, 0.154588182, 0.455757020, 0.149398121, 0.020374379, 0.011725145, 0.013697975, 0.001310301
+3 0.7186504843, 0.0502615768, 0.1471979426, 0.0874992561, 0.0429074281, 0.0320442594, 0.0226627404, 0.0366621798, 0.0353429598, 0.0009774941
+4          0.432768738, 0.187494435, 0.154461424, 0.056652406, 0.338692214, 0.067186008, 0.028129500, 0.023933818, 0.002413926, -0.000026653
+5           0.663246781, 0.132760701, 0.078165920, 0.081242655, 0.097495980, 0.033650187, 0.011557179, 0.065745635, 0.003930211, 0.000436275
+6           0.210954715, 0.101399238, 0.068163150, 0.568054631, 0.086964215, 0.072203239, 0.074895249, 0.024784086, 0.004563644, 0.006487724
+                                                                                                                                   ic250.Si_S
+1 2.056323e-01, 1.787255e-01, 1.119756e-01, 4.242013e-01, 1.144311e-02, -2.860578e-03, 1.703088e-02, 9.546848e-04, 3.187650e-03, 7.686189e-05
+2           0.086677777, 0.081149291, -0.003981950, 0.109179402, 0.423784877, 0.131743378, 0.003371034, 0.002857148, 0.004365474, 0.002470267
+3  0.6389300739, 0.0198118542, 0.0425547673, 0.0155484633, 0.0084258189, 0.0176811893, 0.0035036485, 0.0387244357, 0.0351182755, 0.0003176971
+4  0.2540456854, 0.0820667343, 0.1066948005, 0.0127084286, 0.3036771072, 0.0015627036, 0.0099123014, 0.0024521339, 0.0009705141, 0.0006490052
+5  6.193830e-01, 4.248282e-02, 1.626097e-02, 4.231402e-02, 8.165750e-02, 1.889077e-02, 6.916509e-03, 7.279554e-02, 1.224933e-03, 2.579849e-05
+6            0.064054448, 0.007090176, 0.012563231, 0.526488117, 0.051301318, 0.016821334, 0.043239397, 0.004423763, 0.003613253, 0.005383279
+                                                                                                                                   ic250.Si_T
+1  0.2227145099, 0.2132993761, 0.1380732862, 0.4322139942, 0.0210171251, 0.0067867473, 0.0242976803, 0.0040630063, 0.0050203625, 0.0003380157
+2            0.130549793, 0.147746269, 0.045281501, 0.154581688, 0.455756927, 0.149405056, 0.020374091, 0.011720817, 0.013697014, 0.001308825
+3  0.7186650312, 0.0502639152, 0.1472001834, 0.0874865515, 0.0429006018, 0.0320417352, 0.0226523904, 0.0366680410, 0.0353430347, 0.0009839248
+4 0.4327657276, 0.1874863565, 0.1544325018, 0.0566493656, 0.3386591782, 0.0671793586, 0.0281163665, 0.0239236525, 0.0024073316, -0.0000198022
+5  0.6632233938, 0.1327741475, 0.0781666276, 0.0812391357, 0.0974880656, 0.0336603806, 0.0115542039, 0.0657567924, 0.0039305528, 0.0004455457
+6            0.210966815, 0.101408978, 0.068163249, 0.568043529, 0.086962580, 0.072206192, 0.074892695, 0.024782282, 0.004564004, 0.006485103
+                                                                                                                                   ir100.Si_S
+1 2.056718e-01, 1.786901e-01, 1.119999e-01, 4.241739e-01, 1.144990e-02, -2.864133e-03, 1.702452e-02, 9.728077e-04, 3.186254e-03, 7.743753e-05
+2           0.086683694, 0.081140766, -0.003912698, 0.109204848, 0.423756605, 0.131788943, 0.003368076, 0.002837739, 0.004383538, 0.002462426
+3  0.6388908169, 0.0197930815, 0.0425596768, 0.0155497214, 0.0084156275, 0.0176830214, 0.0034900007, 0.0387278181, 0.0351242941, 0.0003188405
+4  0.2540702303, 0.0821000653, 0.1066450687, 0.0126908022, 0.3036107063, 0.0015470708, 0.0099469383, 0.0024427155, 0.0009977041, 0.0006441308
+5  6.195109e-01, 4.245752e-02, 1.626518e-02, 4.230860e-02, 8.155061e-02, 1.889317e-02, 6.901937e-03, 7.282137e-02, 1.245290e-03, 4.100611e-05
+6            0.064029251, 0.007085497, 0.012547748, 0.526411370, 0.051354994, 0.016858947, 0.043221076, 0.004461485, 0.003623797, 0.005370255
+                                                                                                                                   ir100.Si_T
+1  0.2227343614, 0.2132684375, 0.1380892854, 0.4322258833, 0.0210335514, 0.0067992316, 0.0242994760, 0.0040598707, 0.0050203715, 0.0003340389
+2            0.130553699, 0.147782934, 0.045284820, 0.154564662, 0.455783105, 0.149410821, 0.020361684, 0.011743681, 0.013677089, 0.001326268
+3  0.7186179814, 0.0502454277, 0.1471993407, 0.0875158168, 0.0429125844, 0.0320578267, 0.0226696244, 0.0366580159, 0.0353385318, 0.0009754188
+4 0.4327418670, 0.1875152868, 0.1544066621, 0.0567155168, 0.3385623856, 0.0671957951, 0.0281682318, 0.0239467981, 0.0023936979, -0.0000311952
+5  0.6632661286, 0.1327289012, 0.0781724483, 0.0812175629, 0.0974996723, 0.0336493676, 0.0115481733, 0.0657412871, 0.0039516620, 0.0004290003
+6            0.210919691, 0.101365242, 0.068143105, 0.568096328, 0.086961482, 0.072235114, 0.074886070, 0.024773419, 0.004561826, 0.006488175
+                                                                                                                                   ic100.Si_S
+1 2.056599e-01, 1.786990e-01, 1.119956e-01, 4.241844e-01, 1.145330e-02, -2.864023e-03, 1.702331e-02, 9.663178e-04, 3.186872e-03, 7.669172e-05
+2           0.086691540, 0.081159172, -0.003933774, 0.109188490, 0.423786791, 0.131759756, 0.003369227, 0.002859405, 0.004376782, 0.002466411
+3  0.6388891787, 0.0197893331, 0.0425128836, 0.0155441456, 0.0084080818, 0.0176802639, 0.0034802798, 0.0387222885, 0.0351216488, 0.0003234058
+4  0.2540055547, 0.0820756147, 0.1067022834, 0.0127130783, 0.3036521191, 0.0015612747, 0.0099169137, 0.0024408405, 0.0009615366, 0.0006451389
+5  6.194280e-01, 4.249282e-02, 1.627038e-02, 4.230557e-02, 8.163750e-02, 1.888802e-02, 6.913772e-03, 7.281449e-02, 1.230295e-03, 2.719208e-05
+6            0.064048113, 0.007103907, 0.012562086, 0.526441581, 0.051320816, 0.016850270, 0.043230787, 0.004449882, 0.003620237, 0.005378460
+                                                                                                                                   ic100.Si_T
+1  0.2227221117, 0.2132678709, 0.1380944068, 0.4322233858, 0.0210261552, 0.0067957009, 0.0242935839, 0.0040551587, 0.0050219794, 0.0003319249
+2                      0.13052843, 0.14775620, 0.04529165, 0.15456950, 0.45579372, 0.14941271, 0.02035708, 0.01172013, 0.01368310, 0.00131896
+3  0.7186127822, 0.0502449225, 0.1471999030, 0.0875129960, 0.0429140797, 0.0320518735, 0.0226805380, 0.0366427189, 0.0353371925, 0.0009750867
+4 4.327864e-01, 1.874740e-01, 1.544782e-01, 5.669905e-02, 3.386370e-01, 6.720596e-02, 2.813202e-02, 2.393672e-02, 2.412853e-03, -3.116872e-05
+5  0.6632267517, 0.1327781046, 0.0781698076, 0.0812229448, 0.0975261849, 0.0336428278, 0.0115418696, 0.0657677530, 0.0039316519, 0.0004296595
+6            0.210931261, 0.101385038, 0.068148408, 0.568067010, 0.086944931, 0.072215594, 0.074885700, 0.024783059, 0.004556002, 0.006485433
+                                                                                                                                    ir50.Si_S
+1 2.055635e-01, 1.786887e-01, 1.120072e-01, 4.240458e-01, 1.149351e-02, -2.885544e-03, 1.704868e-02, 9.738721e-04, 3.175854e-03, 7.879799e-05
+2           0.086695256, 0.081088427, -0.003862029, 0.109248015, 0.423692760, 0.131807667, 0.003359706, 0.002803296, 0.004392489, 0.002463666
+3            0.638775798, 0.019744366, 0.042699853, 0.015630453, 0.008423530, 0.017679405, 0.003483977, 0.038744752, 0.035174488, 0.000291327
+4  0.2540561658, 0.0820940153, 0.1066642228, 0.0127164311, 0.3036692830, 0.0015076264, 0.0099372095, 0.0024628510, 0.0009966936, 0.0006532645
+5  6.196179e-01, 4.244078e-02, 1.627109e-02, 4.232158e-02, 8.157724e-02, 1.889282e-02, 6.893036e-03, 7.282954e-02, 1.239589e-03, 4.697053e-05
+6            0.064056207, 0.007127802, 0.012520327, 0.526307069, 0.051398994, 0.016864590, 0.043184923, 0.004497722, 0.003648412, 0.005349818
+                                                                                                                                    ir50.Si_T
+1  0.2227298393, 0.2132572039, 0.1380909516, 0.4322571636, 0.0210392905, 0.0068368996, 0.0242367954, 0.0040826264, 0.0050804578, 0.0003347095
+2            0.130569570, 0.147832217, 0.045324356, 0.154571927, 0.455741456, 0.149419508, 0.020348017, 0.011786156, 0.013670504, 0.001343591
+3  0.7184648925, 0.0502906294, 0.1471717386, 0.0876898206, 0.0429111859, 0.0321592549, 0.0226916448, 0.0367020934, 0.0353462145, 0.0009836212
+4 4.325921e-01, 1.873934e-01, 1.545981e-01, 5.668493e-02, 3.386575e-01, 6.715589e-02, 2.820019e-02, 2.392541e-02, 2.403754e-03, -5.503273e-05
+5  0.6632629279, 0.1327308944, 0.0782458417, 0.0812111435, 0.0974884178, 0.0336865218, 0.0115457093, 0.0657293112, 0.0039805209, 0.0004355857
+6            0.210896617, 0.101345822, 0.068128939, 0.568146400, 0.086928084, 0.072298103, 0.074830862, 0.024779046, 0.004567269, 0.006460952
+                                                                                                                                    ic50.Si_S
+1 2.056921e-01, 1.786550e-01, 1.120198e-01, 4.241331e-01, 1.145607e-02, -2.863030e-03, 1.701019e-02, 9.777302e-04, 3.188510e-03, 7.804893e-05
+2           0.086696243, 0.081121296, -0.003876170, 0.109217607, 0.423747958, 0.131784518, 0.003353897, 0.002832161, 0.004397882, 0.002468779
+3  0.6388872012, 0.0197718724, 0.0425342852, 0.0155392217, 0.0084129491, 0.0176759044, 0.0034843454, 0.0387309065, 0.0351291003, 0.0003204103
+4  0.2540464725, 0.0820854894, 0.1066711618, 0.0126790189, 0.3036011232, 0.0015584058, 0.0099318768, 0.0024305419, 0.0009691227, 0.0006367707
+5  6.194711e-01, 4.249762e-02, 1.627171e-02, 4.229502e-02, 8.158916e-02, 1.888755e-02, 6.903102e-03, 7.282257e-02, 1.238121e-03, 3.442751e-05
+6            0.064045901, 0.007105346, 0.012571703, 0.526441486, 0.051336719, 0.016871636, 0.043216569, 0.004456998, 0.003633896, 0.005377283
+                                                                                                                                    ic50.Si_T
+1  0.2227421663, 0.2132281266, 0.1381390201, 0.4322401351, 0.0210320869, 0.0068109378, 0.0242937608, 0.0040600591, 0.0050340947, 0.0003300086
+2            0.130529558, 0.147800672, 0.045323166, 0.154574565, 0.455773357, 0.149413139, 0.020351065, 0.011748575, 0.013667976, 0.001333249
+3  0.7185890431, 0.0502312207, 0.1472055308, 0.0875324625, 0.0429274515, 0.0320605979, 0.0226817954, 0.0366468822, 0.0353229629, 0.0009687432
+4 4.328054e-01, 1.874786e-01, 1.544668e-01, 5.675135e-02, 3.385624e-01, 6.721586e-02, 2.814498e-02, 2.395172e-02, 2.410446e-03, -3.265391e-05
+5  0.6632116043, 0.1327540080, 0.0781772531, 0.0812116372, 0.0975322558, 0.0336425842, 0.0115470678, 0.0657799227, 0.0039455496, 0.0004291559
+6            0.210912537, 0.101382296, 0.068134204, 0.568096374, 0.086933310, 0.072226732, 0.074846790, 0.024775338, 0.004543538, 0.006477453
+                                                                                                                                    ir25.Si_S
+1 2.054363e-01, 1.785306e-01, 1.119246e-01, 4.239551e-01, 1.152446e-02, -2.888036e-03, 1.701835e-02, 9.169261e-04, 3.188203e-03, 4.213781e-05
+2           0.086652797, 0.081065690, -0.003875141, 0.109331885, 0.423594615, 0.131777083, 0.003342716, 0.002752357, 0.004326198, 0.002505460
+3  0.6388682322, 0.0196742922, 0.0425790083, 0.0156121840, 0.0084363864, 0.0176209514, 0.0034188008, 0.0386784402, 0.0351657430, 0.0002986002
+4  0.2563098574, 0.0814363500, 0.1063488535, 0.0128387750, 0.3030352790, 0.0019654137, 0.0102702121, 0.0021509482, 0.0008483577, 0.0003520219
+5  6.189255e-01, 4.352539e-02, 1.632852e-02, 4.259524e-02, 8.255381e-02, 1.821554e-02, 6.418558e-03, 7.284733e-02, 1.019293e-03, 3.783559e-05
+6            0.064091568, 0.007258233, 0.012397271, 0.526030670, 0.051404798, 0.016839461, 0.043100877, 0.004449110, 0.003691240, 0.005410589
+                                                                                                                                    ir25.Si_T
+1            0.222764286, 0.213182841, 0.138123907, 0.432395829, 0.021152685, 0.006882195, 0.024335695, 0.004165758, 0.005164707, 0.000340811
+2            0.130652242, 0.147883028, 0.045473787, 0.154725184, 0.455604258, 0.149487473, 0.020365365, 0.011813068, 0.013669824, 0.001345663
+3  0.7183932651, 0.0503041471, 0.1472011206, 0.0876613108, 0.0429239204, 0.0321195661, 0.0227070614, 0.0366223856, 0.0352950111, 0.0009540203
+4 4.328483e-01, 1.874020e-01, 1.544901e-01, 5.697061e-02, 3.386244e-01, 6.737566e-02, 2.816186e-02, 2.406973e-02, 2.000309e-03, -3.876348e-05
+5 6.630370e-01, 1.351564e-01, 7.896583e-02, 7.911448e-02, 9.802172e-02, 3.501004e-02, 1.085172e-02, 6.631369e-02, 4.796559e-03, -3.811463e-05
+6            0.210894360, 0.101220860, 0.068179656, 0.568007022, 0.086920010, 0.072433316, 0.074719512, 0.024782467, 0.004563158, 0.006455918
+                                                                                                                                    ic25.Si_S
+1 2.056577e-01, 1.785856e-01, 1.120161e-01, 4.239931e-01, 1.145181e-02, -2.889553e-03, 1.699550e-02, 9.712199e-04, 3.166865e-03, 7.477567e-05
+2           0.086735632, 0.081123430, -0.003807368, 0.109244031, 0.423659446, 0.131773721, 0.003339786, 0.002797924, 0.004406773, 0.002489260
+3  0.6389258076, 0.0197067157, 0.0425216351, 0.0155270388, 0.0084314736, 0.0176722434, 0.0034951960, 0.0387266878, 0.0351204855, 0.0003109359
+4  0.2540232486, 0.0820697460, 0.1066830352, 0.0126825471, 0.3035782432, 0.0015538053, 0.0099226545, 0.0024097308, 0.0009602579, 0.0006457374
+5  6.195352e-01, 4.247735e-02, 1.628082e-02, 4.226897e-02, 8.156830e-02, 1.887942e-02, 6.897490e-03, 7.284489e-02, 1.237351e-03, 3.534631e-05
+6            0.064043055, 0.007130158, 0.012522490, 0.526323218, 0.051405676, 0.016914094, 0.043139209, 0.004466885, 0.003643374, 0.005367750
+                                                                                                                                    ic25.Si_T
+1  0.2227152182, 0.2131704662, 0.1382186545, 0.4322590844, 0.0210519477, 0.0068376682, 0.0242684521, 0.0040655459, 0.0050683480, 0.0003350199
+2            0.130528223, 0.147847830, 0.045328323, 0.154685324, 0.455681713, 0.149445729, 0.020361385, 0.011805032, 0.013648955, 0.001325245
+3  0.7185517104, 0.0502350745, 0.1472103613, 0.0875658894, 0.0429172482, 0.0320668207, 0.0227029991, 0.0366380137, 0.0352858758, 0.0009541834
+4 4.328185e-01, 1.874327e-01, 1.545382e-01, 5.674998e-02, 3.385542e-01, 6.721172e-02, 2.815159e-02, 2.393741e-02, 2.424543e-03, -3.636098e-05
+5  0.6632232279, 0.1327492819, 0.0782116244, 0.0811887051, 0.0975473283, 0.0336547718, 0.0115561704, 0.0657612328, 0.0039435207, 0.0004192148
+6            0.210886804, 0.101349241, 0.068125536, 0.568101495, 0.086930560, 0.072260980, 0.074818158, 0.024779853, 0.004551143, 0.006451128
+                                                                                                                                    dr50.Si_S
+1 0.2056775880, 0.1786826449, 0.1120079948, 0.4241767036, 0.0114529135, -0.0028618026, 0.0170233985, 0.0009770699, 0.0031892473, 0.0000760872
+2           0.086683397, 0.081128583, -0.003924814, 0.109200899, 0.423751775, 0.131779704, 0.003369304, 0.002839258, 0.004379478, 0.002466384
+3  0.6388919154, 0.0197872056, 0.0425711887, 0.0155513707, 0.0084205767, 0.0176796735, 0.0034883356, 0.0387250383, 0.0351254458, 0.0003178433
+4  0.2540601039, 0.0820995222, 0.1066462316, 0.0126988464, 0.3035854061, 0.0015511293, 0.0099470235, 0.0024426599, 0.0009864525, 0.0006485666
+5  6.194957e-01, 4.246162e-02, 1.626607e-02, 4.232361e-02, 8.157355e-02, 1.889424e-02, 6.907697e-03, 7.282320e-02, 1.240264e-03, 4.232183e-05
+6            0.064035621, 0.007088572, 0.012552737, 0.526417927, 0.051357951, 0.016871530, 0.043210704, 0.004474940, 0.003625415, 0.005373462
+                                                                                                                                    dr50.Si_T
+1  0.2227296744, 0.2132601440, 0.1380941904, 0.4322298572, 0.0210365524, 0.0068018724, 0.0242976354, 0.0040608198, 0.0050220974, 0.0003304332
+2                      0.13055123, 0.14778866, 0.04528973, 0.15457634, 0.45575533, 0.14940389, 0.02036188, 0.01174632, 0.01367643, 0.00132512
+3            0.718606362, 0.050241328, 0.147193236, 0.087526386, 0.042907671, 0.032063721, 0.022674446, 0.036658414, 0.035337615, 0.000974576
+4 4.327544e-01, 1.875035e-01, 1.544148e-01, 5.673265e-02, 3.385490e-01, 6.719105e-02, 2.816068e-02, 2.394507e-02, 2.395909e-03, -3.266386e-05
+5  0.6632598364, 0.1327355027, 0.0781683668, 0.0812194560, 0.0975064314, 0.0336530216, 0.0115511891, 0.0657592501, 0.0039586779, 0.0004371251
+6            0.210908645, 0.101384214, 0.068139719, 0.568119002, 0.086945482, 0.072238856, 0.074887244, 0.024777737, 0.004551227, 0.006486330
+                                                                                                                                    dc50.Si_S
+1 2.056776e-01, 1.786877e-01, 1.120127e-01, 4.241754e-01, 1.145558e-02, -2.864414e-03, 1.702274e-02, 9.742114e-04, 3.188712e-03, 7.379913e-05
+2           0.086684641, 0.081142236, -0.003939073, 0.109186018, 0.423767937, 0.131762211, 0.003364315, 0.002849710, 0.004374253, 0.002464034
+3  0.6389012098, 0.0197938196, 0.0425234756, 0.0155415940, 0.0084171930, 0.0176741741, 0.0034745011, 0.0387227371, 0.0351235047, 0.0003214927
+4  0.2540028251, 0.0820759370, 0.1067129905, 0.0127141263, 0.3036640850, 0.0015665303, 0.0099154081, 0.0024416551, 0.0009598637, 0.0006462289
+5  6.194398e-01, 4.248482e-02, 1.626707e-02, 4.230578e-02, 8.162150e-02, 1.888809e-02, 6.906847e-03, 7.281050e-02, 1.231328e-03, 2.786012e-05
+6            0.064054454, 0.007108799, 0.012570616, 0.526447255, 0.051327633, 0.016848280, 0.043226972, 0.004449102, 0.003625769, 0.005380903
+                                                                                                                                    dc50.Si_T
+1  0.2227286586, 0.2132459064, 0.1380949300, 0.4322237867, 0.0210267443, 0.0068045041, 0.0242990232, 0.0040540960, 0.0050238291, 0.0003264435
+2            0.130548328, 0.147773831, 0.045293643, 0.154577171, 0.455775908, 0.149396126, 0.020366457, 0.011731557, 0.013687007, 0.001324503
+3  0.7186212788, 0.0502384709, 0.1471897547, 0.0875086865, 0.0429196602, 0.0320468161, 0.0226714911, 0.0366421813, 0.0353373838, 0.0009773116
+4 4.327850e-01, 1.874760e-01, 1.544809e-01, 5.668764e-02, 3.386515e-01, 6.720496e-02, 2.812954e-02, 2.393753e-02, 2.413937e-03, -3.105946e-05
+5  0.6632212125, 0.1327708568, 0.0781713547, 0.0812237276, 0.0975243781, 0.0336361411, 0.0115480386, 0.0657660662, 0.0039327160, 0.0004276522
+6            0.210931129, 0.101393185, 0.068141709, 0.568078843, 0.086940607, 0.072220360, 0.074881337, 0.024782508, 0.004552377, 0.006484233
+                                                                                                                                    dr25.Si_S
+1 2.056392e-01, 1.786498e-01, 1.120041e-01, 4.240682e-01, 1.146248e-02, -2.876272e-03, 1.701164e-02, 9.777845e-04, 3.171056e-03, 9.009139e-05
+2           0.086703684, 0.081078083, -0.003855480, 0.109258044, 0.423675751, 0.131804636, 0.003361755, 0.002801092, 0.004394055, 0.002464222
+3  0.6388211897, 0.0197467139, 0.0426639929, 0.0156108775, 0.0084229656, 0.0176752635, 0.0034887770, 0.0387390614, 0.0351647640, 0.0002962479
+4  0.2540435893, 0.0820822048, 0.1066723725, 0.0127217794, 0.3036463300, 0.0015209554, 0.0099411453, 0.0024474197, 0.0009819849, 0.0006575701
+5  6.196181e-01, 4.243654e-02, 1.626451e-02, 4.233644e-02, 8.159236e-02, 1.889484e-02, 6.896322e-03, 7.282647e-02, 1.236306e-03, 5.000588e-05
+6            0.064057031, 0.007125037, 0.012527582, 0.526294614, 0.051396120, 0.016853178, 0.043202494, 0.004495335, 0.003651782, 0.005350935
+                                                                                                                                    dr25.Si_T
+1  0.2227018843, 0.2132628477, 0.1381496686, 0.4322253851, 0.0210609390, 0.0068154608, 0.0242506101, 0.0040623124, 0.0050512077, 0.0003466384
+2            0.130570374, 0.147843184, 0.045338403, 0.154571934, 0.455731779, 0.149430105, 0.020339657, 0.011784436, 0.013673354, 0.001348232
+3  0.7184964979, 0.0502890429, 0.1471849664, 0.0876487656, 0.0429096865, 0.0321382333, 0.0226857859, 0.0366797723, 0.0353358309, 0.0009805756
+4 4.326467e-01, 1.874019e-01, 1.545715e-01, 5.669758e-02, 3.386428e-01, 6.715504e-02, 2.818526e-02, 2.392849e-02, 2.408493e-03, -5.233386e-05
+5  0.6632568182, 0.1327165576, 0.0782431179, 0.0812123882, 0.0974873735, 0.0336858806, 0.0115466929, 0.0657449889, 0.0039926475, 0.0004474902
+6            0.210910487, 0.101325525, 0.068135807, 0.568136037, 0.086926433, 0.072314208, 0.074815999, 0.024786596, 0.004569912, 0.006469054
+                                                                                                                                    dc25.Si_S
+1 2.056876e-01, 1.786537e-01, 1.120159e-01, 4.241268e-01, 1.145283e-02, -2.864667e-03, 1.701019e-02, 9.797938e-04, 3.186302e-03, 7.701034e-05
+2           0.086709897, 0.081118741, -0.003875493, 0.109219511, 0.423736226, 0.131785073, 0.003356307, 0.002823687, 0.004398600, 0.002470326
+3  0.6388956825, 0.0197745908, 0.0425174551, 0.0155387545, 0.0084185168, 0.0176691316, 0.0034739189, 0.0387170011, 0.0351245616, 0.0003207422
+4  0.2540664663, 0.0820946750, 0.1066466001, 0.0126761912, 0.3035777106, 0.0015611343, 0.0099368702, 0.0024350677, 0.0009769765, 0.0006423262
+5  6.194716e-01, 4.248403e-02, 1.627052e-02, 4.229003e-02, 8.157990e-02, 1.889020e-02, 6.904331e-03, 7.282232e-02, 1.238346e-03, 3.341199e-05
+6            0.064058473, 0.007116487, 0.012572186, 0.526400563, 0.051350934, 0.016857037, 0.043210182, 0.004456117, 0.003633091, 0.005378804
+                                                                                                                                    dc25.Si_T
+1  0.2227379611, 0.2132289027, 0.1381421819, 0.4322376214, 0.0210353473, 0.0068117810, 0.0242904179, 0.0040590875, 0.0050356356, 0.0003305267
+2            0.130535409, 0.147808592, 0.045310679, 0.154591218, 0.455745363, 0.149401686, 0.020356574, 0.011764590, 0.013662474, 0.001332614
+3  0.7185880599, 0.0502291027, 0.1472002567, 0.0875329994, 0.0429151162, 0.0320501011, 0.0226872161, 0.0366358563, 0.0353271565, 0.0009702532
+4 4.328019e-01, 1.874776e-01, 1.544363e-01, 5.676237e-02, 3.385422e-01, 6.720202e-02, 2.813704e-02, 2.394660e-02, 2.400502e-03, -3.640724e-05
+5  0.6632255767, 0.1327526696, 0.0781704524, 0.0812080614, 0.0975380572, 0.0336405241, 0.0115474475, 0.0657710138, 0.0039391343, 0.0004231056
+6            0.210928730, 0.101376465, 0.068135756, 0.568086769, 0.086940406, 0.072242535, 0.074853279, 0.024776531, 0.004554430, 0.006476963
+> 
+> proc.time()
+      user     system    elapsed 
+150825.600    667.199  45792.333 

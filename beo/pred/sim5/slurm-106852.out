@@ -1,0 +1,6 @@
+srun: Job step aborted: Waiting up to 2 seconds for job step to finish.
+srun: got SIGCONT
+slurmd[hpc-node01]: error: *** STEP 106852.0 CANCELLED AT 2015-06-11T16:27:54 ***
+/usr/local/bin/r: line 4:  9458 Terminated              $RBIN CMD BATCH --vanilla --no-save $1 $OUT 2>&1
+slurmd[hpc-node01]: error: *** JOB 106852 CANCELLED AT 2015-06-11T16:27:54 ***
+srun: error: Timed out waiting for job step to complete

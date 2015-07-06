@@ -1,0 +1,1730 @@
+
+R version 3.0.3 (2014-03-06) -- "Warm Puppy"
+Copyright (C) 2014 The R Foundation for Statistical Computing
+Platform: x86_64-unknown-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> print(.libPaths())
+[1] "/usr/local/r-3.0.3/lib64/R/library"
+> .libPaths("/mnt/home/rjparker/Rlib")
+> print(.libPaths())
+[1] "/mnt/home/rjparker/Rlib"            "/usr/local/r-3.0.3/lib64/R/library"
+> setwd("/mnt/home/rjparker/git/block_int")
+> 
+> which_exp <- 3
+> which_part <- 10
+> source("R/sim_nblocks_pred.R")
+Loading required package: spam
+Loading required package: grid
+Spam version 0.41-0 (2014-02-26) is loaded.
+Type 'help( Spam)' or 'demo( spam)' for a short introduction 
+and overview of this package.
+Help for individual functions is also obtained by adding the
+suffix '.spam' to the function name, e.g. 'help( chol.spam)'.
+
+Attaching package: ‘spam’
+
+The following objects are masked from ‘package:base’:
+
+    backsolve, forwardsolve
+
+Loading required package: maps
+  pred  p   b tau Nper_p Npred Fzero sigma2
+3 TRUE 10 1.5  10   5000  1000     0      1
+[1] 0.6824783
+$full.time
+[1] 0.048
+
+$full.rmse
+[1] 0.08448686
+
+$full.time
+[1] 0.048
+
+$full.rmse
+[1] 0.08448686
+
+$l25.time
+[1] 2.484
+
+$l25.rmse
+[1] 0.2119172
+
+$l50.time
+[1] 2.555
+
+$l50.rmse
+[1] 0.1748499
+
+$l100.time
+[1] 4.498
+
+$l100.rmse
+[1] 0.1430022
+
+$l250.time
+[1] 22.098
+
+$l250.rmse
+[1] 0.122612
+
+$l500.time
+[1] 112.36
+
+$l500.rmse
+[1] 0.1081852
+
+$o25_i.ptime
+[1] 0.127
+
+$o25_i.time
+[1] 0.202
+
+$o25_i.rmse
+[1] 0.5141567
+
+$o50_i.ptime
+[1] 0.09
+
+$o50_i.time
+[1] 0.157
+
+$o50_i.rmse
+[1] 0.4798399
+
+$o100_i.ptime
+[1] 0.126
+
+$o100_i.time
+[1] 0.139
+
+$o100_i.rmse
+[1] 0.4313217
+
+$o250_i.ptime
+[1] 0.344
+
+$o250_i.time
+[1] 0.145
+
+$o250_i.rmse
+[1] 0.3158417
+
+$o500_i.ptime
+[1] 0.956
+
+$o500_i.time
+[1] 0.149
+
+$o500_i.rmse
+[1] 0.2381282
+
+$o25_d.ptime
+[1] 0.129
+
+$o25_d.time
+[1] 0.478
+
+$o25_d.rmse
+[1] 0.4385234
+
+$o50_d.ptime
+[1] 0.048
+
+$o50_d.time
+[1] 0.839
+
+$o50_d.rmse
+[1] 0.395323
+
+$o100_d.ptime
+[1] 0.024
+
+$o100_d.time
+[1] 1.369
+
+$o100_d.rmse
+[1] 0.3257987
+
+$o250_d.ptime
+[1] 0.017
+
+$o250_d.time
+[1] 5.101
+
+$o250_d.rmse
+[1] 0.2113629
+
+$o500_d.ptime
+[1] 0.02
+
+$o500_d.time
+[1] 19.877
+
+$o500_d.rmse
+[1] 0.1676473
+
+$c25_i.ptime
+[1] 0.538
+
+$c25_i.time
+[1] 0.204
+
+$c25_i.rmse
+[1] 0.333595
+
+$c50_i.ptime
+[1] 0.319
+
+$c50_i.time
+[1] 0.168
+
+$c50_i.rmse
+[1] 0.2874628
+
+$c100_i.ptime
+[1] 0.333
+
+$c100_i.time
+[1] 0.15
+
+$c100_i.rmse
+[1] 0.2553771
+
+$c250_i.ptime
+[1] 0.406
+
+$c250_i.time
+[1] 0.149
+
+$c250_i.rmse
+[1] 0.2103376
+
+$c500_i.ptime
+[1] 1.01
+
+$c500_i.time
+[1] 0.161
+
+$c500_i.rmse
+[1] 0.1647342
+
+$c25_d.ptime
+[1] 0.435
+
+$c25_d.time
+[1] 0.632
+
+$c25_d.rmse
+[1] 0.282109
+
+$c50_d.ptime
+[1] 0.231
+
+$c50_d.time
+[1] 0.798
+
+$c50_d.rmse
+[1] 0.2467635
+
+$c100_d.ptime
+[1] 0.155
+
+$c100_d.time
+[1] 1.402
+
+$c100_d.rmse
+[1] 0.2036392
+
+$c250_d.ptime
+[1] 0.179
+
+$c250_d.time
+[1] 4.782
+
+$c250_d.rmse
+[1] 0.1639155
+
+$c500_d.ptime
+[1] 0.056
+
+$c500_d.time
+[1] 19.11
+
+$c500_d.rmse
+[1] 0.1356882
+
+$s25.ptime
+[1] 0.115
+
+$s25.time
+[1] 0
+
+$s25.rmse
+[1] 0.5346536
+
+$s50.ptime
+[1] 0.184
+
+$s50.time
+[1] 0.002
+
+$s50.rmse
+[1] 0.5346772
+
+$s100.ptime
+[1] 0.342
+
+$s100.time
+[1] 0.003
+
+$s100.rmse
+[1] 0.4312472
+
+$s250.ptime
+[1] 0.513
+
+$s250.time
+[1] 0.008
+
+$s250.rmse
+[1] 0.3237156
+
+$s500.ptime
+[1] 0.759
+
+$s500.time
+[1] 0.016
+
+$s500.rmse
+[1] 0.2459222
+
+$s1000.ptime
+[1] 1.737
+
+$s1000.time
+[1] 0.032
+
+$s1000.rmse
+[1] 0.1705637
+
+$s2500.ptime
+[1] 15.487
+
+$s2500.time
+[1] 0.077
+
+$s2500.rmse
+[1] 0.1150881
+
+        seed            p    full.time    full.rmse     l25.time     l25.rmse 
+    2229.000       10.000        0.048        0.084        2.484        0.212 
+    l50.time     l50.rmse    l100.time    l100.rmse    l250.time    l250.rmse 
+       2.555        0.175        4.498        0.143       22.098        0.123 
+   l500.time    l500.rmse  o25_i.ptime   o25_i.time   o25_i.rmse  o50_i.ptime 
+     112.360        0.108        0.127        0.202        0.514        0.090 
+  o50_i.time   o50_i.rmse o100_i.ptime  o100_i.time  o100_i.rmse o250_i.ptime 
+       0.157        0.480        0.126        0.139        0.431        0.344 
+ o250_i.time  o250_i.rmse o500_i.ptime  o500_i.time  o500_i.rmse  o25_d.ptime 
+       0.145        0.316        0.956        0.149        0.238        0.129 
+  o25_d.time   o25_d.rmse  o50_d.ptime   o50_d.time   o50_d.rmse o100_d.ptime 
+       0.478        0.439        0.048        0.839        0.395        0.024 
+ o100_d.time  o100_d.rmse o250_d.ptime  o250_d.time  o250_d.rmse o500_d.ptime 
+       1.369        0.326        0.017        5.101        0.211        0.020 
+ o500_d.time  o500_d.rmse  c25_i.ptime   c25_i.time   c25_i.rmse  c50_i.ptime 
+      19.877        0.168        0.538        0.204        0.334        0.319 
+  c50_i.time   c50_i.rmse c100_i.ptime  c100_i.time  c100_i.rmse c250_i.ptime 
+       0.168        0.287        0.333        0.150        0.255        0.406 
+ c250_i.time  c250_i.rmse c500_i.ptime  c500_i.time  c500_i.rmse  c25_d.ptime 
+       0.149        0.210        1.010        0.161        0.165        0.435 
+  c25_d.time   c25_d.rmse  c50_d.ptime   c50_d.time   c50_d.rmse c100_d.ptime 
+       0.632        0.282        0.231        0.798        0.247        0.155 
+ c100_d.time  c100_d.rmse c250_d.ptime  c250_d.time  c250_d.rmse c500_d.ptime 
+       1.402        0.204        0.179        4.782        0.164        0.056 
+ c500_d.time  c500_d.rmse    s25.ptime     s25.time     s25.rmse    s50.ptime 
+      19.110        0.136        0.115        0.000        0.535        0.184 
+    s50.time     s50.rmse   s100.ptime    s100.time    s100.rmse   s250.ptime 
+       0.002        0.535        0.342        0.003        0.431        0.513 
+   s250.time    s250.rmse   s500.ptime    s500.time    s500.rmse  s1000.ptime 
+       0.008        0.324        0.759        0.016        0.246        1.737 
+  s1000.time   s1000.rmse  s2500.ptime   s2500.time   s2500.rmse 
+       0.032        0.171       15.487        0.077        0.115 
+[1] 0.8010342
+$full.time
+[1] 0.038
+
+$full.rmse
+[1] 0.08127394
+
+$full.time
+[1] 0.038
+
+$full.rmse
+[1] 0.08127394
+
+$l25.time
+[1] 2.113
+
+$l25.rmse
+[1] 0.2209342
+
+$l50.time
+[1] 2.392
+
+$l50.rmse
+[1] 0.1847493
+
+$l100.time
+[1] 3.889
+
+$l100.rmse
+[1] 0.1564968
+
+$l250.time
+[1] 18.475
+
+$l250.rmse
+[1] 0.1226552
+
+$l500.time
+[1] 100.36
+
+$l500.rmse
+[1] 0.1078442
+
+$o25_i.ptime
+[1] 0.112
+
+$o25_i.time
+[1] 0.192
+
+$o25_i.rmse
+[1] 0.6047947
+
+$o50_i.ptime
+[1] 0.081
+
+$o50_i.time
+[1] 0.147
+
+$o50_i.rmse
+[1] 0.54898
+
+$o100_i.ptime
+[1] 0.114
+
+$o100_i.time
+[1] 0.132
+
+$o100_i.rmse
+[1] 0.4465745
+
+$o250_i.ptime
+[1] 0.317
+
+$o250_i.time
+[1] 0.13
+
+$o250_i.rmse
+[1] 0.3323758
+
+$o500_i.ptime
+[1] 0.907
+
+$o500_i.time
+[1] 0.134
+
+$o500_i.rmse
+[1] 0.253951
+
+$o25_d.ptime
+[1] 0.126
+
+$o25_d.time
+[1] 0.572
+
+$o25_d.rmse
+[1] 0.4922773
+
+$o50_d.ptime
+[1] 0.041
+
+$o50_d.time
+[1] 0.554
+
+$o50_d.rmse
+[1] 0.4249601
+
+$o100_d.ptime
+[1] 0.026
+
+$o100_d.time
+[1] 1.092
+
+$o100_d.rmse
+[1] 0.3323724
+
+$o250_d.ptime
+[1] 0.016
+
+$o250_d.time
+[1] 4.564
+
+$o250_d.rmse
+[1] 0.2197542
+
+$o500_d.ptime
+[1] 0.018
+
+$o500_d.time
+[1] 19.457
+
+$o500_d.rmse
+[1] 0.1633442
+
+$c25_i.ptime
+[1] 0.473
+
+$c25_i.time
+[1] 0.202
+
+$c25_i.rmse
+[1] 0.3593185
+
+$c50_i.ptime
+[1] 0.304
+
+$c50_i.time
+[1] 0.166
+
+$c50_i.rmse
+[1] 0.3361628
+
+$c100_i.ptime
+[1] 0.379
+
+$c100_i.time
+[1] 0.149
+
+$c100_i.rmse
+[1] 0.2798857
+
+$c250_i.ptime
+[1] 0.476
+
+$c250_i.time
+[1] 0.147
+
+$c250_i.rmse
+[1] 0.2159878
+
+$c500_i.ptime
+[1] 0.987
+
+$c500_i.time
+[1] 0.157
+
+$c500_i.rmse
+[1] 0.1789194
+
+$c25_d.ptime
+[1] 0.495
+
+$c25_d.time
+[1] 0.587
+
+$c25_d.rmse
+[1] 0.3015708
+
+$c50_d.ptime
+[1] 0.273
+
+$c50_d.time
+[1] 0.707
+
+$c50_d.rmse
+[1] 0.2534893
+
+$c100_d.ptime
+[1] 0.183
+
+$c100_d.time
+[1] 1.31
+
+$c100_d.rmse
+[1] 0.2224496
+
+$c250_d.ptime
+[1] 0.125
+
+$c250_d.time
+[1] 4.449
+
+$c250_d.rmse
+[1] 0.1730652
+
+$c500_d.ptime
+[1] 0.097
+
+$c500_d.time
+[1] 18.478
+
+$c500_d.rmse
+[1] 0.1373438
+
+$s25.ptime
+[1] 0.128
+
+$s25.time
+[1] 0
+
+$s25.rmse
+[1] 0.7228768
+
+$s50.ptime
+[1] 0.215
+
+$s50.time
+[1] 0.002
+
+$s50.rmse
+[1] 0.6320505
+
+$s100.ptime
+[1] 0.333
+
+$s100.time
+[1] 0.003
+
+$s100.rmse
+[1] 0.4772746
+
+$s250.ptime
+[1] 0.467
+
+$s250.time
+[1] 0.008
+
+$s250.rmse
+[1] 0.3610657
+
+$s500.ptime
+[1] 0.743
+
+$s500.time
+[1] 0.015
+
+$s500.rmse
+[1] 0.2686423
+
+$s1000.ptime
+[1] 1.761
+
+$s1000.time
+[1] 0.029
+
+$s1000.rmse
+[1] 0.1708749
+
+$s2500.ptime
+[1] 17.795
+
+$s2500.time
+[1] 0.076
+
+$s2500.rmse
+[1] 0.113953
+
+        seed            p    full.time    full.rmse     l25.time     l25.rmse 
+    2230.000       10.000        0.038        0.081        2.113        0.221 
+    l50.time     l50.rmse    l100.time    l100.rmse    l250.time    l250.rmse 
+       2.392        0.185        3.889        0.156       18.475        0.123 
+   l500.time    l500.rmse  o25_i.ptime   o25_i.time   o25_i.rmse  o50_i.ptime 
+     100.360        0.108        0.112        0.192        0.605        0.081 
+  o50_i.time   o50_i.rmse o100_i.ptime  o100_i.time  o100_i.rmse o250_i.ptime 
+       0.147        0.549        0.114        0.132        0.447        0.317 
+ o250_i.time  o250_i.rmse o500_i.ptime  o500_i.time  o500_i.rmse  o25_d.ptime 
+       0.130        0.332        0.907        0.134        0.254        0.126 
+  o25_d.time   o25_d.rmse  o50_d.ptime   o50_d.time   o50_d.rmse o100_d.ptime 
+       0.572        0.492        0.041        0.554        0.425        0.026 
+ o100_d.time  o100_d.rmse o250_d.ptime  o250_d.time  o250_d.rmse o500_d.ptime 
+       1.092        0.332        0.016        4.564        0.220        0.018 
+ o500_d.time  o500_d.rmse  c25_i.ptime   c25_i.time   c25_i.rmse  c50_i.ptime 
+      19.457        0.163        0.473        0.202        0.359        0.304 
+  c50_i.time   c50_i.rmse c100_i.ptime  c100_i.time  c100_i.rmse c250_i.ptime 
+       0.166        0.336        0.379        0.149        0.280        0.476 
+ c250_i.time  c250_i.rmse c500_i.ptime  c500_i.time  c500_i.rmse  c25_d.ptime 
+       0.147        0.216        0.987        0.157        0.179        0.495 
+  c25_d.time   c25_d.rmse  c50_d.ptime   c50_d.time   c50_d.rmse c100_d.ptime 
+       0.587        0.302        0.273        0.707        0.253        0.183 
+ c100_d.time  c100_d.rmse c250_d.ptime  c250_d.time  c250_d.rmse c500_d.ptime 
+       1.310        0.222        0.125        4.449        0.173        0.097 
+ c500_d.time  c500_d.rmse    s25.ptime     s25.time     s25.rmse    s50.ptime 
+      18.478        0.137        0.128        0.000        0.723        0.215 
+    s50.time     s50.rmse   s100.ptime    s100.time    s100.rmse   s250.ptime 
+       0.002        0.632        0.333        0.003        0.477        0.467 
+   s250.time    s250.rmse   s500.ptime    s500.time    s500.rmse  s1000.ptime 
+       0.008        0.361        0.743        0.015        0.269        1.761 
+  s1000.time   s1000.rmse  s2500.ptime   s2500.time   s2500.rmse 
+       0.029        0.171       17.795        0.076        0.114 
+[1] 0.9356092
+$full.time
+[1] 0.04
+
+$full.rmse
+[1] 0.08076098
+
+$full.time
+[1] 0.04
+
+$full.rmse
+[1] 0.08076098
+
+$l25.time
+[1] 2.129
+
+$l25.rmse
+[1] 0.2221378
+
+$l50.time
+[1] 2.349
+
+$l50.rmse
+[1] 0.1919135
+
+$l100.time
+[1] 3.876
+
+$l100.rmse
+[1] 0.1559778
+
+$l250.time
+[1] 18.744
+
+$l250.rmse
+[1] 0.1285963
+
+$l500.time
+[1] 100.927
+
+$l500.rmse
+[1] 0.1100017
+
+$o25_i.ptime
+[1] 0.115
+
+$o25_i.time
+[1] 0.206
+
+$o25_i.rmse
+[1] 0.6027443
+
+$o50_i.ptime
+[1] 0.081
+
+$o50_i.time
+[1] 0.161
+
+$o50_i.rmse
+[1] 0.5367198
+
+$o100_i.ptime
+[1] 0.115
+
+$o100_i.time
+[1] 0.148
+
+$o100_i.rmse
+[1] 0.4619228
+
+$o250_i.ptime
+[1] 0.321
+
+$o250_i.time
+[1] 0.141
+
+$o250_i.rmse
+[1] 0.330523
+
+$o500_i.ptime
+[1] 0.896
+
+$o500_i.time
+[1] 0.279
+
+$o500_i.rmse
+[1] 0.2339819
+
+$o25_d.ptime
+[1] 0.133
+
+$o25_d.time
+[1] 0.446
+
+$o25_d.rmse
+[1] 0.4873154
+
+$o50_d.ptime
+[1] 0.049
+
+$o50_d.time
+[1] 0.571
+
+$o50_d.rmse
+[1] 0.3959262
+
+$o100_d.ptime
+[1] 0.021
+
+$o100_d.time
+[1] 1.116
+
+$o100_d.rmse
+[1] 0.3378777
+
+$o250_d.ptime
+[1] 0.015
+
+$o250_d.time
+[1] 4.446
+
+$o250_d.rmse
+[1] 0.2273916
+
+$o500_d.ptime
+[1] 0.019
+
+$o500_d.time
+[1] 19.189
+
+$o500_d.rmse
+[1] 0.1704721
+
+$c25_i.ptime
+[1] 0.491
+
+$c25_i.time
+[1] 0.236
+
+$c25_i.rmse
+[1] 0.3647101
+
+$c50_i.ptime
+[1] 0.331
+
+$c50_i.time
+[1] 0.296
+
+$c50_i.rmse
+[1] 0.3400487
+
+$c100_i.ptime
+[1] 0.311
+
+$c100_i.time
+[1] 0.148
+
+$c100_i.rmse
+[1] 0.2773894
+
+$c250_i.ptime
+[1] 0.477
+
+$c250_i.time
+[1] 0.145
+
+$c250_i.rmse
+[1] 0.2105079
+
+$c500_i.ptime
+[1] 1.016
+
+$c500_i.time
+[1] 0.158
+
+$c500_i.rmse
+[1] 0.1776994
+
+$c25_d.ptime
+[1] 0.47
+
+$c25_d.time
+[1] 0.619
+
+$c25_d.rmse
+[1] 0.320891
+
+$c50_d.ptime
+[1] 0.434
+
+$c50_d.time
+[1] 0.746
+
+$c50_d.rmse
+[1] 0.2632217
+
+$c100_d.ptime
+[1] 0.302
+
+$c100_d.time
+[1] 1.333
+
+$c100_d.rmse
+[1] 0.2207092
+
+$c250_d.ptime
+[1] 0.217
+
+$c250_d.time
+[1] 4.685
+
+$c250_d.rmse
+[1] 0.1802591
+
+$c500_d.ptime
+[1] 0.131
+
+$c500_d.time
+[1] 18.607
+
+$c500_d.rmse
+[1] 0.141437
+
+$s25.ptime
+[1] 0.122
+
+$s25.time
+[1] 0.001
+
+$s25.rmse
+[1] 0.6302052
+
+$s50.ptime
+[1] 0.16
+
+$s50.time
+[1] 0.002
+
+$s50.rmse
+[1] 0.5948787
+
+$s100.ptime
+[1] 0.347
+
+$s100.time
+[1] 0.003
+
+$s100.rmse
+[1] 0.487633
+
+$s250.ptime
+[1] 0.498
+
+$s250.time
+[1] 0.009
+
+$s250.rmse
+[1] 0.3500448
+
+$s500.ptime
+[1] 0.764
+
+$s500.time
+[1] 0.017
+
+$s500.rmse
+[1] 0.2555254
+
+$s1000.ptime
+[1] 1.839
+
+$s1000.time
+[1] 0.031
+
+$s1000.rmse
+[1] 0.1837607
+
+$s2500.ptime
+[1] 17.147
+
+$s2500.time
+[1] 0.088
+
+$s2500.rmse
+[1] 0.1184843
+
+        seed            p    full.time    full.rmse     l25.time     l25.rmse 
+    2231.000       10.000        0.040        0.081        2.129        0.222 
+    l50.time     l50.rmse    l100.time    l100.rmse    l250.time    l250.rmse 
+       2.349        0.192        3.876        0.156       18.744        0.129 
+   l500.time    l500.rmse  o25_i.ptime   o25_i.time   o25_i.rmse  o50_i.ptime 
+     100.927        0.110        0.115        0.206        0.603        0.081 
+  o50_i.time   o50_i.rmse o100_i.ptime  o100_i.time  o100_i.rmse o250_i.ptime 
+       0.161        0.537        0.115        0.148        0.462        0.321 
+ o250_i.time  o250_i.rmse o500_i.ptime  o500_i.time  o500_i.rmse  o25_d.ptime 
+       0.141        0.331        0.896        0.279        0.234        0.133 
+  o25_d.time   o25_d.rmse  o50_d.ptime   o50_d.time   o50_d.rmse o100_d.ptime 
+       0.446        0.487        0.049        0.571        0.396        0.021 
+ o100_d.time  o100_d.rmse o250_d.ptime  o250_d.time  o250_d.rmse o500_d.ptime 
+       1.116        0.338        0.015        4.446        0.227        0.019 
+ o500_d.time  o500_d.rmse  c25_i.ptime   c25_i.time   c25_i.rmse  c50_i.ptime 
+      19.189        0.170        0.491        0.236        0.365        0.331 
+  c50_i.time   c50_i.rmse c100_i.ptime  c100_i.time  c100_i.rmse c250_i.ptime 
+       0.296        0.340        0.311        0.148        0.277        0.477 
+ c250_i.time  c250_i.rmse c500_i.ptime  c500_i.time  c500_i.rmse  c25_d.ptime 
+       0.145        0.211        1.016        0.158        0.178        0.470 
+  c25_d.time   c25_d.rmse  c50_d.ptime   c50_d.time   c50_d.rmse c100_d.ptime 
+       0.619        0.321        0.434        0.746        0.263        0.302 
+ c100_d.time  c100_d.rmse c250_d.ptime  c250_d.time  c250_d.rmse c500_d.ptime 
+       1.333        0.221        0.217        4.685        0.180        0.131 
+ c500_d.time  c500_d.rmse    s25.ptime     s25.time     s25.rmse    s50.ptime 
+      18.607        0.141        0.122        0.001        0.630        0.160 
+    s50.time     s50.rmse   s100.ptime    s100.time    s100.rmse   s250.ptime 
+       0.002        0.595        0.347        0.003        0.488        0.498 
+   s250.time    s250.rmse   s500.ptime    s500.time    s500.rmse  s1000.ptime 
+       0.009        0.350        0.764        0.017        0.256        1.839 
+  s1000.time   s1000.rmse  s2500.ptime   s2500.time   s2500.rmse 
+       0.031        0.184       17.147        0.088        0.118 
+[1] 0.9800153
+$full.time
+[1] 0.041
+
+$full.rmse
+[1] 0.07764795
+
+$full.time
+[1] 0.041
+
+$full.rmse
+[1] 0.07764795
+
+$l25.time
+[1] 2.231
+
+$l25.rmse
+[1] 0.2305738
+
+$l50.time
+[1] 2.461
+
+$l50.rmse
+[1] 0.1893061
+
+$l100.time
+[1] 4.025
+
+$l100.rmse
+[1] 0.1560957
+
+$l250.time
+[1] 19.295
+
+$l250.rmse
+[1] 0.122261
+
+$l500.time
+[1] 101.468
+
+$l500.rmse
+[1] 0.1056264
+
+$o25_i.ptime
+[1] 0.115
+
+$o25_i.time
+[1] 0.198
+
+$o25_i.rmse
+[1] 0.6581393
+
+$o50_i.ptime
+[1] 0.077
+
+$o50_i.time
+[1] 0.401
+
+$o50_i.rmse
+[1] 0.5412489
+
+$o100_i.ptime
+[1] 0.131
+
+$o100_i.time
+[1] 0.144
+
+$o100_i.rmse
+[1] 0.4528856
+
+$o250_i.ptime
+[1] 0.318
+
+$o250_i.time
+[1] 0.137
+
+$o250_i.rmse
+[1] 0.3287321
+
+$o500_i.ptime
+[1] 0.907
+
+$o500_i.time
+[1] 0.146
+
+$o500_i.rmse
+[1] 0.257236
+
+$o25_d.ptime
+[1] 0.13
+
+$o25_d.time
+[1] 0.438
+
+$o25_d.rmse
+[1] 0.5281969
+
+$o50_d.ptime
+[1] 0.051
+
+$o50_d.time
+[1] 0.621
+
+$o50_d.rmse
+[1] 0.4085338
+
+$o100_d.ptime
+[1] 0.022
+
+$o100_d.time
+[1] 1.16
+
+$o100_d.rmse
+[1] 0.3358356
+
+$o250_d.ptime
+[1] 0.016
+
+$o250_d.time
+[1] 4.698
+
+$o250_d.rmse
+[1] 0.2251446
+
+$o500_d.ptime
+[1] 0.076
+
+$o500_d.time
+[1] 19.71
+
+$o500_d.rmse
+[1] 0.1616412
+
+$c25_i.ptime
+[1] 0.426
+
+$c25_i.time
+[1] 0.299
+
+$c25_i.rmse
+[1] 0.3907838
+
+$c50_i.ptime
+[1] 0.365
+
+$c50_i.time
+[1] 0.182
+
+$c50_i.rmse
+[1] 0.3528809
+
+$c100_i.ptime
+[1] 0.303
+
+$c100_i.time
+[1] 0.174
+
+$c100_i.rmse
+[1] 0.2834793
+
+$c250_i.ptime
+[1] 0.432
+
+$c250_i.time
+[1] 0.16
+
+$c250_i.rmse
+[1] 0.2179051
+
+$c500_i.ptime
+[1] 1.03
+
+$c500_i.time
+[1] 0.163
+
+$c500_i.rmse
+[1] 0.1697313
+
+$c25_d.ptime
+[1] 0.476
+
+$c25_d.time
+[1] 0.672
+
+$c25_d.rmse
+[1] 0.3325174
+
+$c50_d.ptime
+[1] 0.301
+
+$c50_d.time
+[1] 0.829
+
+$c50_d.rmse
+[1] 0.2850066
+
+$c100_d.ptime
+[1] 0.205
+
+$c100_d.time
+[1] 1.393
+
+$c100_d.rmse
+[1] 0.2274682
+
+$c250_d.ptime
+[1] 0.141
+
+$c250_d.time
+[1] 4.798
+
+$c250_d.rmse
+[1] 0.175115
+
+$c500_d.ptime
+[1] 0.079
+
+$c500_d.time
+[1] 18.3
+
+$c500_d.rmse
+[1] 0.1453268
+
+$s25.ptime
+[1] 0.146
+
+$s25.time
+[1] 0.001
+
+$s25.rmse
+[1] 0.7817411
+
+$s50.ptime
+[1] 0.214
+
+$s50.time
+[1] 0.002
+
+$s50.rmse
+[1] 0.5892084
+
+$s100.ptime
+[1] 0.244
+
+$s100.time
+[1] 0.003
+
+$s100.rmse
+[1] 0.4790731
+
+$s250.ptime
+[1] 0.462
+
+$s250.time
+[1] 0.009
+
+$s250.rmse
+[1] 0.3546595
+
+$s500.ptime
+[1] 0.835
+
+$s500.time
+[1] 0.017
+
+$s500.rmse
+[1] 0.2711396
+
+$s1000.ptime
+[1] 1.799
+
+$s1000.time
+[1] 0.028
+
+$s1000.rmse
+[1] 0.1928961
+
+$s2500.ptime
+[1] 15.206
+
+$s2500.time
+[1] 0.081
+
+$s2500.rmse
+[1] 0.1093349
+
+        seed            p    full.time    full.rmse     l25.time     l25.rmse 
+    2232.000       10.000        0.041        0.078        2.231        0.231 
+    l50.time     l50.rmse    l100.time    l100.rmse    l250.time    l250.rmse 
+       2.461        0.189        4.025        0.156       19.295        0.122 
+   l500.time    l500.rmse  o25_i.ptime   o25_i.time   o25_i.rmse  o50_i.ptime 
+     101.468        0.106        0.115        0.198        0.658        0.077 
+  o50_i.time   o50_i.rmse o100_i.ptime  o100_i.time  o100_i.rmse o250_i.ptime 
+       0.401        0.541        0.131        0.144        0.453        0.318 
+ o250_i.time  o250_i.rmse o500_i.ptime  o500_i.time  o500_i.rmse  o25_d.ptime 
+       0.137        0.329        0.907        0.146        0.257        0.130 
+  o25_d.time   o25_d.rmse  o50_d.ptime   o50_d.time   o50_d.rmse o100_d.ptime 
+       0.438        0.528        0.051        0.621        0.409        0.022 
+ o100_d.time  o100_d.rmse o250_d.ptime  o250_d.time  o250_d.rmse o500_d.ptime 
+       1.160        0.336        0.016        4.698        0.225        0.076 
+ o500_d.time  o500_d.rmse  c25_i.ptime   c25_i.time   c25_i.rmse  c50_i.ptime 
+      19.710        0.162        0.426        0.299        0.391        0.365 
+  c50_i.time   c50_i.rmse c100_i.ptime  c100_i.time  c100_i.rmse c250_i.ptime 
+       0.182        0.353        0.303        0.174        0.283        0.432 
+ c250_i.time  c250_i.rmse c500_i.ptime  c500_i.time  c500_i.rmse  c25_d.ptime 
+       0.160        0.218        1.030        0.163        0.170        0.476 
+  c25_d.time   c25_d.rmse  c50_d.ptime   c50_d.time   c50_d.rmse c100_d.ptime 
+       0.672        0.333        0.301        0.829        0.285        0.205 
+ c100_d.time  c100_d.rmse c250_d.ptime  c250_d.time  c250_d.rmse c500_d.ptime 
+       1.393        0.227        0.141        4.798        0.175        0.079 
+ c500_d.time  c500_d.rmse    s25.ptime     s25.time     s25.rmse    s50.ptime 
+      18.300        0.145        0.146        0.001        0.782        0.214 
+    s50.time     s50.rmse   s100.ptime    s100.time    s100.rmse   s250.ptime 
+       0.002        0.589        0.244        0.003        0.479        0.462 
+   s250.time    s250.rmse   s500.ptime    s500.time    s500.rmse  s1000.ptime 
+       0.009        0.355        0.835        0.017        0.271        1.799 
+  s1000.time   s1000.rmse  s2500.ptime   s2500.time   s2500.rmse 
+       0.028        0.193       15.206        0.081        0.109 
+[1] 1.218189
+$full.time
+[1] 0.04
+
+$full.rmse
+[1] 0.08063825
+
+$full.time
+[1] 0.04
+
+$full.rmse
+[1] 0.08063825
+
+$l25.time
+[1] 2.237
+
+$l25.rmse
+[1] 0.2336092
+
+$l50.time
+[1] 2.652
+
+$l50.rmse
+[1] 0.193937
+
+$l100.time
+[1] 4.145
+
+$l100.rmse
+[1] 0.1517267
+
+$l250.time
+[1] 19.81
+
+$l250.rmse
+[1] 0.1181762
+
+$l500.time
+[1] 101.502
+
+$l500.rmse
+[1] 0.1061131
+
+$o25_i.ptime
+[1] 0.11
+
+$o25_i.time
+[1] 0.19
+
+$o25_i.rmse
+[1] 0.6540636
+
+$o50_i.ptime
+[1] 0.081
+
+$o50_i.time
+[1] 0.145
+
+$o50_i.rmse
+[1] 0.5389307
+
+$o100_i.ptime
+[1] 0.109
+
+$o100_i.time
+[1] 0.129
+
+$o100_i.rmse
+[1] 0.4578894
+
+$o250_i.ptime
+[1] 0.32
+
+$o250_i.time
+[1] 0.125
+
+$o250_i.rmse
+[1] 0.3266306
+
+$o500_i.ptime
+[1] 0.88
+
+$o500_i.time
+[1] 0.133
+
+$o500_i.rmse
+[1] 0.2413268
+
+$o25_d.ptime
+[1] 0.125
+
+$o25_d.time
+[1] 0.422
+
+$o25_d.rmse
+[1] 0.4832119
+
+$o50_d.ptime
+[1] 0.044
+
+$o50_d.time
+[1] 0.709
+
+$o50_d.rmse
+[1] 0.4086095
+
+$o100_d.ptime
+[1] 0.022
+
+$o100_d.time
+[1] 1.142
+
+$o100_d.rmse
+[1] 0.3360048
+
+$o250_d.ptime
+[1] 0.015
+
+$o250_d.time
+[1] 4.487
+
+$o250_d.rmse
+[1] 0.2177695
+
+$o500_d.ptime
+[1] 0.02
+
+$o500_d.time
+[1] 18.916
+
+$o500_d.rmse
+[1] 0.1646774
+
+$c25_i.ptime
+[1] 0.477
+
+$c25_i.time
+[1] 0.214
+
+$c25_i.rmse
+[1] 0.3860229
+
+$c50_i.ptime
+[1] 0.363
+
+$c50_i.time
+[1] 0.171
+
+$c50_i.rmse
+[1] 0.3334098
+
+$c100_i.ptime
+[1] 0.288
+
+$c100_i.time
+[1] 0.162
+
+$c100_i.rmse
+[1] 0.2643915
+
+$c250_i.ptime
+[1] 0.458
+
+$c250_i.time
+[1] 0.158
+
+$c250_i.rmse
+[1] 0.2294676
+
+$c500_i.ptime
+[1] 1.022
+
+$c500_i.time
+[1] 0.177
+
+$c500_i.rmse
+[1] 0.1843854
+
+$c25_d.ptime
+[1] 0.431
+
+$c25_d.time
+[1] 0.676
+
+$c25_d.rmse
+[1] 0.3115345
+
+$c50_d.ptime
+[1] 0.252
+
+$c50_d.time
+[1] 0.787
+
+$c50_d.rmse
+[1] 0.253459
+
+$c100_d.ptime
+[1] 0.173
+
+$c100_d.time
+[1] 1.411
+
+$c100_d.rmse
+[1] 0.211927
+
+$c250_d.ptime
+[1] 0.101
+
+$c250_d.time
+[1] 4.733
+
+$c250_d.rmse
+[1] 0.1736499
+
+$c500_d.ptime
+[1] 0.086
+
+$c500_d.time
+[1] 18.459
+
+$c500_d.rmse
+[1] 0.1420173
+
+$s25.ptime
+[1] 0.131
+
+$s25.time
+[1] 0.001
+
+$s25.rmse
+[1] 0.8065073
+
+$s50.ptime
+[1] 0.133
+
+$s50.time
+[1] 0.002
+
+$s50.rmse
+[1] 0.608018
+
+$s100.ptime
+[1] 0.292
+
+$s100.time
+[1] 0.004
+
+$s100.rmse
+[1] 0.4571837
+
+$s250.ptime
+[1] 0.468
+
+$s250.time
+[1] 0.007
+
+$s250.rmse
+[1] 0.3605264
+
+$s500.ptime
+[1] 0.774
+
+$s500.time
+[1] 0.014
+
+$s500.rmse
+[1] 0.2621687
+
+$s1000.ptime
+[1] 1.828
+
+$s1000.time
+[1] 0.033
+
+$s1000.rmse
+[1] 0.1796997
+
+$s2500.ptime
+[1] 16.381
+
+$s2500.time
+[1] 0.093
+
+$s2500.rmse
+[1] 0.1130965
+
+        seed            p    full.time    full.rmse     l25.time     l25.rmse 
+    2233.000       10.000        0.040        0.081        2.237        0.234 
+    l50.time     l50.rmse    l100.time    l100.rmse    l250.time    l250.rmse 
+       2.652        0.194        4.145        0.152       19.810        0.118 
+   l500.time    l500.rmse  o25_i.ptime   o25_i.time   o25_i.rmse  o50_i.ptime 
+     101.502        0.106        0.110        0.190        0.654        0.081 
+  o50_i.time   o50_i.rmse o100_i.ptime  o100_i.time  o100_i.rmse o250_i.ptime 
+       0.145        0.539        0.109        0.129        0.458        0.320 
+ o250_i.time  o250_i.rmse o500_i.ptime  o500_i.time  o500_i.rmse  o25_d.ptime 
+       0.125        0.327        0.880        0.133        0.241        0.125 
+  o25_d.time   o25_d.rmse  o50_d.ptime   o50_d.time   o50_d.rmse o100_d.ptime 
+       0.422        0.483        0.044        0.709        0.409        0.022 
+ o100_d.time  o100_d.rmse o250_d.ptime  o250_d.time  o250_d.rmse o500_d.ptime 
+       1.142        0.336        0.015        4.487        0.218        0.020 
+ o500_d.time  o500_d.rmse  c25_i.ptime   c25_i.time   c25_i.rmse  c50_i.ptime 
+      18.916        0.165        0.477        0.214        0.386        0.363 
+  c50_i.time   c50_i.rmse c100_i.ptime  c100_i.time  c100_i.rmse c250_i.ptime 
+       0.171        0.333        0.288        0.162        0.264        0.458 
+ c250_i.time  c250_i.rmse c500_i.ptime  c500_i.time  c500_i.rmse  c25_d.ptime 
+       0.158        0.229        1.022        0.177        0.184        0.431 
+  c25_d.time   c25_d.rmse  c50_d.ptime   c50_d.time   c50_d.rmse c100_d.ptime 
+       0.676        0.312        0.252        0.787        0.253        0.173 
+ c100_d.time  c100_d.rmse c250_d.ptime  c250_d.time  c250_d.rmse c500_d.ptime 
+       1.411        0.212        0.101        4.733        0.174        0.086 
+ c500_d.time  c500_d.rmse    s25.ptime     s25.time     s25.rmse    s50.ptime 
+      18.459        0.142        0.131        0.001        0.807        0.133 
+    s50.time     s50.rmse   s100.ptime    s100.time    s100.rmse   s250.ptime 
+       0.002        0.608        0.292        0.004        0.457        0.468 
+   s250.time    s250.rmse   s500.ptime    s500.time    s500.rmse  s1000.ptime 
+       0.007        0.361        0.774        0.014        0.262        1.828 
+  s1000.time   s1000.rmse  s2500.ptime   s2500.time   s2500.rmse 
+       0.033        0.180       16.381        0.093        0.113 
+  seed  p full.time  full.rmse l25.time  l25.rmse l50.time  l50.rmse l100.time
+1 2229 10     0.048 0.08448686    2.484 0.2119172    2.555 0.1748499     4.498
+2 2230 10     0.038 0.08127394    2.113 0.2209342    2.392 0.1847493     3.889
+3 2231 10     0.040 0.08076098    2.129 0.2221378    2.349 0.1919135     3.876
+4 2232 10     0.041 0.07764795    2.231 0.2305738    2.461 0.1893061     4.025
+5 2233 10     0.040 0.08063825    2.237 0.2336092    2.652 0.1939370     4.145
+  l100.rmse l250.time l250.rmse l500.time l500.rmse o25_i.ptime o25_i.time
+1 0.1430022    22.098 0.1226120   112.360 0.1081852       0.127      0.202
+2 0.1564968    18.475 0.1226552   100.360 0.1078442       0.112      0.192
+3 0.1559778    18.744 0.1285963   100.927 0.1100017       0.115      0.206
+4 0.1560957    19.295 0.1222610   101.468 0.1056264       0.115      0.198
+5 0.1517267    19.810 0.1181762   101.502 0.1061131       0.110      0.190
+  o25_i.rmse o50_i.ptime o50_i.time o50_i.rmse o100_i.ptime o100_i.time
+1  0.5141567       0.090      0.157  0.4798399        0.126       0.139
+2  0.6047947       0.081      0.147  0.5489800        0.114       0.132
+3  0.6027443       0.081      0.161  0.5367198        0.115       0.148
+4  0.6581393       0.077      0.401  0.5412489        0.131       0.144
+5  0.6540636       0.081      0.145  0.5389307        0.109       0.129
+  o100_i.rmse o250_i.ptime o250_i.time o250_i.rmse o500_i.ptime o500_i.time
+1   0.4313217        0.344       0.145   0.3158417        0.956       0.149
+2   0.4465745        0.317       0.130   0.3323758        0.907       0.134
+3   0.4619228        0.321       0.141   0.3305230        0.896       0.279
+4   0.4528856        0.318       0.137   0.3287321        0.907       0.146
+5   0.4578894        0.320       0.125   0.3266306        0.880       0.133
+  o500_i.rmse o25_d.ptime o25_d.time o25_d.rmse o50_d.ptime o50_d.time
+1   0.2381282       0.129      0.478  0.4385234       0.048      0.839
+2   0.2539510       0.126      0.572  0.4922773       0.041      0.554
+3   0.2339819       0.133      0.446  0.4873154       0.049      0.571
+4   0.2572360       0.130      0.438  0.5281969       0.051      0.621
+5   0.2413268       0.125      0.422  0.4832119       0.044      0.709
+  o50_d.rmse o100_d.ptime o100_d.time o100_d.rmse o250_d.ptime o250_d.time
+1  0.3953230        0.024       1.369   0.3257987        0.017       5.101
+2  0.4249601        0.026       1.092   0.3323724        0.016       4.564
+3  0.3959262        0.021       1.116   0.3378777        0.015       4.446
+4  0.4085338        0.022       1.160   0.3358356        0.016       4.698
+5  0.4086095        0.022       1.142   0.3360048        0.015       4.487
+  o250_d.rmse o500_d.ptime o500_d.time o500_d.rmse c25_i.ptime c25_i.time
+1   0.2113629        0.020      19.877   0.1676473       0.538      0.204
+2   0.2197542        0.018      19.457   0.1633442       0.473      0.202
+3   0.2273916        0.019      19.189   0.1704721       0.491      0.236
+4   0.2251446        0.076      19.710   0.1616412       0.426      0.299
+5   0.2177695        0.020      18.916   0.1646774       0.477      0.214
+  c25_i.rmse c50_i.ptime c50_i.time c50_i.rmse c100_i.ptime c100_i.time
+1  0.3335950       0.319      0.168  0.2874628        0.333       0.150
+2  0.3593185       0.304      0.166  0.3361628        0.379       0.149
+3  0.3647101       0.331      0.296  0.3400487        0.311       0.148
+4  0.3907838       0.365      0.182  0.3528809        0.303       0.174
+5  0.3860229       0.363      0.171  0.3334098        0.288       0.162
+  c100_i.rmse c250_i.ptime c250_i.time c250_i.rmse c500_i.ptime c500_i.time
+1   0.2553771        0.406       0.149   0.2103376        1.010       0.161
+2   0.2798857        0.476       0.147   0.2159878        0.987       0.157
+3   0.2773894        0.477       0.145   0.2105079        1.016       0.158
+4   0.2834793        0.432       0.160   0.2179051        1.030       0.163
+5   0.2643915        0.458       0.158   0.2294676        1.022       0.177
+  c500_i.rmse c25_d.ptime c25_d.time c25_d.rmse c50_d.ptime c50_d.time
+1   0.1647342       0.435      0.632  0.2821090       0.231      0.798
+2   0.1789194       0.495      0.587  0.3015708       0.273      0.707
+3   0.1776994       0.470      0.619  0.3208910       0.434      0.746
+4   0.1697313       0.476      0.672  0.3325174       0.301      0.829
+5   0.1843854       0.431      0.676  0.3115345       0.252      0.787
+  c50_d.rmse c100_d.ptime c100_d.time c100_d.rmse c250_d.ptime c250_d.time
+1  0.2467635        0.155       1.402   0.2036392        0.179       4.782
+2  0.2534893        0.183       1.310   0.2224496        0.125       4.449
+3  0.2632217        0.302       1.333   0.2207092        0.217       4.685
+4  0.2850066        0.205       1.393   0.2274682        0.141       4.798
+5  0.2534590        0.173       1.411   0.2119270        0.101       4.733
+  c250_d.rmse c500_d.ptime c500_d.time c500_d.rmse s25.ptime s25.time  s25.rmse
+1   0.1639155        0.056      19.110   0.1356882     0.115    0.000 0.5346536
+2   0.1730652        0.097      18.478   0.1373438     0.128    0.000 0.7228768
+3   0.1802591        0.131      18.607   0.1414370     0.122    0.001 0.6302052
+4   0.1751150        0.079      18.300   0.1453268     0.146    0.001 0.7817411
+5   0.1736499        0.086      18.459   0.1420173     0.131    0.001 0.8065073
+  s50.ptime s50.time  s50.rmse s100.ptime s100.time s100.rmse s250.ptime
+1     0.184    0.002 0.5346772      0.342     0.003 0.4312472      0.513
+2     0.215    0.002 0.6320505      0.333     0.003 0.4772746      0.467
+3     0.160    0.002 0.5948787      0.347     0.003 0.4876330      0.498
+4     0.214    0.002 0.5892084      0.244     0.003 0.4790731      0.462
+5     0.133    0.002 0.6080180      0.292     0.004 0.4571837      0.468
+  s250.time s250.rmse s500.ptime s500.time s500.rmse s1000.ptime s1000.time
+1     0.008 0.3237156      0.759     0.016 0.2459222       1.737      0.032
+2     0.008 0.3610657      0.743     0.015 0.2686423       1.761      0.029
+3     0.009 0.3500448      0.764     0.017 0.2555254       1.839      0.031
+4     0.009 0.3546595      0.835     0.017 0.2711396       1.799      0.028
+5     0.007 0.3605264      0.774     0.014 0.2621687       1.828      0.033
+  s1000.rmse s2500.ptime s2500.time s2500.rmse
+1  0.1705637      15.487      0.077  0.1150881
+2  0.1708749      17.795      0.076  0.1139530
+3  0.1837607      17.147      0.088  0.1184843
+4  0.1928961      15.206      0.081  0.1093349
+5  0.1796997      16.381      0.093  0.1130965
+> 
+> proc.time()
+    user   system  elapsed 
+1237.429   15.734 1281.823 

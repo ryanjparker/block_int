@@ -1,0 +1,2794 @@
+
+R version 3.0.3 (2014-03-06) -- "Warm Puppy"
+Copyright (C) 2014 The R Foundation for Statistical Computing
+Platform: x86_64-unknown-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> print(.libPaths())
+[1] "/usr/local/r-3.0.3/lib64/R/library"
+> .libPaths("/mnt/home/rjparker/Rlib")
+> print(.libPaths())
+[1] "/mnt/home/rjparker/Rlib"            "/usr/local/r-3.0.3/lib64/R/library"
+> setwd("/mnt/home/rjparker/git/block_int")
+> 
+> which_exp <- 5
+> which_part <- 17
+> source("R/sim_nblocks.R")
+Loading required package: spam
+Loading required package: grid
+Spam version 0.41-0 (2014-02-26) is loaded.
+Type 'help( Spam)' or 'demo( spam)' for a short introduction 
+and overview of this package.
+Help for individual functions is also obtained by adding the
+suffix '.spam' to the function name, e.g. 'help( chol.spam)'.
+
+Attaching package: ‘spam’
+
+The following objects are masked from ‘package:base’:
+
+    backsolve, forwardsolve
+
+Loading required package: maps
+
+Attaching package: ‘parallel’
+
+The following objects are masked from ‘package:multicore’:
+
+    mclapply, mcparallel, pvec
+
+   pred  p   b tau Nper_p Npred Nblock_obs_ind Fzero sigma2
+5 FALSE 10 1.5  10    250  1000            100     0      1
+[1] 0.809535
+iter 1:
+  theta                                                                         
+   1.49    1.29    1.23    1.15    1.16    0.98    0.98    0.70    0.60    0.40 
+log lik 
+3189.26 
+iter 2:
+  theta                                                                         
+   1.48    1.28    1.25    1.15    1.16    0.98    0.97    0.69    0.59    0.39 
+log lik 
+3189.47 
+iter 3:
+  theta                                                                         
+   1.48    1.28    1.25    1.15    1.16    0.98    0.97    0.69    0.59    0.39 
+log lik 
+3189.47 
+iter 4:
+  theta                                                                         
+   1.48    1.28    1.25    1.15    1.16    0.98    0.97    0.69    0.59    0.39 
+log lik 
+3189.47 
+iter 5:
+  theta                                                                         
+   1.48    1.28    1.25    1.15    1.16    0.98    0.97    0.69    0.59    0.39 
+log lik 
+3189.47 
+Converged at iteration 5 
+iter 1:
+  theta                                                                         
+   1.64    1.54    1.21    0.98    1.16    0.98    1.04    0.60    0.53    0.35 
+log lik 
+ 700.47 
+iter 2:
+  theta                                                                         
+   1.65    1.52    1.18    0.95    1.18    0.98    1.05    0.58    0.53    0.35 
+log lik 
+ 700.82 
+iter 3:
+  theta                                                                         
+   1.65    1.52    1.18    0.95    1.19    0.98    1.05    0.58    0.53    0.35 
+log lik 
+ 700.82 
+iter 4:
+  theta                                                                         
+   1.65    1.52    1.18    0.95    1.19    0.98    1.05    0.58    0.53    0.35 
+log lik 
+ 700.82 
+iter 5:
+  theta                                                                         
+   1.66    1.52    1.18    0.95    1.19    0.98    1.05    0.58    0.53    0.35 
+log lik 
+ 700.82 
+iter 6:
+  theta                                                                         
+   1.66    1.52    1.18    0.95    1.19    0.98    1.05    0.58    0.53    0.35 
+log lik 
+ 700.82 
+Converged at iteration 6 
+iter 1:
+  theta                                                                         
+   1.64    1.48    1.28    1.00    1.18    1.00    1.03    0.67    0.58    0.32 
+log lik 
+1591.98 
+iter 2:
+  theta                                                                         
+   1.62    1.47    1.26    0.98    1.18    1.01    1.03    0.66    0.58    0.32 
+log lik 
+1592.09 
+iter 3:
+  theta                                                                         
+   1.62    1.47    1.26    0.98    1.18    1.01    1.03    0.66    0.58    0.32 
+log lik 
+1592.09 
+iter 4:
+  theta                                                                         
+   1.62    1.47    1.26    0.98    1.18    1.01    1.03    0.66    0.58    0.32 
+log lik 
+1592.09 
+Converged at iteration 4 
+iter 1:
+  theta                                                                         
+   1.70    1.70    0.97    0.89    1.10    0.93    1.46    0.64    0.52    0.40 
+log lik 
+  45.06 
+iter 2:
+  theta                                                                         
+   1.78    1.69    0.87    0.79    1.11    0.92    1.38    0.63    0.53    0.43 
+log lik 
+  47.77 
+iter 3:
+  theta                                                                         
+   1.82    1.70    0.83    0.76    1.11    0.93    1.37    0.63    0.54    0.42 
+log lik 
+  48.03 
+iter 4:
+  theta                                                                         
+   1.84    1.70    0.82    0.75    1.12    0.93    1.37    0.63    0.55    0.42 
+log lik 
+  48.07 
+iter 5:
+  theta                                                                         
+   1.85    1.70    0.82    0.75    1.12    0.93    1.37    0.63    0.55    0.42 
+log lik 
+  48.07 
+iter 6:
+  theta                                                                         
+   1.86    1.71    0.81    0.75    1.12    0.93    1.37    0.63    0.55    0.42 
+log lik 
+  48.07 
+iter 7:
+  theta                                                                         
+   1.86    1.71    0.81    0.75    1.12    0.92    1.37    0.63    0.55    0.42 
+log lik 
+  48.07 
+iter 8:
+  theta                                                                         
+   1.86    1.71    0.81    0.75    1.12    0.92    1.37    0.63    0.55    0.42 
+log lik 
+  48.07 
+iter 9:
+  theta                                                                         
+   1.86    1.71    0.81    0.75    1.12    0.92    1.37    0.63    0.55    0.42 
+log lik 
+  48.07 
+iter 10:
+  theta                                                                         
+   1.86    1.71    0.81    0.75    1.12    0.92    1.37    0.63    0.55    0.42 
+log lik 
+  48.07 
+iter 11:
+  theta                                                                         
+   1.86    1.71    0.81    0.75    1.12    0.92    1.37    0.63    0.55    0.42 
+log lik 
+  48.07 
+Converged at iteration 11 
+iter 1:
+  theta                                                                         
+   1.56    1.58    1.06    1.03    1.10    0.93    1.01    0.64    0.59    0.33 
+log lik 
+1201.29 
+iter 2:
+  theta                                                                         
+   1.58    1.56    1.03    1.02    1.10    0.93    0.98    0.64    0.60    0.34 
+log lik 
+1201.55 
+iter 3:
+  theta                                                                         
+   1.58    1.56    1.02    1.02    1.09    0.93    0.98    0.64    0.60    0.34 
+log lik 
+1201.55 
+iter 4:
+  theta                                                                         
+   1.58    1.56    1.02    1.02    1.09    0.93    0.98    0.64    0.60    0.34 
+log lik 
+1201.55 
+iter 5:
+  theta                                                                         
+   1.58    1.56    1.02    1.02    1.09    0.93    0.98    0.64    0.60    0.34 
+log lik 
+1201.55 
+Converged at iteration 5 
+iter 1:
+  theta                                                                         
+   1.46    1.70    0.71    0.86    1.30    0.92    1.69    0.52    0.44    0.67 
+log lik 
+-257.76 
+iter 2:
+  theta                                                                         
+   1.49    1.80    0.52    0.73    1.33    0.92    1.60    0.46    0.42    0.56 
+log lik 
+-248.89 
+iter 3:
+  theta                                                                         
+   1.55    1.80    0.47    0.70    1.32    0.93    1.59    0.46    0.42    0.55 
+log lik 
+-248.33 
+iter 4:
+  theta                                                                         
+   1.57    1.81    0.45    0.69    1.32    0.93    1.60    0.46    0.42    0.55 
+log lik 
+-248.28 
+iter 5:
+  theta                                                                         
+   1.58    1.81    0.45    0.69    1.32    0.93    1.60    0.46    0.43    0.55 
+log lik 
+-248.27 
+iter 6:
+  theta                                                                         
+   1.58    1.81    0.45    0.68    1.32    0.93    1.60    0.46    0.43    0.55 
+log lik 
+-248.27 
+iter 7:
+  theta                                                                         
+   1.58    1.81    0.45    0.68    1.32    0.93    1.60    0.46    0.43    0.55 
+log lik 
+-248.27 
+iter 8:
+  theta                                                                         
+   1.59    1.81    0.45    0.68    1.32    0.93    1.60    0.46    0.43    0.55 
+log lik 
+-248.27 
+iter 9:
+  theta                                                                         
+   1.59    1.81    0.45    0.68    1.32    0.93    1.60    0.46    0.43    0.55 
+log lik 
+-248.27 
+iter 10:
+  theta                                                                         
+   1.59    1.81    0.45    0.68    1.32    0.93    1.60    0.46    0.43    0.55 
+log lik 
+-248.27 
+Converged at iteration 10 
+iter 1:
+  theta                                                                         
+   1.43    1.72    1.03    1.00    1.12    0.87    1.19    0.65    0.54    0.39 
+log lik 
+ 880.19 
+iter 2:
+  theta                                                                         
+   1.42    1.73    0.95    0.95    1.13    0.84    1.23    0.64    0.53    0.39 
+log lik 
+ 881.23 
+iter 3:
+  theta                                                                         
+   1.42    1.73    0.94    0.95    1.14    0.84    1.24    0.63    0.53    0.40 
+log lik 
+ 881.26 
+iter 4:
+  theta                                                                         
+   1.42    1.73    0.94    0.95    1.14    0.84    1.24    0.63    0.52    0.40 
+log lik 
+ 881.26 
+iter 5:
+  theta                                                                         
+   1.42    1.73    0.94    0.95    1.14    0.84    1.24    0.63    0.52    0.40 
+log lik 
+ 881.26 
+iter 6:
+  theta                                                                         
+   1.42    1.73    0.94    0.95    1.14    0.84    1.24    0.63    0.52    0.40 
+log lik 
+ 881.26 
+Converged at iteration 6 
+iter 1:
+  theta                                                                         
+   1.34    1.84    0.64    0.76    2.17    0.92    1.61    0.52    0.41    0.82 
+log lik 
+-532.19 
+iter 2:
+  theta                                                                         
+   1.38    2.09    0.41    0.63    1.87    0.87    1.57    0.50    0.41    0.63 
+log lik 
+-521.18 
+iter 3:
+  theta                                                                         
+   1.42    2.15    0.34    0.56    1.78    0.87    1.56    0.50    0.41    0.60 
+log lik 
+-519.83 
+iter 4:
+  theta                                                                         
+   1.45    2.17    0.32    0.53    1.75    0.88    1.57    0.50    0.41    0.60 
+log lik 
+-519.65 
+iter 5:
+  theta                                                                         
+   1.47    2.18    0.32    0.50    1.75    0.89    1.57    0.50    0.41    0.59 
+log lik 
+-519.60 
+iter 6:
+  theta                                                                         
+   1.47    2.19    0.31    0.49    1.74    0.90    1.57    0.50    0.41    0.59 
+log lik 
+-519.58 
+iter 7:
+  theta                                                                         
+   1.48    2.19    0.31    0.49    1.74    0.90    1.57    0.50    0.41    0.59 
+log lik 
+-519.58 
+iter 8:
+  theta                                                                         
+   1.48    2.19    0.31    0.48    1.74    0.91    1.57    0.50    0.41    0.59 
+log lik 
+-519.58 
+iter 9:
+  theta                                                                         
+   1.48    2.20    0.31    0.48    1.74    0.91    1.57    0.50    0.42    0.59 
+log lik 
+-519.58 
+iter 10:
+  theta                                                                         
+   1.48    2.20    0.31    0.48    1.74    0.91    1.56    0.50    0.42    0.59 
+log lik 
+-519.58 
+iter 11:
+  theta                                                                         
+   1.48    2.20    0.31    0.48    1.74    0.91    1.56    0.50    0.42    0.59 
+log lik 
+-519.58 
+iter 12:
+  theta                                                                         
+   1.48    2.20    0.31    0.48    1.74    0.91    1.56    0.50    0.42    0.59 
+log lik 
+-519.58 
+iter 13:
+  theta                                                                         
+   1.48    2.20    0.31    0.48    1.74    0.91    1.56    0.50    0.42    0.59 
+log lik 
+-519.58 
+iter 14:
+  theta                                                                         
+   1.48    2.20    0.31    0.48    1.74    0.91    1.56    0.50    0.42    0.59 
+log lik 
+-519.58 
+Converged at iteration 14 
+iter 1:
+  theta                                                                         
+   1.44    1.57    1.01    0.90    1.21    0.92    1.07    0.56    0.57    0.45 
+log lik 
+ 622.23 
+iter 2:
+  theta                                                                         
+   1.49    1.59    0.93    0.81    1.22    0.93    1.07    0.51    0.58    0.44 
+log lik 
+ 623.93 
+iter 3:
+  theta                                                                         
+   1.51    1.60    0.91    0.79    1.23    0.94    1.07    0.50    0.58    0.44 
+log lik 
+ 624.03 
+iter 4:
+  theta                                                                         
+   1.52    1.60    0.90    0.79    1.23    0.94    1.07    0.50    0.58    0.44 
+log lik 
+ 624.04 
+iter 5:
+  theta                                                                         
+   1.52    1.60    0.90    0.79    1.23    0.94    1.07    0.50    0.58    0.44 
+log lik 
+ 624.04 
+iter 6:
+  theta                                                                         
+   1.52    1.60    0.90    0.79    1.23    0.94    1.07    0.50    0.58    0.44 
+log lik 
+ 624.04 
+iter 7:
+  theta                                                                         
+   1.52    1.60    0.90    0.79    1.23    0.94    1.07    0.50    0.58    0.44 
+log lik 
+ 624.04 
+Converged at iteration 7 
+iter 1:
+  theta                                                                         
+   1.63    1.60    0.92    0.97    1.15    0.82    1.37    0.58    0.51    0.40 
+log lik 
+ 221.30 
+iter 2:
+  theta                                                                         
+   1.72    1.60    0.80    0.89    1.17    0.83    1.32    0.55    0.51    0.40 
+log lik 
+ 226.94 
+iter 3:
+  theta                                                                         
+   1.76    1.60    0.75    0.87    1.17    0.84    1.32    0.55    0.51    0.40 
+log lik 
+ 227.51 
+iter 4:
+  theta                                                                         
+   1.78    1.60    0.74    0.87    1.17    0.84    1.32    0.55    0.51    0.40 
+log lik 
+ 227.59 
+iter 5:
+  theta                                                                         
+   1.79    1.60    0.73    0.87    1.17    0.84    1.32    0.55    0.51    0.40 
+log lik 
+ 227.61 
+iter 6:
+  theta                                                                         
+   1.79    1.60    0.73    0.87    1.17    0.85    1.32    0.55    0.51    0.40 
+log lik 
+ 227.61 
+iter 7:
+  theta                                                                         
+   1.79    1.60    0.73    0.87    1.17    0.85    1.32    0.55    0.51    0.40 
+log lik 
+ 227.61 
+iter 8:
+  theta                                                                         
+   1.79    1.60    0.73    0.87    1.17    0.85    1.32    0.55    0.51    0.40 
+log lik 
+ 227.61 
+iter 9:
+  theta                                                                         
+   1.79    1.60    0.73    0.87    1.17    0.85    1.32    0.55    0.51    0.40 
+log lik 
+ 227.61 
+iter 10:
+  theta                                                                         
+   1.79    1.60    0.73    0.87    1.17    0.85    1.32    0.55    0.51    0.40 
+log lik 
+ 227.61 
+Converged at iteration 10 
+iter 1:
+  theta                                                                         
+   1.52    1.52    1.20    0.98    1.06    0.86    1.13    0.64    0.53    0.35 
+log lik 
+2322.56 
+iter 2:
+  theta                                                                         
+   1.53    1.52    1.17    0.94    1.06    0.86    1.11    0.63    0.53    0.35 
+log lik 
+2323.38 
+iter 3:
+  theta                                                                         
+   1.53    1.52    1.16    0.93    1.06    0.86    1.12    0.63    0.53    0.35 
+log lik 
+2323.39 
+iter 4:
+  theta                                                                         
+   1.53    1.52    1.16    0.93    1.06    0.86    1.12    0.63    0.53    0.35 
+log lik 
+2323.39 
+iter 5:
+  theta                                                                         
+   1.53    1.52    1.16    0.93    1.06    0.86    1.12    0.63    0.53    0.35 
+log lik 
+2323.39 
+Converged at iteration 5 
+iter 1:
+  theta                                                                         
+   1.54    1.72    0.73    0.84    1.45    0.96    1.58    0.54    0.47    0.53 
+log lik 
+-496.87 
+iter 2:
+  theta                                                                         
+   1.65    1.75    0.58    0.71    1.42    0.99    1.50    0.51    0.44    0.48 
+log lik 
+-485.78 
+iter 3:
+  theta                                                                         
+   1.71    1.75    0.54    0.67    1.40    1.02    1.49    0.50    0.44    0.48 
+log lik 
+-484.92 
+iter 4:
+  theta                                                                         
+   1.73    1.75    0.53    0.65    1.39    1.03    1.50    0.50    0.44    0.48 
+log lik 
+-484.83 
+iter 5:
+  theta                                                                         
+   1.74    1.76    0.53    0.65    1.39    1.04    1.50    0.50    0.44    0.48 
+log lik 
+-484.81 
+iter 6:
+  theta                                                                         
+   1.74    1.76    0.53    0.65    1.39    1.04    1.50    0.50    0.44    0.48 
+log lik 
+-484.81 
+iter 7:
+  theta                                                                         
+   1.74    1.76    0.53    0.64    1.39    1.04    1.50    0.50    0.44    0.48 
+log lik 
+-484.81 
+iter 8:
+  theta                                                                         
+   1.74    1.76    0.53    0.64    1.39    1.04    1.50    0.50    0.44    0.48 
+log lik 
+-484.81 
+iter 9:
+  theta                                                                         
+   1.74    1.76    0.53    0.64    1.39    1.04    1.50    0.50    0.44    0.48 
+log lik 
+-484.81 
+iter 10:
+  theta                                                                         
+   1.74    1.76    0.53    0.64    1.39    1.04    1.50    0.50    0.44    0.48 
+log lik 
+-484.81 
+Converged at iteration 10 
+iter 1:
+  theta                                                                         
+   1.53    1.43    1.13    0.98    1.10    0.92    1.05    0.64    0.48    0.37 
+log lik 
+1750.19 
+iter 2:
+  theta                                                                         
+   1.53    1.45    1.09    0.92    1.11    0.91    1.06    0.62    0.48    0.37 
+log lik 
+1751.30 
+iter 3:
+  theta                                                                         
+   1.54    1.46    1.08    0.91    1.12    0.92    1.06    0.62    0.48    0.37 
+log lik 
+1751.34 
+iter 4:
+  theta                                                                         
+   1.54    1.46    1.08    0.91    1.12    0.92    1.06    0.62    0.48    0.37 
+log lik 
+1751.34 
+iter 5:
+  theta                                                                         
+   1.54    1.46    1.08    0.90    1.12    0.92    1.06    0.62    0.48    0.37 
+log lik 
+1751.34 
+iter 6:
+  theta                                                                         
+   1.54    1.46    1.08    0.90    1.12    0.92    1.06    0.62    0.48    0.37 
+log lik 
+1751.34 
+Converged at iteration 6 
+             seed                 p               tau       orac.status 
+         2464.000            10.000            10.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+          110.166             0.118             1.000         11145.544 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.060             0.120             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            20.901             0.143             0.121 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.001             0.001             1.000            13.691 
+[1] 0.8506363
+iter 1:
+  theta                                                                         
+   1.55    1.40    1.33    1.22    1.14    0.98    0.89    0.71    0.60    0.29 
+log lik 
+3180.50 
+iter 2:
+  theta                                                                         
+   1.55    1.40    1.33    1.22    1.14    0.98    0.90    0.71    0.60    0.29 
+log lik 
+3180.51 
+iter 3:
+  theta                                                                         
+   1.55    1.40    1.33    1.22    1.14    0.98    0.90    0.71    0.60    0.29 
+log lik 
+3180.51 
+iter 4:
+  theta                                                                         
+   1.55    1.40    1.33    1.22    1.14    0.98    0.90    0.71    0.60    0.29 
+log lik 
+3180.51 
+Converged at iteration 4 
+iter 1:
+  theta                                                                         
+   1.46    1.30    1.05    0.96    1.36    0.84    1.06    0.76    0.71    0.45 
+log lik 
+ 630.61 
+iter 2:
+  theta                                                                         
+   1.46    1.31    1.00    0.92    1.36    0.83    1.07    0.79    0.69    0.43 
+log lik 
+ 631.30 
+iter 3:
+  theta                                                                         
+   1.47    1.31    1.00    0.92    1.36    0.83    1.07    0.79    0.69    0.43 
+log lik 
+ 631.31 
+iter 4:
+  theta                                                                         
+   1.47    1.31    1.00    0.92    1.36    0.83    1.07    0.79    0.69    0.43 
+log lik 
+ 631.31 
+iter 5:
+  theta                                                                         
+   1.47    1.31    1.00    0.92    1.36    0.83    1.07    0.79    0.69    0.43 
+log lik 
+ 631.31 
+iter 6:
+  theta                                                                         
+   1.47    1.31    1.00    0.92    1.36    0.83    1.07    0.79    0.69    0.43 
+log lik 
+ 631.31 
+Converged at iteration 6 
+iter 1:
+  theta                                                                         
+   1.51    1.45    1.33    1.05    1.22    0.91    1.01    0.70    0.66    0.30 
+log lik 
+1569.08 
+iter 2:
+  theta                                                                         
+   1.53    1.44    1.33    1.02    1.22    0.90    1.00    0.70    0.65    0.31 
+log lik 
+1569.28 
+iter 3:
+  theta                                                                         
+   1.53    1.44    1.33    1.02    1.22    0.90    1.00    0.70    0.66    0.31 
+log lik 
+1569.28 
+iter 4:
+  theta                                                                         
+   1.53    1.44    1.33    1.02    1.22    0.90    1.00    0.70    0.66    0.31 
+log lik 
+1569.28 
+iter 5:
+  theta                                                                         
+   1.53    1.44    1.33    1.02    1.22    0.90    1.00    0.70    0.66    0.31 
+log lik 
+1569.28 
+Converged at iteration 5 
+iter 1:
+  theta                                                                         
+   1.18    1.46    1.04    0.85    1.34    0.69    1.41    0.85    0.95    0.59 
+log lik 
+ -36.58 
+iter 2:
+  theta                                                                         
+   1.16    1.48    0.96    0.75    1.46    0.66    1.30    0.93    0.84    0.53 
+log lik 
+ -32.07 
+iter 3:
+  theta                                                                         
+   1.16    1.45    0.95    0.73    1.46    0.66    1.32    0.94    0.84    0.52 
+log lik 
+ -31.93 
+iter 4:
+  theta                                                                         
+   1.16    1.45    0.95    0.72    1.47    0.67    1.32    0.94    0.84    0.52 
+log lik 
+ -31.92 
+iter 5:
+  theta                                                                         
+   1.16    1.45    0.95    0.72    1.47    0.67    1.32    0.94    0.84    0.52 
+log lik 
+ -31.92 
+iter 6:
+  theta                                                                         
+   1.16    1.45    0.95    0.72    1.47    0.67    1.32    0.94    0.84    0.52 
+log lik 
+ -31.92 
+iter 7:
+  theta                                                                         
+   1.16    1.45    0.95    0.72    1.47    0.67    1.32    0.94    0.84    0.52 
+log lik 
+ -31.92 
+iter 8:
+  theta                                                                         
+   1.17    1.45    0.95    0.72    1.47    0.67    1.32    0.94    0.84    0.52 
+log lik 
+ -31.92 
+iter 9:
+  theta                                                                         
+   1.17    1.45    0.95    0.71    1.47    0.67    1.32    0.94    0.84    0.52 
+log lik 
+ -31.92 
+Converged at iteration 9 
+iter 1:
+  theta                                                                         
+   1.34    1.32    1.33    0.92    1.29    0.85    1.14    0.76    0.73    0.33 
+log lik 
+1102.71 
+iter 2:
+  theta                                                                         
+   1.35    1.33    1.32    0.85    1.31    0.82    1.11    0.78    0.70    0.33 
+log lik 
+1103.82 
+iter 3:
+  theta                                                                         
+   1.35    1.33    1.32    0.84    1.31    0.82    1.12    0.78    0.70    0.32 
+log lik 
+1103.84 
+iter 4:
+  theta                                                                         
+   1.35    1.33    1.32    0.84    1.31    0.82    1.12    0.78    0.70    0.33 
+log lik 
+1103.84 
+iter 5:
+  theta                                                                         
+   1.35    1.33    1.32    0.84    1.31    0.82    1.12    0.78    0.70    0.33 
+log lik 
+1103.84 
+iter 6:
+  theta                                                                         
+   1.35    1.33    1.32    0.84    1.31    0.82    1.12    0.78    0.70    0.33 
+log lik 
+1103.84 
+Converged at iteration 6 
+iter 1:
+  theta                                                                         
+   1.02    1.58    1.00    0.75    1.33    0.62    1.68    1.01    1.51    0.71 
+log lik 
+-408.87 
+iter 2:
+  theta                                                                         
+   0.92    1.64    0.95    0.59    1.52    0.50    1.51    1.10    1.23    0.62 
+log lik 
+-399.11 
+iter 3:
+  theta                                                                         
+   0.93    1.65    0.97    0.56    1.51    0.46    1.51    1.07    1.19    0.61 
+log lik 
+-398.51 
+iter 4:
+  theta                                                                         
+   0.94    1.65    0.98    0.55    1.52    0.44    1.50    1.06    1.18    0.61 
+log lik 
+-398.44 
+iter 5:
+  theta                                                                         
+   0.95    1.66    0.98    0.55    1.52    0.43    1.50    1.06    1.18    0.61 
+log lik 
+-398.43 
+iter 6:
+  theta                                                                         
+   0.95    1.66    0.99    0.55    1.52    0.43    1.50    1.06    1.18    0.61 
+log lik 
+-398.43 
+iter 7:
+  theta                                                                         
+   0.95    1.66    0.99    0.55    1.52    0.43    1.50    1.06    1.18    0.61 
+log lik 
+-398.43 
+iter 8:
+  theta                                                                         
+   0.95    1.66    0.99    0.55    1.52    0.43    1.50    1.06    1.18    0.61 
+log lik 
+-398.43 
+iter 9:
+  theta                                                                         
+   0.95    1.66    0.99    0.55    1.52    0.43    1.50    1.06    1.18    0.61 
+log lik 
+-398.43 
+iter 10:
+  theta                                                                         
+   0.95    1.66    0.99    0.55    1.52    0.43    1.50    1.06    1.18    0.61 
+log lik 
+-398.43 
+Converged at iteration 10 
+iter 1:
+  theta                                                                         
+   1.26    1.22    1.15    0.89    1.36    0.87    1.10    0.79    0.86    0.43 
+log lik 
+ 799.58 
+iter 2:
+  theta                                                                         
+   1.22    1.22    1.10    0.81    1.37    0.85    1.06    0.80    0.85    0.43 
+log lik 
+ 800.80 
+iter 3:
+  theta                                                                         
+   1.22    1.22    1.09    0.80    1.38    0.85    1.06    0.80    0.85    0.44 
+log lik 
+ 800.82 
+iter 4:
+  theta                                                                         
+   1.22    1.22    1.09    0.80    1.38    0.85    1.06    0.80    0.85    0.44 
+log lik 
+ 800.82 
+iter 5:
+  theta                                                                         
+   1.22    1.22    1.09    0.80    1.38    0.86    1.06    0.80    0.85    0.44 
+log lik 
+ 800.82 
+iter 6:
+  theta                                                                         
+   1.22    1.22    1.09    0.80    1.38    0.86    1.06    0.80    0.85    0.44 
+log lik 
+ 800.82 
+Converged at iteration 6 
+iter 1:
+  theta                                                                         
+   0.90    1.30    0.84    0.77    1.23    0.69    1.93    1.26    1.57    0.86 
+log lik 
+-637.86 
+iter 2:
+  theta                                                                         
+   0.70    1.35    0.73    0.63    1.43    0.52    1.84    1.35    1.53    0.78 
+log lik 
+-631.14 
+iter 3:
+  theta                                                                         
+   0.64    1.45    0.70    0.57    1.48    0.45    1.80    1.34    1.51    0.78 
+log lik 
+-629.98 
+iter 4:
+  theta                                                                         
+   0.62    1.51    0.70    0.55    1.51    0.42    1.78    1.32    1.50    0.79 
+log lik 
+-629.74 
+iter 5:
+  theta                                                                         
+   0.62    1.54    0.69    0.55    1.53    0.40    1.77    1.32    1.49    0.79 
+log lik 
+-629.69 
+iter 6:
+  theta                                                                         
+   0.61    1.55    0.69    0.54    1.54    0.39    1.77    1.32    1.49    0.79 
+log lik 
+-629.68 
+iter 7:
+  theta                                                                         
+   0.61    1.56    0.69    0.54    1.54    0.39    1.77    1.32    1.49    0.79 
+log lik 
+-629.68 
+iter 8:
+  theta                                                                         
+   0.61    1.56    0.69    0.54    1.54    0.39    1.77    1.32    1.49    0.79 
+log lik 
+-629.68 
+iter 9:
+  theta                                                                         
+   0.61    1.56    0.69    0.54    1.55    0.39    1.77    1.31    1.49    0.79 
+log lik 
+-629.68 
+iter 10:
+  theta                                                                         
+   0.61    1.56    0.69    0.54    1.55    0.38    1.77    1.31    1.49    0.79 
+log lik 
+-629.68 
+iter 11:
+  theta                                                                         
+   0.61    1.56    0.69    0.54    1.55    0.38    1.77    1.31    1.49    0.79 
+log lik 
+-629.68 
+Converged at iteration 11 
+iter 1:
+  theta                                                                         
+   1.16    1.30    1.18    0.98    1.18    0.79    1.33    0.85    0.79    0.49 
+log lik 
+ 508.27 
+iter 2:
+  theta                                                                         
+   1.16    1.33    1.16    0.91    1.24    0.72    1.24    0.86    0.76    0.46 
+log lik 
+ 509.69 
+iter 3:
+  theta                                                                         
+   1.16    1.33    1.17    0.90    1.24    0.71    1.24    0.86    0.76    0.47 
+log lik 
+ 509.73 
+iter 4:
+  theta                                                                         
+   1.16    1.33    1.17    0.90    1.24    0.70    1.25    0.86    0.76    0.47 
+log lik 
+ 509.73 
+iter 5:
+  theta                                                                         
+   1.16    1.33    1.17    0.90    1.24    0.70    1.25    0.86    0.76    0.47 
+log lik 
+ 509.73 
+iter 6:
+  theta                                                                         
+   1.16    1.33    1.17    0.90    1.24    0.70    1.25    0.86    0.76    0.47 
+log lik 
+ 509.73 
+iter 7:
+  theta                                                                         
+   1.16    1.33    1.17    0.90    1.24    0.70    1.25    0.87    0.76    0.47 
+log lik 
+ 509.73 
+Converged at iteration 7 
+iter 1:
+  theta                                                                         
+   1.17    1.58    1.01    0.79    1.34    0.76    1.38    0.89    0.98    0.52 
+log lik 
+ -83.20 
+iter 2:
+  theta                                                                         
+   1.15    1.60    0.94    0.67    1.42    0.75    1.29    0.93    0.90    0.49 
+log lik 
+ -76.19 
+iter 3:
+  theta                                                                         
+   1.15    1.59    0.93    0.64    1.41    0.76    1.30    0.92    0.90    0.49 
+log lik 
+ -75.95 
+iter 4:
+  theta                                                                         
+   1.15    1.59    0.93    0.64    1.41    0.77    1.30    0.92    0.90    0.49 
+log lik 
+ -75.92 
+iter 5:
+  theta                                                                         
+   1.15    1.59    0.93    0.64    1.41    0.77    1.30    0.92    0.90    0.49 
+log lik 
+ -75.92 
+iter 6:
+  theta                                                                         
+   1.15    1.59    0.93    0.64    1.41    0.77    1.30    0.92    0.90    0.49 
+log lik 
+ -75.92 
+iter 7:
+  theta                                                                         
+   1.15    1.59    0.93    0.63    1.41    0.77    1.30    0.92    0.90    0.49 
+log lik 
+ -75.92 
+iter 8:
+  theta                                                                         
+   1.15    1.59    0.93    0.63    1.41    0.77    1.30    0.92    0.90    0.49 
+log lik 
+ -75.92 
+iter 9:
+  theta                                                                         
+   1.15    1.59    0.93    0.63    1.41    0.77    1.30    0.92    0.90    0.49 
+log lik 
+ -75.92 
+Converged at iteration 9 
+iter 1:
+  theta                                                                         
+   1.25    1.40    1.25    0.99    1.46    0.84    1.15    0.76    0.80    0.40 
+log lik 
+2008.42 
+iter 2:
+  theta                                                                         
+   1.21    1.41    1.25    0.96    1.43    0.82    1.12    0.77    0.75    0.40 
+log lik 
+2010.05 
+iter 3:
+  theta                                                                         
+   1.21    1.41    1.26    0.96    1.43    0.82    1.12    0.77    0.75    0.40 
+log lik 
+2010.06 
+iter 4:
+  theta                                                                         
+   1.21    1.41    1.26    0.96    1.43    0.82    1.12    0.77    0.75    0.40 
+log lik 
+2010.06 
+iter 5:
+  theta                                                                         
+   1.21    1.41    1.26    0.96    1.43    0.82    1.12    0.77    0.75    0.40 
+log lik 
+2010.06 
+Converged at iteration 5 
+iter 1:
+  theta                                                                         
+   1.03    1.52    1.00    0.71    1.43    0.68    1.60    1.01    1.40    0.83 
+log lik 
+-758.72 
+iter 2:
+  theta                                                                         
+   0.89    1.59    0.91    0.54    1.50    0.52    1.58    1.09    1.19    0.72 
+log lik 
+-736.78 
+iter 3:
+  theta                                                                         
+   0.90    1.65    0.91    0.50    1.52    0.45    1.56    1.08    1.16    0.71 
+log lik 
+-734.87 
+iter 4:
+  theta                                                                         
+   0.90    1.68    0.92    0.50    1.53    0.42    1.56    1.07    1.16    0.71 
+log lik 
+-734.56 
+iter 5:
+  theta                                                                         
+   0.91    1.69    0.92    0.50    1.53    0.40    1.56    1.08    1.15    0.71 
+log lik 
+-734.48 
+iter 6:
+  theta                                                                         
+   0.91    1.69    0.92    0.50    1.54    0.40    1.56    1.08    1.15    0.71 
+log lik 
+-734.45 
+iter 7:
+  theta                                                                         
+   0.91    1.69    0.92    0.50    1.54    0.39    1.56    1.08    1.15    0.71 
+log lik 
+-734.45 
+iter 8:
+  theta                                                                         
+   0.91    1.69    0.92    0.50    1.54    0.39    1.56    1.08    1.15    0.71 
+log lik 
+-734.45 
+iter 9:
+  theta                                                                         
+   0.91    1.69    0.92    0.50    1.54    0.39    1.56    1.08    1.15    0.71 
+log lik 
+-734.45 
+iter 10:
+  theta                                                                         
+   0.91    1.69    0.92    0.50    1.54    0.39    1.56    1.08    1.15    0.71 
+log lik 
+-734.44 
+iter 11:
+  theta                                                                         
+   0.91    1.69    0.92    0.50    1.54    0.39    1.56    1.08    1.15    0.71 
+log lik 
+-734.44 
+iter 12:
+  theta                                                                         
+   0.91    1.69    0.92    0.50    1.54    0.39    1.56    1.08    1.15    0.71 
+log lik 
+-734.44 
+iter 13:
+  theta                                                                         
+   0.91    1.69    0.92    0.50    1.54    0.39    1.56    1.08    1.15    0.71 
+log lik 
+-734.44 
+Converged at iteration 13 
+iter 1:
+  theta                                                                         
+   1.34    1.27    1.09    0.86    1.34    0.86    1.16    0.86    0.82    0.47 
+log lik 
+1468.68 
+iter 2:
+  theta                                                                         
+   1.33    1.29    1.04    0.77    1.39    0.85    1.12    0.86    0.79    0.46 
+log lik 
+1471.85 
+iter 3:
+  theta                                                                         
+   1.34    1.29    1.04    0.75    1.39    0.85    1.12    0.86    0.79    0.46 
+log lik 
+1471.92 
+iter 4:
+  theta                                                                         
+   1.34    1.29    1.03    0.75    1.39    0.86    1.12    0.86    0.80    0.46 
+log lik 
+1471.93 
+iter 5:
+  theta                                                                         
+   1.34    1.29    1.03    0.75    1.39    0.86    1.12    0.86    0.80    0.46 
+log lik 
+1471.93 
+iter 6:
+  theta                                                                         
+   1.34    1.29    1.03    0.75    1.39    0.86    1.12    0.86    0.80    0.46 
+log lik 
+1471.93 
+iter 7:
+  theta                                                                         
+   1.34    1.29    1.03    0.75    1.39    0.86    1.12    0.86    0.80    0.46 
+log lik 
+1471.93 
+Converged at iteration 7 
+             seed                 p               tau       orac.status 
+         2465.000            10.000            10.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+          118.692             0.111             1.000          8141.287 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.036             0.111             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            18.472             0.182             0.114 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.001             0.001             1.000            18.549 
+[1] 0.8255038
+iter 1:
+  theta                                                                         
+   1.50    1.26    1.29    1.20    1.29    0.90    0.95    0.70    0.58    0.32 
+log lik 
+3240.25 
+iter 2:
+  theta                                                                         
+   1.49    1.24    1.29    1.20    1.27    0.90    0.96    0.70    0.58    0.31 
+log lik 
+3240.36 
+iter 3:
+  theta                                                                         
+   1.49    1.24    1.29    1.20    1.27    0.89    0.95    0.70    0.58    0.31 
+log lik 
+3240.37 
+iter 4:
+  theta                                                                         
+   1.49    1.24    1.29    1.20    1.27    0.89    0.95    0.70    0.58    0.31 
+log lik 
+3240.37 
+Converged at iteration 4 
+iter 1:
+  theta                                                                         
+   1.72    1.26    1.53    1.16    1.23    1.00    0.81    0.68    0.38    0.26 
+log lik 
+ 736.16 
+iter 2:
+  theta                                                                         
+   1.70    1.27    1.50    1.16    1.25    1.00    0.82    0.67    0.32    0.25 
+log lik 
+ 738.27 
+iter 3:
+  theta                                                                         
+   1.70    1.27    1.51    1.16    1.26    1.01    0.82    0.67    0.31    0.26 
+log lik 
+ 738.38 
+iter 4:
+  theta                                                                         
+   1.71    1.27    1.51    1.16    1.26    1.01    0.82    0.67    0.30    0.26 
+log lik 
+ 738.38 
+iter 5:
+  theta                                                                         
+   1.71    1.27    1.51    1.16    1.26    1.01    0.82    0.67    0.30    0.26 
+log lik 
+ 738.38 
+iter 6:
+  theta                                                                         
+   1.71    1.27    1.51    1.16    1.26    1.01    0.82    0.67    0.30    0.26 
+log lik 
+ 738.38 
+iter 7:
+  theta                                                                         
+   1.71    1.27    1.51    1.16    1.26    1.01    0.82    0.67    0.30    0.26 
+log lik 
+ 738.38 
+Converged at iteration 7 
+iter 1:
+  theta                                                                         
+   1.75    1.23    1.43    1.09    1.34    0.83    0.87    0.68    0.46    0.28 
+log lik 
+1706.62 
+iter 2:
+  theta                                                                         
+   1.72    1.22    1.42    1.08    1.36    0.80    0.87    0.67    0.44    0.27 
+log lik 
+1707.47 
+iter 3:
+  theta                                                                         
+   1.72    1.22    1.42    1.07    1.37    0.80    0.87    0.67    0.43    0.27 
+log lik 
+1707.48 
+iter 4:
+  theta                                                                         
+   1.72    1.22    1.42    1.07    1.37    0.80    0.87    0.67    0.43    0.27 
+log lik 
+1707.48 
+iter 5:
+  theta                                                                         
+   1.72    1.22    1.42    1.07    1.37    0.80    0.87    0.67    0.43    0.27 
+log lik 
+1707.48 
+Converged at iteration 5 
+iter 1:
+  theta                                                                         
+   1.89    1.47    1.59    1.04    1.45    0.97    0.76    0.58    0.38    0.23 
+log lik 
+  63.85 
+iter 2:
+  theta                                                                         
+   1.82    1.48    1.59    1.03    1.41    0.96    0.76    0.57    0.34    0.22 
+log lik 
+  64.87 
+iter 3:
+  theta                                                                         
+   1.80    1.49    1.60    1.04    1.41    0.96    0.76    0.57    0.33    0.21 
+log lik 
+  64.88 
+iter 4:
+  theta                                                                         
+   1.80    1.49    1.60    1.04    1.41    0.96    0.76    0.57    0.33    0.21 
+log lik 
+  64.88 
+iter 5:
+  theta                                                                         
+   1.80    1.49    1.60    1.04    1.41    0.96    0.76    0.57    0.33    0.21 
+log lik 
+  64.88 
+iter 6:
+  theta                                                                         
+   1.80    1.49    1.60    1.04    1.41    0.96    0.76    0.57    0.33    0.21 
+log lik 
+  64.88 
+iter 7:
+  theta                                                                         
+   1.80    1.49    1.60    1.04    1.41    0.96    0.76    0.57    0.33    0.21 
+log lik 
+  64.88 
+Converged at iteration 7 
+iter 1:
+  theta                                                                         
+   1.59    1.30    1.74    0.97    1.34    0.90    0.85    0.70    0.40    0.31 
+log lik 
+1239.63 
+iter 2:
+  theta                                                                         
+   1.56    1.31    1.70    0.92    1.40    0.87    0.85    0.70    0.36    0.31 
+log lik 
+1241.48 
+iter 3:
+  theta                                                                         
+   1.56    1.30    1.70    0.91    1.42    0.87    0.85    0.70    0.35    0.31 
+log lik 
+1241.54 
+iter 4:
+  theta                                                                         
+   1.56    1.30    1.70    0.91    1.42    0.87    0.85    0.70    0.35    0.31 
+log lik 
+1241.54 
+iter 5:
+  theta                                                                         
+   1.56    1.30    1.70    0.91    1.43    0.87    0.85    0.70    0.35    0.31 
+log lik 
+1241.54 
+iter 6:
+  theta                                                                         
+   1.56    1.30    1.70    0.91    1.43    0.87    0.85    0.70    0.35    0.31 
+log lik 
+1241.54 
+Converged at iteration 6 
+iter 1:
+  theta                                                                         
+   2.00    1.48    1.76    1.08    1.68    1.04    0.74    0.62    0.34    0.19 
+log lik 
+-323.26 
+iter 2:
+  theta                                                                         
+   2.02    1.46    1.70    1.08    1.71    1.02    0.72    0.59    0.26    0.15 
+log lik 
+-320.64 
+iter 3:
+  theta                                                                         
+   2.01    1.46    1.67    1.09    1.72    1.01    0.73    0.58    0.25    0.14 
+log lik 
+-320.50 
+iter 4:
+  theta                                                                         
+   2.01    1.46    1.67    1.09    1.72    1.01    0.73    0.58    0.25    0.14 
+log lik 
+-320.49 
+iter 5:
+  theta                                                                         
+   2.01    1.47    1.67    1.09    1.72    1.01    0.73    0.58    0.24    0.14 
+log lik 
+-320.49 
+iter 6:
+  theta                                                                         
+   2.01    1.47    1.67    1.09    1.72    1.01    0.73    0.58    0.24    0.14 
+log lik 
+-320.49 
+iter 7:
+  theta                                                                         
+   2.01    1.47    1.67    1.09    1.72    1.01    0.73    0.58    0.24    0.14 
+log lik 
+-320.49 
+iter 8:
+  theta                                                                         
+   2.01    1.47    1.67    1.09    1.72    1.01    0.73    0.58    0.24    0.14 
+log lik 
+-320.49 
+Converged at iteration 8 
+iter 1:
+  theta                                                                         
+   1.72    1.31    1.53    1.07    1.39    0.94    0.89    0.58    0.46    0.27 
+log lik 
+ 872.57 
+iter 2:
+  theta                                                                         
+   1.72    1.33    1.55    1.03    1.40    0.93    0.90    0.55    0.44    0.26 
+log lik 
+ 873.21 
+iter 3:
+  theta                                                                         
+   1.73    1.33    1.56    1.03    1.40    0.93    0.90    0.54    0.44    0.25 
+log lik 
+ 873.23 
+iter 4:
+  theta                                                                         
+   1.73    1.33    1.56    1.03    1.40    0.93    0.90    0.54    0.44    0.25 
+log lik 
+ 873.23 
+iter 5:
+  theta                                                                         
+   1.73    1.33    1.56    1.03    1.40    0.93    0.90    0.54    0.44    0.25 
+log lik 
+ 873.23 
+iter 6:
+  theta                                                                         
+   1.73    1.33    1.56    1.03    1.40    0.93    0.90    0.54    0.44    0.25 
+log lik 
+ 873.23 
+Converged at iteration 6 
+iter 1:
+  theta                                                                         
+   2.00    1.39    2.62    1.16    1.42    1.26    0.65    0.65    0.30    0.26 
+log lik 
+-609.07 
+iter 2:
+  theta                                                                         
+   2.17    1.28    2.40    1.23    1.54    1.29    0.61    0.61    0.19    0.25 
+log lik 
+-605.51 
+iter 3:
+  theta                                                                         
+   2.21    1.23    2.37    1.26    1.59    1.25    0.59    0.60    0.14    0.24 
+log lik 
+-604.94 
+iter 4:
+  theta                                                                         
+   2.23    1.21    2.36    1.27    1.60    1.24    0.59    0.60    0.13    0.23 
+log lik 
+-604.88 
+iter 5:
+  theta                                                                         
+   2.24    1.20    2.36    1.27    1.61    1.24    0.59    0.60    0.13    0.23 
+log lik 
+-604.87 
+iter 6:
+  theta                                                                         
+   2.24    1.20    2.36    1.27    1.62    1.23    0.59    0.60    0.13    0.23 
+log lik 
+-604.87 
+iter 7:
+  theta                                                                         
+   2.24    1.20    2.36    1.27    1.62    1.23    0.59    0.60    0.13    0.23 
+log lik 
+-604.87 
+iter 8:
+  theta                                                                         
+   2.24    1.20    2.36    1.27    1.62    1.23    0.59    0.60    0.13    0.23 
+log lik 
+-604.87 
+iter 9:
+  theta                                                                         
+   2.25    1.20    2.36    1.27    1.62    1.23    0.59    0.60    0.13    0.23 
+log lik 
+-604.87 
+iter 10:
+  theta                                                                         
+   2.25    1.20    2.36    1.27    1.62    1.23    0.59    0.60    0.13    0.23 
+log lik 
+-604.87 
+Converged at iteration 10 
+iter 1:
+  theta                                                                         
+   1.82    1.28    1.90    1.11    1.36    0.99    0.84    0.58    0.38    0.19 
+log lik 
+ 600.56 
+iter 2:
+  theta                                                                         
+   1.79    1.26    1.83    1.09    1.37    0.99    0.83    0.55    0.32    0.16 
+log lik 
+ 602.44 
+iter 3:
+  theta                                                                         
+   1.79    1.26    1.81    1.09    1.38    0.99    0.84    0.55    0.31    0.16 
+log lik 
+ 602.47 
+iter 4:
+  theta                                                                         
+   1.79    1.26    1.81    1.09    1.38    0.99    0.84    0.55    0.31    0.16 
+log lik 
+ 602.47 
+iter 5:
+  theta                                                                         
+   1.79    1.26    1.81    1.09    1.38    0.99    0.84    0.55    0.31    0.16 
+log lik 
+ 602.47 
+iter 6:
+  theta                                                                         
+   1.79    1.26    1.81    1.09    1.38    0.99    0.84    0.55    0.31    0.16 
+log lik 
+ 602.47 
+Converged at iteration 6 
+iter 1:
+  theta                                                                         
+   1.97    1.39    1.65    1.06    1.57    0.94    0.74    0.60    0.34    0.26 
+log lik 
+ 129.90 
+iter 2:
+  theta                                                                         
+   1.94    1.40    1.60    1.04    1.52    0.91    0.74    0.59    0.29    0.25 
+log lik 
+ 133.73 
+iter 3:
+  theta                                                                         
+   1.94    1.39    1.60    1.04    1.52    0.91    0.75    0.59    0.27    0.25 
+log lik 
+ 133.84 
+iter 4:
+  theta                                                                         
+   1.94    1.39    1.60    1.04    1.51    0.91    0.75    0.59    0.27    0.25 
+log lik 
+ 133.85 
+iter 5:
+  theta                                                                         
+   1.94    1.39    1.60    1.04    1.51    0.91    0.75    0.59    0.27    0.25 
+log lik 
+ 133.85 
+iter 6:
+  theta                                                                         
+   1.94    1.39    1.60    1.04    1.51    0.91    0.75    0.59    0.27    0.25 
+log lik 
+ 133.85 
+iter 7:
+  theta                                                                         
+   1.94    1.39    1.60    1.04    1.51    0.91    0.75    0.59    0.27    0.25 
+log lik 
+ 133.85 
+iter 8:
+  theta                                                                         
+   1.94    1.39    1.60    1.04    1.51    0.91    0.75    0.59    0.27    0.25 
+log lik 
+ 133.85 
+Converged at iteration 8 
+iter 1:
+  theta                                                                         
+   1.69    1.29    1.59    1.06    1.60    0.91    0.79    0.61    0.41    0.27 
+log lik 
+2308.35 
+iter 2:
+  theta                                                                         
+   1.66    1.30    1.55    1.04    1.54    0.91    0.79    0.59    0.38    0.26 
+log lik 
+2311.01 
+iter 3:
+  theta                                                                         
+   1.66    1.30    1.54    1.04    1.54    0.92    0.79    0.59    0.37    0.26 
+log lik 
+2311.03 
+iter 4:
+  theta                                                                         
+   1.66    1.30    1.54    1.04    1.54    0.92    0.79    0.59    0.37    0.26 
+log lik 
+2311.03 
+iter 5:
+  theta                                                                         
+   1.66    1.30    1.54    1.04    1.54    0.92    0.79    0.59    0.37    0.26 
+log lik 
+2311.03 
+Converged at iteration 5 
+iter 1:
+  theta                                                                         
+   2.05    1.32    1.89    1.04    1.57    1.11    0.66    0.61    0.33    0.29 
+log lik 
+-628.26 
+iter 2:
+  theta                                                                         
+   2.07    1.29    1.82    1.08    1.63    1.06    0.60    0.58    0.24    0.29 
+log lik 
+-622.03 
+iter 3:
+  theta                                                                         
+   2.08    1.29    1.81    1.08    1.66    1.04    0.60    0.58    0.21    0.29 
+log lik 
+-621.38 
+iter 4:
+  theta                                                                         
+   2.08    1.29    1.80    1.08    1.66    1.03    0.60    0.58    0.20    0.30 
+log lik 
+-621.30 
+iter 5:
+  theta                                                                         
+   2.08    1.29    1.80    1.08    1.67    1.03    0.60    0.58    0.20    0.30 
+log lik 
+-621.29 
+iter 6:
+  theta                                                                         
+   2.08    1.29    1.80    1.08    1.67    1.03    0.60    0.58    0.20    0.30 
+log lik 
+-621.29 
+iter 7:
+  theta                                                                         
+   2.08    1.29    1.80    1.08    1.67    1.03    0.60    0.58    0.20    0.30 
+log lik 
+-621.29 
+iter 8:
+  theta                                                                         
+   2.08    1.29    1.80    1.08    1.67    1.03    0.60    0.58    0.20    0.30 
+log lik 
+-621.29 
+iter 9:
+  theta                                                                         
+   2.08    1.29    1.80    1.08    1.67    1.03    0.60    0.58    0.20    0.30 
+log lik 
+-621.29 
+Converged at iteration 9 
+iter 1:
+  theta                                                                         
+   1.75    1.22    1.73    1.00    1.55    0.97    0.88    0.63    0.41    0.24 
+log lik 
+1673.04 
+iter 2:
+  theta                                                                         
+   1.73    1.21    1.70    0.98    1.61    0.94    0.88    0.61    0.35    0.21 
+log lik 
+1677.43 
+iter 3:
+  theta                                                                         
+   1.73    1.20    1.71    0.97    1.64    0.93    0.88    0.61    0.34    0.21 
+log lik 
+1677.60 
+iter 4:
+  theta                                                                         
+   1.73    1.20    1.71    0.97    1.64    0.93    0.88    0.61    0.33    0.21 
+log lik 
+1677.61 
+iter 5:
+  theta                                                                         
+   1.73    1.20    1.71    0.97    1.65    0.93    0.88    0.61    0.33    0.21 
+log lik 
+1677.61 
+iter 6:
+  theta                                                                         
+   1.73    1.20    1.71    0.97    1.65    0.93    0.88    0.61    0.33    0.21 
+log lik 
+1677.61 
+iter 7:
+  theta                                                                         
+   1.73    1.20    1.71    0.97    1.65    0.93    0.88    0.61    0.33    0.21 
+log lik 
+1677.61 
+Converged at iteration 7 
+             seed                 p               tau       orac.status 
+         2466.000            10.000            10.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           83.821             0.114             1.000          6078.988 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.080             0.114             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            20.058             0.153             0.117 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.001             0.001             1.000            15.562 
+[1] 0.9313646
+iter 1:
+  theta                                                                         
+   1.47    1.33    1.19    1.25    1.12    1.04    0.92    0.72    0.51    0.35 
+log lik 
+3222.16 
+iter 2:
+  theta                                                                         
+   1.47    1.32    1.18    1.25    1.12    1.03    0.93    0.73    0.51    0.35 
+log lik 
+3222.29 
+iter 3:
+  theta                                                                         
+   1.47    1.32    1.18    1.25    1.12    1.03    0.93    0.73    0.51    0.35 
+log lik 
+3222.29 
+iter 4:
+  theta                                                                         
+   1.47    1.32    1.18    1.25    1.12    1.03    0.93    0.73    0.51    0.35 
+log lik 
+3222.29 
+Converged at iteration 4 
+iter 1:
+  theta                                                                         
+   1.52    1.29    1.23    1.07    0.98    1.51    0.72    0.76    0.45    0.43 
+log lik 
+ 714.51 
+iter 2:
+  theta                                                                         
+   1.57    1.29    1.20    1.05    0.99    1.33    0.68    0.78    0.44    0.44 
+log lik 
+ 716.95 
+iter 3:
+  theta                                                                         
+   1.58    1.29    1.20    1.04    0.99    1.36    0.67    0.77    0.44    0.44 
+log lik 
+ 717.01 
+iter 4:
+  theta                                                                         
+   1.59    1.29    1.20    1.03    0.99    1.35    0.67    0.77    0.44    0.44 
+log lik 
+ 717.01 
+iter 5:
+  theta                                                                         
+   1.59    1.29    1.20    1.03    0.99    1.35    0.67    0.77    0.44    0.44 
+log lik 
+ 717.01 
+iter 6:
+  theta                                                                         
+   1.59    1.29    1.20    1.03    0.99    1.35    0.67    0.77    0.44    0.44 
+log lik 
+ 717.01 
+iter 7:
+  theta                                                                         
+   1.59    1.29    1.20    1.03    0.99    1.35    0.67    0.77    0.44    0.44 
+log lik 
+ 717.01 
+Converged at iteration 7 
+iter 1:
+  theta                                                                         
+   1.59    1.35    1.22    1.07    0.98    1.66    0.73    0.76    0.52    0.45 
+log lik 
+1607.64 
+iter 2:
+  theta                                                                         
+   1.58    1.36    1.22    1.05    0.99    1.45    0.70    0.77    0.52    0.43 
+log lik 
+1611.26 
+iter 3:
+  theta                                                                         
+   1.59    1.36    1.22    1.04    0.99    1.44    0.70    0.77    0.52    0.43 
+log lik 
+1611.28 
+iter 4:
+  theta                                                                         
+   1.59    1.36    1.22    1.04    0.99    1.44    0.70    0.77    0.52    0.43 
+log lik 
+1611.28 
+iter 5:
+  theta                                                                         
+   1.59    1.37    1.22    1.04    0.99    1.44    0.70    0.77    0.52    0.43 
+log lik 
+1611.28 
+Converged at iteration 5 
+iter 1:
+  theta                                                                         
+   1.40    1.05    1.53    1.05    0.83    1.62    0.57    0.83    0.51    0.60 
+log lik 
+  50.52 
+iter 2:
+  theta                                                                         
+   1.48    0.99    1.41    1.05    0.80    1.53    0.51    0.86    0.52    0.52 
+log lik 
+  54.14 
+iter 3:
+  theta                                                                         
+   1.48    1.00    1.42    1.04    0.80    1.52    0.50    0.86    0.51    0.51 
+log lik 
+  54.18 
+iter 4:
+  theta                                                                         
+   1.48    1.00    1.42    1.05    0.80    1.52    0.50    0.86    0.51    0.51 
+log lik 
+  54.18 
+iter 5:
+  theta                                                                         
+   1.48    1.00    1.42    1.05    0.80    1.52    0.50    0.86    0.51    0.51 
+log lik 
+  54.18 
+iter 6:
+  theta                                                                         
+   1.48    1.00    1.42    1.05    0.80    1.52    0.50    0.86    0.51    0.51 
+log lik 
+  54.18 
+iter 7:
+  theta                                                                         
+   1.48    1.00    1.42    1.05    0.80    1.52    0.50    0.86    0.51    0.51 
+log lik 
+  54.18 
+iter 8:
+  theta                                                                         
+   1.48    1.00    1.42    1.05    0.80    1.52    0.50    0.86    0.51    0.51 
+log lik 
+  54.18 
+Converged at iteration 8 
+iter 1:
+  theta                                                                         
+   1.44    1.29    1.40    1.08    0.89    1.64    0.71    0.78    0.48    0.42 
+log lik 
+1174.55 
+iter 2:
+  theta                                                                         
+   1.45    1.29    1.36    1.05    0.90    1.46    0.66    0.82    0.48    0.40 
+log lik 
+1177.35 
+iter 3:
+  theta                                                                         
+   1.45    1.29    1.36    1.05    0.90    1.47    0.65    0.82    0.48    0.40 
+log lik 
+1177.36 
+iter 4:
+  theta                                                                         
+   1.45    1.29    1.36    1.05    0.90    1.47    0.65    0.82    0.48    0.40 
+log lik 
+1177.37 
+iter 5:
+  theta                                                                         
+   1.45    1.29    1.36    1.05    0.90    1.47    0.65    0.82    0.48    0.40 
+log lik 
+1177.37 
+Converged at iteration 5 
+iter 1:
+  theta                                                                         
+   1.52    0.85    2.15    1.03    0.76    1.64    0.54    0.70    0.48    0.76 
+log lik 
+-337.55 
+iter 2:
+  theta                                                                         
+   1.56    0.68    1.83    1.09    0.70    1.62    0.46    0.77    0.51    0.62 
+log lik 
+-330.32 
+iter 3:
+  theta                                                                         
+   1.53    0.65    1.86    1.07    0.70    1.61    0.46    0.80    0.50    0.61 
+log lik 
+-330.09 
+iter 4:
+  theta                                                                         
+   1.52    0.63    1.85    1.07    0.70    1.62    0.46    0.80    0.51    0.62 
+log lik 
+-330.06 
+iter 5:
+  theta                                                                         
+   1.52    0.62    1.85    1.07    0.70    1.62    0.46    0.81    0.51    0.62 
+log lik 
+-330.05 
+iter 6:
+  theta                                                                         
+   1.52    0.62    1.86    1.07    0.70    1.62    0.46    0.81    0.51    0.62 
+log lik 
+-330.05 
+iter 7:
+  theta                                                                         
+   1.52    0.62    1.86    1.07    0.71    1.62    0.46    0.81    0.51    0.62 
+log lik 
+-330.05 
+iter 8:
+  theta                                                                         
+   1.52    0.62    1.86    1.07    0.71    1.62    0.46    0.81    0.51    0.62 
+log lik 
+-330.05 
+iter 9:
+  theta                                                                         
+   1.52    0.62    1.86    1.07    0.71    1.62    0.46    0.81    0.51    0.62 
+log lik 
+-330.05 
+iter 10:
+  theta                                                                         
+   1.52    0.62    1.86    1.07    0.71    1.62    0.46    0.81    0.51    0.62 
+log lik 
+-330.05 
+iter 11:
+  theta                                                                         
+   1.52    0.62    1.86    1.07    0.71    1.62    0.46    0.81    0.51    0.62 
+log lik 
+-330.05 
+Converged at iteration 11 
+iter 1:
+  theta                                                                         
+   1.57    1.15    1.50    1.12    0.97    1.58    0.69    0.69    0.45    0.48 
+log lik 
+ 826.30 
+iter 2:
+  theta                                                                         
+   1.61    1.12    1.50    1.12    0.93    1.52    0.61    0.69    0.42    0.46 
+log lik 
+ 828.24 
+iter 3:
+  theta                                                                         
+   1.63    1.12    1.50    1.12    0.92    1.53    0.60    0.69    0.42    0.46 
+log lik 
+ 828.30 
+iter 4:
+  theta                                                                         
+   1.64    1.12    1.50    1.12    0.92    1.53    0.59    0.69    0.42    0.46 
+log lik 
+ 828.31 
+iter 5:
+  theta                                                                         
+   1.65    1.12    1.50    1.12    0.92    1.53    0.59    0.69    0.42    0.46 
+log lik 
+ 828.31 
+iter 6:
+  theta                                                                         
+   1.65    1.12    1.50    1.12    0.92    1.53    0.59    0.69    0.42    0.46 
+log lik 
+ 828.31 
+iter 7:
+  theta                                                                         
+   1.65    1.12    1.50    1.12    0.92    1.53    0.59    0.69    0.42    0.46 
+log lik 
+ 828.31 
+Converged at iteration 7 
+iter 1:
+  theta                                                                         
+   1.96    0.68    3.30    0.99    0.68    1.58    0.44    0.58    0.47    0.86 
+log lik 
+-667.18 
+iter 2:
+  theta                                                                         
+   1.76    0.56    2.15    1.19    0.69    1.64    0.39    0.61    0.50    0.77 
+log lik 
+-655.62 
+iter 3:
+  theta                                                                         
+   1.73    0.51    2.26    1.05    0.68    1.57    0.39    0.64    0.48    0.73 
+log lik 
+-654.73 
+iter 4:
+  theta                                                                         
+   1.72    0.50    2.16    1.08    0.69    1.58    0.39    0.64    0.49    0.74 
+log lik 
+-654.65 
+iter 5:
+  theta                                                                         
+   1.72    0.49    2.20    1.07    0.69    1.57    0.39    0.64    0.49    0.73 
+log lik 
+-654.64 
+iter 6:
+  theta                                                                         
+   1.72    0.49    2.18    1.08    0.69    1.57    0.39    0.64    0.49    0.73 
+log lik 
+-654.64 
+iter 7:
+  theta                                                                         
+   1.72    0.49    2.19    1.07    0.69    1.57    0.39    0.64    0.49    0.73 
+log lik 
+-654.64 
+iter 8:
+  theta                                                                         
+   1.72    0.49    2.18    1.07    0.69    1.57    0.39    0.64    0.49    0.73 
+log lik 
+-654.64 
+iter 9:
+  theta                                                                         
+   1.72    0.49    2.19    1.07    0.69    1.57    0.39    0.64    0.49    0.73 
+log lik 
+-654.64 
+iter 10:
+  theta                                                                         
+   1.72    0.49    2.19    1.07    0.69    1.57    0.39    0.64    0.49    0.73 
+log lik 
+-654.64 
+Converged at iteration 10 
+iter 1:
+  theta                                                                         
+   1.71    1.04    1.61    0.92    0.88    1.59    0.59    0.72    0.53    0.54 
+log lik 
+ 533.33 
+iter 2:
+  theta                                                                         
+   1.64    0.98    1.55    0.96    0.83    1.46    0.51    0.72    0.54    0.51 
+log lik 
+ 536.20 
+iter 3:
+  theta                                                                         
+   1.65    0.97    1.54    0.95    0.83    1.47    0.51    0.73    0.53    0.51 
+log lik 
+ 536.23 
+iter 4:
+  theta                                                                         
+   1.64    0.98    1.54    0.95    0.83    1.47    0.51    0.73    0.53    0.51 
+log lik 
+ 536.23 
+iter 5:
+  theta                                                                         
+   1.65    0.98    1.54    0.95    0.83    1.47    0.51    0.73    0.53    0.51 
+log lik 
+ 536.23 
+iter 6:
+  theta                                                                         
+   1.65    0.98    1.54    0.95    0.83    1.47    0.51    0.73    0.53    0.51 
+log lik 
+ 536.23 
+Converged at iteration 6 
+iter 1:
+  theta                                                                         
+   1.50    1.07    1.53    1.05    0.91    1.57    0.63    0.76    0.42    0.60 
+log lik 
+ 100.84 
+iter 2:
+  theta                                                                         
+   1.54    1.01    1.42    1.05    0.88    1.47    0.57    0.80    0.44    0.56 
+log lik 
+ 105.91 
+iter 3:
+  theta                                                                         
+   1.54    1.02    1.43    1.04    0.88    1.48    0.56    0.80    0.43    0.55 
+log lik 
+ 105.98 
+iter 4:
+  theta                                                                         
+   1.54    1.02    1.42    1.04    0.88    1.47    0.56    0.80    0.44    0.55 
+log lik 
+ 105.98 
+iter 5:
+  theta                                                                         
+   1.54    1.02    1.42    1.04    0.88    1.47    0.56    0.80    0.44    0.55 
+log lik 
+ 105.98 
+iter 6:
+  theta                                                                         
+   1.54    1.02    1.42    1.04    0.88    1.47    0.56    0.80    0.44    0.55 
+log lik 
+ 105.98 
+iter 7:
+  theta                                                                         
+   1.54    1.02    1.42    1.04    0.88    1.47    0.56    0.80    0.44    0.55 
+log lik 
+ 105.98 
+Converged at iteration 7 
+iter 1:
+  theta                                                                         
+   1.45    1.16    1.37    1.09    1.00    1.59    0.74    0.76    0.54    0.45 
+log lik 
+2150.05 
+iter 2:
+  theta                                                                         
+   1.47    1.14    1.36    1.09    1.00    1.42    0.71    0.78    0.54    0.44 
+log lik 
+2153.62 
+iter 3:
+  theta                                                                         
+   1.48    1.14    1.35    1.09    1.00    1.42    0.71    0.78    0.54    0.44 
+log lik 
+2153.63 
+iter 4:
+  theta                                                                         
+   1.48    1.14    1.35    1.09    1.00    1.42    0.71    0.78    0.54    0.44 
+log lik 
+2153.63 
+iter 5:
+  theta                                                                         
+   1.48    1.14    1.35    1.09    1.00    1.42    0.71    0.78    0.54    0.44 
+log lik 
+2153.63 
+Converged at iteration 5 
+iter 1:
+  theta                                                                         
+   1.54    0.80    2.18    1.05    0.73    1.73    0.51    0.69    0.44    0.82 
+log lik 
+-611.28 
+iter 2:
+  theta                                                                         
+   1.58    0.71    1.80    1.13    0.67    1.64    0.43    0.72    0.47    0.62 
+log lik 
+-592.96 
+iter 3:
+  theta                                                                         
+   1.53    0.70    1.80    1.09    0.68    1.64    0.43    0.74    0.47    0.60 
+log lik 
+-592.55 
+iter 4:
+  theta                                                                         
+   1.53    0.70    1.79    1.09    0.68    1.64    0.43    0.74    0.47    0.60 
+log lik 
+-592.54 
+iter 5:
+  theta                                                                         
+   1.53    0.70    1.79    1.09    0.68    1.64    0.43    0.74    0.47    0.60 
+log lik 
+-592.54 
+iter 6:
+  theta                                                                         
+   1.53    0.70    1.79    1.09    0.68    1.64    0.43    0.74    0.47    0.60 
+log lik 
+-592.54 
+iter 7:
+  theta                                                                         
+   1.53    0.70    1.79    1.09    0.68    1.64    0.43    0.74    0.47    0.60 
+log lik 
+-592.54 
+Converged at iteration 7 
+iter 1:
+  theta                                                                         
+   1.53    1.17    1.64    0.98    0.88    1.54    0.74    0.69    0.48    0.44 
+log lik 
+1623.79 
+iter 2:
+  theta                                                                         
+   1.56    1.18    1.60    0.97    0.85    1.41    0.72    0.69    0.48    0.42 
+log lik 
+1626.41 
+iter 3:
+  theta                                                                         
+   1.56    1.19    1.60    0.97    0.85    1.41    0.72    0.69    0.48    0.42 
+log lik 
+1626.42 
+iter 4:
+  theta                                                                         
+   1.56    1.19    1.60    0.97    0.85    1.41    0.72    0.69    0.48    0.42 
+log lik 
+1626.42 
+iter 5:
+  theta                                                                         
+   1.56    1.19    1.60    0.97    0.85    1.41    0.72    0.69    0.48    0.42 
+log lik 
+1626.42 
+Converged at iteration 5 
+             seed                 p               tau       orac.status 
+         2467.000            10.000            10.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+          108.719             0.117             1.000          6679.062 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.053             0.117             0.000             0.000 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            31.484             0.168             0.119 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.001             0.001             1.000            29.423 
+[1] 0.8583635
+iter 1:
+  theta                                                                         
+   1.38    1.28    1.29    1.27    1.07    1.15    0.72    0.78    0.61    0.33 
+log lik 
+3257.81 
+iter 2:
+  theta                                                                         
+   1.37    1.27    1.29    1.29    1.06    1.16    0.70    0.78    0.61    0.33 
+log lik 
+3258.27 
+iter 3:
+  theta                                                                         
+   1.36    1.27    1.28    1.29    1.06    1.16    0.69    0.78    0.61    0.33 
+log lik 
+3258.27 
+iter 4:
+  theta                                                                         
+   1.36    1.27    1.28    1.29    1.06    1.16    0.69    0.78    0.61    0.33 
+log lik 
+3258.27 
+iter 5:
+  theta                                                                         
+   1.36    1.27    1.28    1.29    1.06    1.16    0.69    0.78    0.61    0.33 
+log lik 
+3258.27 
+Converged at iteration 5 
+iter 1:
+  theta                                                                         
+   1.29    1.55    1.21    1.01    1.13    1.07    0.75    0.57    0.57    0.37 
+log lik 
+ 799.50 
+iter 2:
+  theta                                                                         
+   1.25    1.58    1.22    0.97    1.13    1.09    0.72    0.53    0.57    0.36 
+log lik 
+ 800.62 
+iter 3:
+  theta                                                                         
+   1.25    1.59    1.23    0.96    1.13    1.10    0.71    0.53    0.58    0.37 
+log lik 
+ 800.65 
+iter 4:
+  theta                                                                         
+   1.25    1.59    1.23    0.96    1.13    1.10    0.71    0.53    0.58    0.37 
+log lik 
+ 800.66 
+iter 5:
+  theta                                                                         
+   1.25    1.59    1.23    0.96    1.13    1.10    0.71    0.52    0.58    0.37 
+log lik 
+ 800.66 
+iter 6:
+  theta                                                                         
+   1.25    1.59    1.23    0.96    1.13    1.10    0.71    0.52    0.58    0.37 
+log lik 
+ 800.66 
+Converged at iteration 6 
+iter 1:
+  theta                                                                         
+   1.30    1.30    1.35    1.05    1.07    1.08    0.72    0.66    0.64    0.36 
+log lik 
+1753.40 
+iter 2:
+  theta                                                                         
+   1.30    1.30    1.35    1.03    1.07    1.08    0.69    0.66    0.65    0.36 
+log lik 
+1753.83 
+iter 3:
+  theta                                                                         
+   1.30    1.30    1.35    1.03    1.07    1.08    0.68    0.66    0.65    0.35 
+log lik 
+1753.83 
+iter 4:
+  theta                                                                         
+   1.30    1.31    1.35    1.03    1.07    1.08    0.68    0.66    0.65    0.35 
+log lik 
+1753.83 
+iter 5:
+  theta                                                                         
+   1.30    1.31    1.35    1.03    1.07    1.08    0.68    0.66    0.65    0.35 
+log lik 
+1753.83 
+Converged at iteration 5 
+iter 1:
+  theta                                                                         
+   1.28    1.33    1.38    0.84    1.66    0.95    0.97    0.47    0.43    0.38 
+log lik 
+ 126.83 
+iter 2:
+  theta                                                                         
+   1.30    1.44    1.35    0.80    1.47    0.98    0.98    0.41    0.41    0.39 
+log lik 
+ 130.05 
+iter 3:
+  theta                                                                         
+   1.29    1.45    1.33    0.80    1.48    1.00    0.97    0.39    0.40    0.39 
+log lik 
+ 130.21 
+iter 4:
+  theta                                                                         
+   1.29    1.46    1.33    0.80    1.47    1.00    0.97    0.39    0.40    0.39 
+log lik 
+ 130.22 
+iter 5:
+  theta                                                                         
+   1.28    1.46    1.33    0.80    1.47    1.00    0.97    0.39    0.40    0.39 
+log lik 
+ 130.22 
+iter 6:
+  theta                                                                         
+   1.28    1.46    1.33    0.80    1.47    1.01    0.97    0.39    0.40    0.39 
+log lik 
+ 130.22 
+iter 7:
+  theta                                                                         
+   1.28    1.46    1.33    0.80    1.47    1.01    0.97    0.39    0.40    0.39 
+log lik 
+ 130.22 
+iter 8:
+  theta                                                                         
+   1.28    1.46    1.33    0.80    1.47    1.01    0.97    0.39    0.40    0.39 
+log lik 
+ 130.22 
+Converged at iteration 8 
+iter 1:
+  theta                                                                         
+   1.28    1.42    1.29    1.00    1.24    1.02    0.75    0.61    0.57    0.37 
+log lik 
+1256.78 
+iter 2:
+  theta                                                                         
+   1.25    1.45    1.31    0.96    1.25    1.01    0.73    0.57    0.57    0.37 
+log lik 
+1257.57 
+iter 3:
+  theta                                                                         
+   1.25    1.46    1.31    0.95    1.25    1.00    0.72    0.57    0.57    0.38 
+log lik 
+1257.58 
+iter 4:
+  theta                                                                         
+   1.25    1.46    1.31    0.95    1.25    1.00    0.72    0.57    0.57    0.38 
+log lik 
+1257.58 
+iter 5:
+  theta                                                                         
+   1.25    1.46    1.31    0.95    1.25    1.00    0.72    0.57    0.57    0.38 
+log lik 
+1257.58 
+iter 6:
+  theta                                                                         
+   1.25    1.46    1.31    0.95    1.25    1.00    0.72    0.57    0.57    0.38 
+log lik 
+1257.58 
+Converged at iteration 6 
+iter 1:
+  theta                                                                         
+   1.44    1.19    1.58    0.78    2.92    0.90    0.97    0.44    0.36    0.32 
+log lik 
+-287.22 
+iter 2:
+  theta                                                                         
+   1.49    1.21    1.59    0.69    2.14    1.02    1.07    0.37    0.29    0.36 
+log lik 
+-275.81 
+iter 3:
+  theta                                                                         
+   1.48    1.22    1.53    0.69    2.07    1.05    1.07    0.34    0.26    0.36 
+log lik 
+-275.00 
+iter 4:
+  theta                                                                         
+   1.48    1.22    1.52    0.69    2.06    1.07    1.08    0.33    0.25    0.36 
+log lik 
+-274.93 
+iter 5:
+  theta                                                                         
+   1.48    1.23    1.52    0.68    2.06    1.08    1.08    0.33    0.25    0.36 
+log lik 
+-274.93 
+iter 6:
+  theta                                                                         
+   1.48    1.23    1.52    0.68    2.06    1.08    1.08    0.33    0.25    0.36 
+log lik 
+-274.92 
+iter 7:
+  theta                                                                         
+   1.48    1.23    1.52    0.68    2.06    1.08    1.08    0.33    0.25    0.36 
+log lik 
+-274.92 
+iter 8:
+  theta                                                                         
+   1.48    1.23    1.52    0.68    2.06    1.08    1.08    0.33    0.25    0.36 
+log lik 
+-274.92 
+iter 9:
+  theta                                                                         
+   1.48    1.23    1.52    0.68    2.06    1.08    1.08    0.33    0.25    0.36 
+log lik 
+-274.92 
+iter 10:
+  theta                                                                         
+   1.48    1.23    1.52    0.68    2.06    1.08    1.08    0.33    0.25    0.36 
+log lik 
+-274.92 
+Converged at iteration 10 
+iter 1:
+  theta                                                                         
+   1.28    1.22    1.49    0.86    1.27    1.00    0.81    0.61    0.51    0.37 
+log lik 
+ 943.14 
+iter 2:
+  theta                                                                         
+   1.29    1.23    1.48    0.77    1.23    1.00    0.80    0.60    0.51    0.38 
+log lik 
+ 944.50 
+iter 3:
+  theta                                                                         
+   1.29    1.22    1.49    0.75    1.23    0.99    0.80    0.60    0.52    0.38 
+log lik 
+ 944.55 
+iter 4:
+  theta                                                                         
+   1.29    1.22    1.49    0.75    1.23    0.99    0.80    0.60    0.52    0.38 
+log lik 
+ 944.55 
+iter 5:
+  theta                                                                         
+   1.29    1.22    1.49    0.75    1.23    0.99    0.80    0.60    0.52    0.38 
+log lik 
+ 944.55 
+iter 6:
+  theta                                                                         
+   1.29    1.22    1.49    0.75    1.23    0.99    0.80    0.60    0.52    0.38 
+log lik 
+ 944.55 
+Converged at iteration 6 
+iter 1:
+  theta                                                                         
+   1.87    1.15    2.39    0.71    3.02    0.86    0.76    0.36    0.30    0.35 
+log lik 
+-573.82 
+iter 2:
+  theta                                                                         
+   1.87    0.97    2.13    0.62    2.52    1.04    0.88    0.30    0.23    0.39 
+log lik 
+-566.70 
+iter 3:
+  theta                                                                         
+   1.81    0.93    2.05    0.60    2.52    1.09    0.90    0.27    0.20    0.40 
+log lik 
+-565.91 
+iter 4:
+  theta                                                                         
+   1.81    0.92    2.03    0.59    2.50    1.11    0.92    0.27    0.19    0.40 
+log lik 
+-565.85 
+iter 5:
+  theta                                                                         
+   1.80    0.92    2.02    0.59    2.50    1.11    0.92    0.26    0.19    0.40 
+log lik 
+-565.84 
+iter 6:
+  theta                                                                         
+   1.80    0.92    2.02    0.59    2.50    1.11    0.92    0.26    0.19    0.40 
+log lik 
+-565.84 
+iter 7:
+  theta                                                                         
+   1.80    0.92    2.02    0.59    2.50    1.11    0.92    0.26    0.19    0.40 
+log lik 
+-565.84 
+iter 8:
+  theta                                                                         
+   1.80    0.92    2.02    0.59    2.50    1.12    0.92    0.26    0.19    0.40 
+log lik 
+-565.84 
+Converged at iteration 8 
+iter 1:
+  theta                                                                         
+   1.37    1.08    1.75    0.87    1.77    1.01    0.69    0.52    0.45    0.35 
+log lik 
+ 639.36 
+iter 2:
+  theta                                                                         
+   1.37    1.02    1.79    0.77    1.61    1.05    0.69    0.48    0.43    0.35 
+log lik 
+ 642.23 
+iter 3:
+  theta                                                                         
+   1.37    1.01    1.80    0.75    1.60    1.05    0.70    0.47    0.43    0.35 
+log lik 
+ 642.29 
+iter 4:
+  theta                                                                         
+   1.37    1.01    1.80    0.74    1.60    1.06    0.70    0.47    0.44    0.35 
+log lik 
+ 642.30 
+iter 5:
+  theta                                                                         
+   1.37    1.01    1.80    0.74    1.60    1.06    0.70    0.47    0.44    0.35 
+log lik 
+ 642.30 
+iter 6:
+  theta                                                                         
+   1.37    1.01    1.80    0.74    1.60    1.06    0.70    0.47    0.44    0.35 
+log lik 
+ 642.30 
+iter 7:
+  theta                                                                         
+   1.37    1.01    1.80    0.74    1.60    1.06    0.70    0.47    0.44    0.35 
+log lik 
+ 642.30 
+Converged at iteration 7 
+iter 1:
+  theta                                                                         
+   1.30    1.28    1.37    0.83    1.68    1.00    0.94    0.46    0.42    0.36 
+log lik 
+ 289.94 
+iter 2:
+  theta                                                                         
+   1.30    1.38    1.39    0.79    1.46    1.03    0.96    0.41    0.39    0.37 
+log lik 
+ 296.64 
+iter 3:
+  theta                                                                         
+   1.29    1.38    1.37    0.79    1.47    1.05    0.95    0.39    0.37    0.37 
+log lik 
+ 296.93 
+iter 4:
+  theta                                                                         
+   1.29    1.39    1.37    0.80    1.46    1.05    0.95    0.39    0.37    0.37 
+log lik 
+ 296.96 
+iter 5:
+  theta                                                                         
+   1.29    1.39    1.37    0.80    1.46    1.06    0.95    0.39    0.37    0.37 
+log lik 
+ 296.96 
+iter 6:
+  theta                                                                         
+   1.29    1.39    1.37    0.80    1.46    1.06    0.95    0.39    0.37    0.37 
+log lik 
+ 296.96 
+iter 7:
+  theta                                                                         
+   1.29    1.39    1.37    0.80    1.46    1.06    0.95    0.39    0.37    0.37 
+log lik 
+ 296.96 
+iter 8:
+  theta                                                                         
+   1.29    1.39    1.37    0.80    1.46    1.06    0.95    0.39    0.37    0.37 
+log lik 
+ 296.96 
+iter 9:
+  theta                                                                         
+   1.29    1.39    1.37    0.80    1.46    1.06    0.95    0.39    0.37    0.37 
+log lik 
+ 296.96 
+Converged at iteration 9 
+iter 1:
+  theta                                                                         
+   1.26    1.32    1.47    0.95    1.23    1.03    0.75    0.63    0.54    0.38 
+log lik 
+2405.89 
+iter 2:
+  theta                                                                         
+   1.25    1.33    1.49    0.90    1.21    1.04    0.71    0.60    0.54    0.38 
+log lik 
+2407.60 
+iter 3:
+  theta                                                                         
+   1.25    1.33    1.50    0.89    1.20    1.04    0.71    0.60    0.54    0.38 
+log lik 
+2407.64 
+iter 4:
+  theta                                                                         
+   1.25    1.33    1.50    0.89    1.20    1.05    0.71    0.60    0.54    0.38 
+log lik 
+2407.64 
+iter 5:
+  theta                                                                         
+   1.25    1.33    1.50    0.89    1.20    1.05    0.71    0.60    0.54    0.38 
+log lik 
+2407.64 
+iter 6:
+  theta                                                                         
+   1.25    1.33    1.50    0.89    1.20    1.05    0.71    0.60    0.54    0.38 
+log lik 
+2407.64 
+Converged at iteration 6 
+iter 1:
+  theta                                                                         
+   1.39    1.23    1.66    0.77    2.61    1.00    0.90    0.39    0.33    0.40 
+log lik 
+-499.65 
+iter 2:
+  theta                                                                         
+   1.47    1.24    1.68    0.71    1.99    1.03    1.00    0.30    0.24    0.43 
+log lik 
+-476.28 
+iter 3:
+  theta                                                                         
+   1.45    1.26    1.61    0.70    1.93    1.05    1.02    0.27    0.21    0.43 
+log lik 
+-474.32 
+iter 4:
+  theta                                                                         
+   1.44    1.27    1.59    0.70    1.92    1.06    1.03    0.26    0.20    0.43 
+log lik 
+-474.17 
+iter 5:
+  theta                                                                         
+   1.44    1.27    1.59    0.70    1.92    1.07    1.03    0.26    0.20    0.43 
+log lik 
+-474.16 
+iter 6:
+  theta                                                                         
+   1.44    1.27    1.59    0.70    1.92    1.07    1.03    0.26    0.20    0.44 
+log lik 
+-474.16 
+iter 7:
+  theta                                                                         
+   1.44    1.27    1.59    0.70    1.92    1.07    1.03    0.26    0.20    0.44 
+log lik 
+-474.16 
+iter 8:
+  theta                                                                         
+   1.44    1.27    1.59    0.70    1.92    1.07    1.03    0.26    0.20    0.44 
+log lik 
+-474.16 
+iter 9:
+  theta                                                                         
+   1.44    1.27    1.59    0.70    1.92    1.07    1.03    0.26    0.20    0.44 
+log lik 
+-474.16 
+Converged at iteration 9 
+iter 1:
+  theta                                                                         
+   1.24    1.32    1.45    0.89    1.49    1.03    0.80    0.56    0.52    0.41 
+log lik 
+1759.05 
+iter 2:
+  theta                                                                         
+   1.26    1.34    1.46    0.80    1.44    1.04    0.79    0.52    0.51    0.41 
+log lik 
+1762.07 
+iter 3:
+  theta                                                                         
+   1.26    1.34    1.46    0.78    1.44    1.05    0.79    0.51    0.51    0.41 
+log lik 
+1762.14 
+iter 4:
+  theta                                                                         
+   1.26    1.34    1.46    0.78    1.43    1.05    0.79    0.51    0.51    0.41 
+log lik 
+1762.15 
+iter 5:
+  theta                                                                         
+   1.26    1.34    1.46    0.78    1.43    1.05    0.79    0.51    0.51    0.41 
+log lik 
+1762.15 
+iter 6:
+  theta                                                                         
+   1.26    1.34    1.46    0.78    1.43    1.05    0.79    0.51    0.51    0.41 
+log lik 
+1762.15 
+Converged at iteration 6 
+             seed                 p               tau       orac.status 
+         2468.000            10.000            10.000             1.000 
+        orac.time       orac.rmse_p       full.status         full.time 
+           82.790             0.113             1.000          9674.045 
+      full.rmse_t       full.rmse_p     full.rmse_s_S     full.rmse_s_T 
+            0.097             0.113             0.000             0.001 
+     ir250.status        ir250.time      ir250.rmse_t ir250.rmse_full_p 
+            1.000            18.852             0.158             0.113 
+   ir250.rmse_s_S    ir250.rmse_s_T      ic250.status        ic250.time 
+            0.001             0.001             1.000            15.013 
+  [1] "seed"              "p"                 "tau"              
+  [4] "orac.status"       "orac.time"         "orac.rmse_p"      
+  [7] "full.status"       "full.time"         "full.rmse_t"      
+ [10] "full.rmse_p"       "full.rmse_s_S"     "full.rmse_s_T"    
+ [13] "ir250.status"      "ir250.time"        "ir250.rmse_t"     
+ [16] "ir250.rmse_full_p" "ir250.rmse_s_S"    "ir250.rmse_s_T"   
+ [19] "ic250.status"      "ic250.time"        "ic250.rmse_t"     
+ [22] "ic250.rmse_full_p" "ic250.rmse_s_S"    "ic250.rmse_s_T"   
+ [25] "ir100.status"      "ir100.time"        "ir100.rmse_t"     
+ [28] "ir100.rmse_full_p" "ir100.rmse_s_S"    "ir100.rmse_s_T"   
+ [31] "ic100.status"      "ic100.time"        "ic100.rmse_t"     
+ [34] "ic100.rmse_full_p" "ic100.rmse_s_S"    "ic100.rmse_s_T"   
+ [37] "ir50.status"       "ir50.time"         "ir50.rmse_t"      
+ [40] "ir50.rmse_full_p"  "ir50.rmse_s_S"     "ir50.rmse_s_T"    
+ [43] "ic50.status"       "ic50.time"         "ic50.rmse_t"      
+ [46] "ic50.rmse_full_p"  "ic50.rmse_s_S"     "ic50.rmse_s_T"    
+ [49] "ir25.status"       "ir25.time"         "ir25.rmse_t"      
+ [52] "ir25.rmse_full_p"  "ir25.rmse_s_S"     "ir25.rmse_s_T"    
+ [55] "ic25.status"       "ic25.time"         "ic25.rmse_t"      
+ [58] "ic25.rmse_full_p"  "ic25.rmse_s_S"     "ic25.rmse_s_T"    
+ [61] "dr50.status"       "dr50.time"         "dr50.rmse_t"      
+ [64] "dr50.rmse_full_p"  "dr50.rmse_s_S"     "dr50.rmse_s_T"    
+ [67] "dc50.status"       "dc50.time"         "dc50.rmse_t"      
+ [70] "dc50.rmse_full_p"  "dc50.rmse_s_S"     "dc50.rmse_s_T"    
+ [73] "dr25.status"       "dr25.time"         "dr25.rmse_t"      
+ [76] "dr25.rmse_full_p"  "dr25.rmse_s_S"     "dr25.rmse_s_T"    
+ [79] "dc25.status"       "dc25.time"         "dc25.rmse_t"      
+ [82] "dc25.rmse_full_p"  "dc25.rmse_s_S"     "dc25.rmse_s_T"    
+ [85] "orac.Si_S"         "orac.Si_T"         "full.Si_S"        
+ [88] "full.Si_T"         "ir250.Si_S"        "ir250.Si_T"       
+ [91] "ic250.Si_S"        "ic250.Si_T"        "ir100.Si_S"       
+ [94] "ir100.Si_T"        "ic100.Si_S"        "ic100.Si_T"       
+ [97] "ir50.Si_S"         "ir50.Si_T"         "ic50.Si_S"        
+[100] "ic50.Si_T"         "ir25.Si_S"         "ir25.Si_T"        
+[103] "ic25.Si_S"         "ic25.Si_T"         "dr50.Si_S"        
+[106] "dr50.Si_T"         "dc50.Si_S"         "dc50.Si_T"        
+[109] "dr25.Si_S"         "dr25.Si_T"         "dc25.Si_S"        
+[112] "dc25.Si_T"        
+  seed  p tau orac.status orac.time orac.rmse_p full.status full.time
+1 2464 10  10        TRUE   110.166   0.1183628        TRUE 11145.544
+2 2465 10  10        TRUE   118.692   0.1108018        TRUE  8141.287
+3 2466 10  10        TRUE    83.821   0.1139787        TRUE  6078.988
+4 2467 10  10        TRUE   108.719   0.1168347        TRUE  6679.062
+5 2468 10  10        TRUE    82.790   0.1132708        TRUE  9674.045
+  full.rmse_t full.rmse_p full.rmse_s_S full.rmse_s_T ir250.status ir250.time
+1  0.06020812   0.1198116  0.0003242195  0.0003917989         TRUE     20.901
+2  0.03596286   0.1105145  0.0001016505  0.0002184355         TRUE     18.472
+3  0.07998593   0.1141780  0.0002320422  0.0004758810         TRUE     20.058
+4  0.05324579   0.1173534  0.0001913737  0.0002543332         TRUE     31.484
+5  0.09676153   0.1129776  0.0002473328  0.0007316523         TRUE     18.852
+  ir250.rmse_t ir250.rmse_full_p ir250.rmse_s_S ir250.rmse_s_T ic250.status
+1    0.1426146         0.1210413   0.0009659161   0.0009659161         TRUE
+2    0.1819712         0.1138450   0.0011403917   0.0011403917         TRUE
+3    0.1531511         0.1169866   0.0011633294   0.0011633294         TRUE
+4    0.1680874         0.1186052   0.0010316810   0.0010316810         TRUE
+5    0.1582644         0.1128576   0.0008702846   0.0008702846         TRUE
+  ic250.time ic250.rmse_t ic250.rmse_full_p ic250.rmse_s_S ic250.rmse_s_T
+1     13.691   0.10910587         0.1200419   0.0006851641   0.0006851641
+2     18.549   0.09452362         0.1114688   0.0004635839   0.0004635839
+3     15.562   0.16259542         0.1150767   0.0008753583   0.0008753583
+4     29.423   0.17584485         0.1180938   0.0010159345   0.0010159345
+5     15.013   0.11510235         0.1123832   0.0006145312   0.0006145312
+  ir100.status ir100.time ir100.rmse_t ir100.rmse_full_p ir100.rmse_s_S
+1         TRUE     12.653    0.3134365         0.1270401    0.002297327
+2         TRUE     15.555    0.3219077         0.1241290    0.002550129
+3         TRUE      5.966    0.2127805         0.1185201    0.001381353
+4         TRUE     17.632    0.2744482         0.1230231    0.001362902
+5         TRUE      8.313    0.2264882         0.1171617    0.001866970
+  ir100.rmse_s_T ic100.status ic100.time ic100.rmse_t ic100.rmse_full_p
+1    0.002297327         TRUE      5.041    0.1361609         0.1200622
+2    0.002550129         TRUE     10.048    0.1712248         0.1145637
+3    0.001381353         TRUE      6.028    0.2098622         0.1162725
+4    0.001362902         TRUE     12.081    0.1948503         0.1191091
+5    0.001866970         TRUE      6.360    0.1421671         0.1127099
+  ic100.rmse_s_S ic100.rmse_s_T ir50.status ir50.time ir50.rmse_t
+1   0.0009148927   0.0009148927        TRUE     8.800   0.4378460
+2   0.0010857059   0.0010857059        TRUE    18.537   0.4801123
+3   0.0013088064   0.0013088064        TRUE    13.139   0.3198634
+4   0.0011102121   0.0011102121        TRUE    15.340   0.4168043
+5   0.0007814620   0.0007814620        TRUE     9.314   0.3983658
+  ir50.rmse_full_p ir50.rmse_s_S ir50.rmse_s_T ic50.status ic50.time
+1        0.1378769   0.003896644   0.003896644        TRUE     5.515
+2        0.1432280   0.004485360   0.004485360        TRUE     6.750
+3        0.1253566   0.002099447   0.002099447        TRUE     9.965
+4        0.1319445   0.002036860   0.002036860        TRUE    11.760
+5        0.1261573   0.003199286   0.003199286        TRUE     6.199
+  ic50.rmse_t ic50.rmse_full_p ic50.rmse_s_S ic50.rmse_s_T ir25.status
+1   0.2230366        0.1233704   0.001604505   0.001604505        TRUE
+2   0.2256171        0.1165858   0.001717109   0.001717109        TRUE
+3   0.1822781        0.1165025   0.001260973   0.001260973        TRUE
+4   0.2448685        0.1207442   0.001241664   0.001241664        TRUE
+5   0.1883422        0.1140761   0.001122387   0.001122387        TRUE
+  ir25.time ir25.rmse_t ir25.rmse_full_p ir25.rmse_s_S ir25.rmse_s_T
+1    40.895   0.5658688        0.1514218   0.005936567   0.005936567
+2    22.407   0.6557290        0.1660257   0.006766623   0.006766623
+3    31.964   0.4902727        0.1350577   0.003384305   0.003384305
+4    19.100   0.5100078        0.1403431   0.002627910   0.002627910
+5    16.326   0.5967420        0.1394968   0.004951205   0.004951205
+  ic25.status ic25.time ic25.rmse_t ic25.rmse_full_p ic25.rmse_s_S
+1        TRUE    23.886   0.2281536        0.1247470   0.001730426
+2        TRUE    18.517   0.2272420        0.1181230   0.001635817
+3        TRUE    12.387   0.2471062        0.1204217   0.001768123
+4        TRUE    13.012   0.2823832        0.1230601   0.001184259
+5        TRUE    15.896   0.3155338        0.1167484   0.001651548
+  ic25.rmse_s_T dr50.status dr50.time dr50.rmse_t dr50.rmse_full_p
+1   0.001730426        TRUE    50.140   0.2945330        0.1261206
+2   0.001635817        TRUE    35.067   0.3293237        0.1254857
+3   0.001768123        TRUE    27.450   0.2572657        0.1197650
+4   0.001184259        TRUE    17.045   0.2526295        0.1220043
+5   0.001651548        TRUE    10.946   0.2253609        0.1166877
+  dr50.rmse_s_S dr50.rmse_s_T dc50.status dc50.time dc50.rmse_t
+1   0.002059850   0.002059850        TRUE    26.392   0.1454636
+2   0.002853512   0.002853512        TRUE    18.486   0.1891430
+3   0.001549096   0.001549096        TRUE    16.594   0.2009614
+4   0.001314976   0.001314976        TRUE    13.778   0.1750238
+5   0.001842788   0.001842788        TRUE     7.704   0.1610203
+  dc50.rmse_full_p dc50.rmse_s_S dc50.rmse_s_T dr25.status dr25.time
+1        0.1211406  0.0009904304  0.0009904304        TRUE    42.910
+2        0.1151079  0.0012790656  0.0012790656        TRUE    48.850
+3        0.1170958  0.0013302324  0.0013302324        TRUE    36.513
+4        0.1183219  0.0008954719  0.0008954719        TRUE    18.816
+5        0.1124610  0.0008420858  0.0008420858        TRUE    12.241
+  dr25.rmse_t dr25.rmse_full_p dr25.rmse_s_S dr25.rmse_s_T dc25.status
+1   0.4112051        0.1349271   0.003483062   0.003483062        TRUE
+2   0.5161875        0.1492230   0.005053451   0.005053451        TRUE
+3   0.3502730        0.1258618   0.002439725   0.002439725        TRUE
+4   0.4021914        0.1311299   0.001822349   0.001822349        TRUE
+5   0.3792447        0.1298497   0.003871038   0.003871038        TRUE
+  dc25.time dc25.rmse_t dc25.rmse_full_p dc25.rmse_s_S dc25.rmse_s_T
+1    26.726   0.1483635        0.1211362  0.0009858938  0.0009858938
+2    23.021   0.2328860        0.1175261  0.0017809489  0.0017809489
+3    31.587   0.2663742        0.1189853  0.0017376659  0.0017376659
+4    16.773   0.2190758        0.1198260  0.0010303323  0.0010303323
+5     8.148   0.2098373        0.1143035  0.0013626606  0.0013626606
+                                                                                                                            orac.Si_S
+1    0.022894793, 0.141898627, 0.001429252, 0.006162027, 0.156272232, 0.027839252, 0.011303461, 0.016084487, 0.023063876, 0.034202722
+2  -0.009143262, 0.025341976, 0.014918488, 0.022288152, 0.057238421, -0.002967453, 0.111905995, 0.075417234, 0.102926379, 0.014731937
+3    0.028472960, 0.019659805, 0.159849244, 0.039551416, 0.011854433, 0.062216385, 0.004641283, 0.013679990, 0.001461331, 0.002006489
+4    0.153878928, 0.012285911, 0.206710030, 0.082331789, 0.003792943, 0.055939417, 0.006560126, 0.018260970, 0.023117187, 0.049709565
+5 0.084926724, 0.019067834, 0.140421582, -0.002445340, 0.138837992, 0.027336062, -0.002390322, 0.019659474, -0.004844799, 0.017280004
+                                                                                                               orac.Si_T
+1           0.2248766, 0.3170854, 0.1614391, 0.1359888, 0.2894717, 0.1521016, 0.2351645, 0.1003145, 0.1104083, 0.1017411
+2 0.16804559, 0.22967486, 0.14980234, 0.11871855, 0.26408161, 0.11241735, 0.25954732, 0.17976172, 0.19203645, 0.08834499
+3 0.29026301, 0.21295469, 0.37256136, 0.21150521, 0.24148871, 0.20691916, 0.11721785, 0.12215106, 0.06015613, 0.05093620
+4 0.29211614, 0.11815711, 0.31092180, 0.19839366, 0.11733613, 0.19615542, 0.07215452, 0.09515724, 0.09671550, 0.09448169
+5 0.27223691, 0.19983337, 0.28763420, 0.11843657, 0.32631349, 0.16111123, 0.14341175, 0.09322809, 0.06809126, 0.08134238
+                                                                                                                            full.Si_S
+1    0.022678445, 0.142611973, 0.001475389, 0.006005522, 0.156319612, 0.027516488, 0.011379452, 0.015905561, 0.023088625, 0.033633453
+2  -0.009297366, 0.025258191, 0.014927802, 0.022378703, 0.057400726, -0.003001479, 0.111940400, 0.075553109, 0.102813361, 0.014797925
+3    0.028101656, 0.019638815, 0.159595281, 0.039775108, 0.011953545, 0.062367456, 0.005101036, 0.013710045, 0.001288305, 0.001902890
+4    0.153759024, 0.012510966, 0.207016706, 0.082018103, 0.003887696, 0.055927012, 0.006707996, 0.018410233, 0.023156176, 0.049941872
+5 0.084584502, 0.019275312, 0.140734182, -0.002577315, 0.138835017, 0.027823329, -0.002272361, 0.019815858, -0.004916864, 0.017515448
+                                                                                                               full.Si_T
+1           0.2246692, 0.3170413, 0.1609616, 0.1362215, 0.2897087, 0.1515745, 0.2353701, 0.1003124, 0.1106198, 0.1026283
+2 0.16843595, 0.22932820, 0.14960849, 0.11887966, 0.26413361, 0.11231833, 0.25923807, 0.17960643, 0.19210144, 0.08827741
+3 0.29029248, 0.21288730, 0.37238445, 0.21167136, 0.24231457, 0.20606490, 0.11755865, 0.12139196, 0.05987709, 0.05107137
+4 0.29214787, 0.11791965, 0.31097907, 0.19836996, 0.11724522, 0.19623531, 0.07223893, 0.09507947, 0.09622421, 0.09504421
+5 0.27166000, 0.19904837, 0.28764296, 0.11875409, 0.32622273, 0.16179037, 0.14151245, 0.09364775, 0.06830911, 0.08139561
+                                                                                                                           ir250.Si_S
+1    0.022312520, 0.141414316, 0.001183072, 0.005936749, 0.156874002, 0.027540319, 0.011248379, 0.015945919, 0.023066623, 0.033818175
+2  -0.008330505, 0.025533256, 0.014480784, 0.021964684, 0.057052434, -0.002537737, 0.110659456, 0.075493641, 0.103064753, 0.014713943
+3    0.029518287, 0.019652212, 0.160732946, 0.039511064, 0.011361068, 0.061672750, 0.004989392, 0.013264954, 0.001318749, 0.002302319
+4    0.153112335, 0.011616088, 0.206197203, 0.080922422, 0.003299176, 0.055219433, 0.006076603, 0.017971029, 0.022686951, 0.049616253
+5 0.085302638, 0.018942571, 0.140701771, -0.002770123, 0.139514337, 0.027463208, -0.002193352, 0.019289730, -0.005175253, 0.017865263
+                                                                                                              ir250.Si_T
+1           0.2250557, 0.3192690, 0.1602051, 0.1354062, 0.2900781, 0.1511971, 0.2361731, 0.1000016, 0.1108484, 0.1021572
+2           0.1676458, 0.2293481, 0.1485726, 0.1177621, 0.2648926, 0.1117144, 0.2594036, 0.1803464, 0.1941890, 0.0903854
+3 0.29133091, 0.21178814, 0.37293930, 0.21185056, 0.24326233, 0.20750340, 0.11659661, 0.12120508, 0.05770627, 0.05091819
+4 0.29264291, 0.11803660, 0.31071314, 0.19777083, 0.11735226, 0.19843077, 0.07143285, 0.09557451, 0.09523830, 0.09584757
+5 0.27106292, 0.20101192, 0.28846646, 0.11732645, 0.32691700, 0.16192751, 0.14406781, 0.09238262, 0.06874047, 0.08187569
+                                                                                                                           ic250.Si_S
+1    0.022511430, 0.141368561, 0.001209995, 0.005974129, 0.156956744, 0.027673324, 0.011186853, 0.016203524, 0.023034113, 0.034099279
+2  -0.008954769, 0.025351246, 0.014941322, 0.022453175, 0.057339712, -0.002887757, 0.111387700, 0.075793328, 0.102597322, 0.014766266
+3    0.028722223, 0.019293935, 0.160012095, 0.039528746, 0.011795659, 0.061872051, 0.005436932, 0.013284454, 0.001311208, 0.001854063
+4    0.153074695, 0.011494730, 0.206207841, 0.080982166, 0.003206826, 0.055264426, 0.006061300, 0.018043495, 0.022377877, 0.049472264
+5 0.084763584, 0.019191972, 0.141038295, -0.002832617, 0.139537366, 0.027678502, -0.002222235, 0.019702047, -0.005032466, 0.017692474
+                                                                                                              ic250.Si_T
+1           0.2246995, 0.3185822, 0.1605280, 0.1352762, 0.2901144, 0.1516210, 0.2356165, 0.1001611, 0.1108667, 0.1016880
+2 0.16803339, 0.22965884, 0.14969187, 0.11806682, 0.26404828, 0.11227035, 0.25904653, 0.18008418, 0.19309379, 0.08881006
+3 0.29123658, 0.21267643, 0.37280778, 0.21170313, 0.24331037, 0.20618853, 0.11734423, 0.12092706, 0.05907631, 0.05100640
+4 0.29255478, 0.11822327, 0.31071803, 0.19776332, 0.11710976, 0.19879286, 0.07152109, 0.09545190, 0.09567802, 0.09553706
+5 0.27128218, 0.19989349, 0.28844716, 0.11765907, 0.32645223, 0.16163133, 0.14273973, 0.09320123, 0.06897015, 0.08162770
+                                                                                                                           ir100.Si_S
+1    0.020983250, 0.142082768, 0.001076331, 0.005420813, 0.157142015, 0.027075542, 0.011673570, 0.016605745, 0.023325287, 0.033537447
+2  -0.007623640, 0.025402979, 0.014820362, 0.021852296, 0.057219051, -0.001839296, 0.110204259, 0.075419129, 0.102489800, 0.014641140
+3    0.029512832, 0.019190526, 0.160556492, 0.039349630, 0.011377038, 0.061471447, 0.005432194, 0.012979401, 0.001380969, 0.002118080
+4    0.152840252, 0.010655689, 0.205363191, 0.080844302, 0.003565870, 0.054428934, 0.005613335, 0.017101002, 0.022875185, 0.049392202
+5 0.085838812, 0.018006893, 0.140799678, -0.003443232, 0.138577052, 0.027647003, -0.002199119, 0.019035783, -0.005137356, 0.017491506
+                                                                                                              ir100.Si_T
+1           0.2252340, 0.3212654, 0.1569226, 0.1346266, 0.2888805, 0.1507037, 0.2376687, 0.1019954, 0.1110761, 0.1027785
+2 0.16486076, 0.23063922, 0.14868764, 0.11544519, 0.26461372, 0.11137575, 0.26010804, 0.18265646, 0.19650125, 0.09180976
+3 0.29122272, 0.21315913, 0.37344788, 0.21099705, 0.24360380, 0.20754506, 0.11610372, 0.11969464, 0.05811132, 0.05006874
+4 0.29217299, 0.11761973, 0.31073969, 0.19853150, 0.11618903, 0.19900430, 0.07052067, 0.09647541, 0.09559562, 0.09625304
+5 0.27208340, 0.20096290, 0.28964275, 0.11747983, 0.32712011, 0.16268612, 0.14673950, 0.08981383, 0.06728169, 0.08278782
+                                                                                                                           ic100.Si_S
+1    0.022258163, 0.141550607, 0.001282100, 0.005847781, 0.156753946, 0.027552469, 0.011408301, 0.016244104, 0.022921807, 0.033912230
+2  -0.008423669, 0.025466726, 0.014832054, 0.022242150, 0.057189748, -0.002905813, 0.110738358, 0.075695885, 0.102402594, 0.014694483
+3    0.029313423, 0.019105167, 0.160439433, 0.039255072, 0.011389267, 0.061757574, 0.004821429, 0.013163405, 0.001282865, 0.002212227
+4    0.152944591, 0.011356964, 0.205966321, 0.081221302, 0.003572827, 0.054916600, 0.005789519, 0.017965730, 0.022531829, 0.049313888
+5 0.085045588, 0.018834023, 0.141147878, -0.002848807, 0.139498347, 0.027481619, -0.002086416, 0.019460393, -0.005105741, 0.017606109
+                                                                                                              ic100.Si_T
+1           0.2252100, 0.3189538, 0.1599835, 0.1356038, 0.2892228, 0.1510271, 0.2358059, 0.1005452, 0.1112102, 0.1021617
+2 0.16674521, 0.22990584, 0.14974876, 0.11701992, 0.26412979, 0.11253396, 0.25949970, 0.18097925, 0.19428989, 0.08910427
+3 0.29066689, 0.21244542, 0.37363735, 0.21001817, 0.24398260, 0.20736455, 0.11671143, 0.12147175, 0.05767212, 0.05111556
+4 0.29211853, 0.11831009, 0.31077230, 0.19836462, 0.11684523, 0.19900973, 0.07127711, 0.09589966, 0.09543931, 0.09545191
+5 0.27113567, 0.20059752, 0.28858569, 0.11748209, 0.32684144, 0.16154495, 0.14414821, 0.09244734, 0.06873737, 0.08201880
+                                                                                                                            ir50.Si_S
+1    0.020708204, 0.143755071, 0.001350085, 0.004530491, 0.156690783, 0.026550095, 0.012252081, 0.015213520, 0.024362007, 0.033648909
+2  -0.007473742, 0.024810398, 0.015883318, 0.021818992, 0.058171489, -0.001121886, 0.110368452, 0.075674361, 0.101083953, 0.015118272
+3    0.029591351, 0.019725521, 0.161197504, 0.040005138, 0.011014432, 0.061687120, 0.006322826, 0.013130710, 0.001298230, 0.002391263
+4    0.153800289, 0.010055999, 0.206425757, 0.080459528, 0.004129776, 0.054246930, 0.005439929, 0.015917502, 0.024148724, 0.049926940
+5 0.086829444, 0.017673670, 0.140980506, -0.004196719, 0.137661193, 0.028562972, -0.002081108, 0.019089029, -0.004659358, 0.017367338
+                                                                                                               ir50.Si_T
+1           0.2250878, 0.3230435, 0.1528809, 0.1342113, 0.2883819, 0.1515824, 0.2406002, 0.1017703, 0.1099577, 0.1043036
+2 0.16160008, 0.23110919, 0.14877810, 0.11293530, 0.26438913, 0.10976211, 0.26023636, 0.18476319, 0.19991609, 0.09367083
+3 0.29123518, 0.21278594, 0.37308034, 0.21107374, 0.24516511, 0.20715259, 0.11549603, 0.11920881, 0.05675286, 0.04851267
+4 0.29194178, 0.11490764, 0.31232221, 0.19813288, 0.11469356, 0.19950330, 0.07013796, 0.09646736, 0.09583020, 0.09650928
+5 0.27407624, 0.19971087, 0.29109205, 0.11679134, 0.32776832, 0.16341024, 0.14761003, 0.08708962, 0.06385859, 0.08325779
+                                                                                                                            ic50.Si_S
+1    0.022051044, 0.141932549, 0.001263009, 0.005614874, 0.156197955, 0.026934275, 0.011591214, 0.016267291, 0.023475688, 0.033231776
+2  -0.007654237, 0.025535794, 0.014649064, 0.022166651, 0.056788922, -0.002574996, 0.110627318, 0.075519460, 0.102918794, 0.014718053
+3    0.028896222, 0.019142559, 0.159927247, 0.039436265, 0.011703854, 0.061921137, 0.005418162, 0.013189264, 0.001089712, 0.002002798
+4    0.153852969, 0.011464617, 0.206441251, 0.080998530, 0.003707249, 0.054481215, 0.005747156, 0.017659089, 0.022962475, 0.049721754
+5 0.085062454, 0.019026878, 0.141582673, -0.003346965, 0.139490491, 0.027584657, -0.002233104, 0.020028299, -0.004708044, 0.017430485
+                                                                                                               ic50.Si_T
+1           0.2248892, 0.3197750, 0.1586952, 0.1353936, 0.2890786, 0.1505212, 0.2376296, 0.1012865, 0.1106424, 0.1026889
+2 0.16557112, 0.22907760, 0.14927346, 0.11652445, 0.26391720, 0.11288488, 0.25959106, 0.18102123, 0.19563500, 0.09011353
+3 0.29115295, 0.21302512, 0.37356598, 0.21102701, 0.24323052, 0.20721806, 0.11697222, 0.11914890, 0.05893613, 0.05051110
+4 0.29302022, 0.11793872, 0.31158829, 0.19820775, 0.11694867, 0.19872995, 0.07088503, 0.09502958, 0.09459240, 0.09555855
+5 0.27197046, 0.20030512, 0.28928893, 0.11616055, 0.32628556, 0.16171200, 0.14501171, 0.09249450, 0.06860450, 0.08215628
+                                                                                                                                     ir25.Si_S
+1             0.020344230, 0.145265664, 0.001280861, 0.004302852, 0.156708489, 0.025710193, 0.012634409, 0.014573926, 0.025925476, 0.034673471
+2 -6.841843e-03, 2.401859e-02, 1.600092e-02, 2.117593e-02, 5.920710e-02, -3.135819e-05, 1.103851e-01, 7.430903e-02, 1.020845e-01, 1.537181e-02
+3             0.031009695, 0.019826431, 0.162554138, 0.038757940, 0.010170838, 0.060688339, 0.004605947, 0.013047599, 0.001374786, 0.003517626
+4             0.154851515, 0.009407885, 0.207073562, 0.080266241, 0.003980710, 0.054144948, 0.005727743, 0.015359614, 0.025328113, 0.050406081
+5          0.088215255, 0.017549014, 0.142096997, -0.005109149, 0.137201488, 0.029797410, -0.002476861, 0.018501121, -0.004455690, 0.017851548
+                                                                                                               ir25.Si_T
+1           0.2239456, 0.3264376, 0.1478729, 0.1304671, 0.2891720, 0.1524655, 0.2405144, 0.1040594, 0.1091968, 0.1040284
+2 0.15630527, 0.22967655, 0.14523280, 0.11202934, 0.26460821, 0.10919967, 0.26270354, 0.18608913, 0.20320899, 0.09664897
+3 0.29238367, 0.21079966, 0.37537979, 0.21054761, 0.24434589, 0.20757584, 0.11229690, 0.11983141, 0.05254031, 0.05152043
+4 0.29288907, 0.11293419, 0.31359786, 0.19758221, 0.11413150, 0.19933546, 0.06937775, 0.09530086, 0.09591602, 0.09662886
+5 0.27664404, 0.19672375, 0.29447865, 0.11553867, 0.32867353, 0.16260219, 0.14626516, 0.08355005, 0.06136295, 0.08377920
+                                                                                                                            ic25.Si_S
+1    0.021951096, 0.142404710, 0.001276994, 0.005502063, 0.156613296, 0.027025082, 0.011803274, 0.015762059, 0.023282131, 0.033398415
+2  -0.008129254, 0.025013194, 0.014952835, 0.021774597, 0.056720233, -0.002440266, 0.110958700, 0.075208251, 0.102706974, 0.014397488
+3    0.029730971, 0.019585423, 0.160562847, 0.039731399, 0.011459397, 0.061926914, 0.005921296, 0.013202685, 0.001065842, 0.002364508
+4    0.153532612, 0.010678432, 0.205844992, 0.080555335, 0.003272580, 0.054448470, 0.005581618, 0.016681339, 0.023034781, 0.049426451
+5 0.085253365, 0.018589578, 0.142059826, -0.004255935, 0.138968718, 0.028317975, -0.002061410, 0.019533509, -0.004840441, 0.017580154
+                                                                                                               ic25.Si_T
+1           0.2248190, 0.3208313, 0.1588101, 0.1352294, 0.2896621, 0.1505116, 0.2367045, 0.1007034, 0.1115998, 0.1031244
+2 0.16556558, 0.23029180, 0.14970662, 0.11723552, 0.26373599, 0.11218446, 0.26027521, 0.18163695, 0.19511128, 0.09042941
+3 0.29153506, 0.21197818, 0.37405912, 0.21160626, 0.24429679, 0.20784010, 0.11625044, 0.11915406, 0.05815358, 0.04899304
+4 0.29290697, 0.11758415, 0.31108617, 0.19754582, 0.11670686, 0.19875128, 0.07079088, 0.09567883, 0.09580217, 0.09597329
+5 0.27240000, 0.19873206, 0.29111700, 0.11626874, 0.32665692, 0.16205231, 0.14434178, 0.09063681, 0.06798565, 0.08212517
+                                                                                                                            dr50.Si_S
+1    0.021114323, 0.141677065, 0.001095214, 0.005550978, 0.156931358, 0.026968736, 0.011613968, 0.015995165, 0.023113153, 0.033439548
+2  -0.007217935, 0.025827723, 0.015023562, 0.022322643, 0.057434471, -0.001380588, 0.110166936, 0.075696323, 0.102566323, 0.014695695
+3    0.029712237, 0.019292218, 0.161053676, 0.039264362, 0.011116596, 0.061248587, 0.005371083, 0.012857325, 0.001444951, 0.002163238
+4    0.153139457, 0.011062258, 0.206104986, 0.080843606, 0.003647369, 0.054632776, 0.005723036, 0.017271862, 0.023005010, 0.049658909
+5 0.085814075, 0.018127768, 0.140686729, -0.003612586, 0.138471448, 0.027829501, -0.002188452, 0.019139482, -0.005001711, 0.017517275
+                                                                                                               dr50.Si_T
+1           0.2259285, 0.3201823, 0.1572962, 0.1355912, 0.2890037, 0.1503856, 0.2380924, 0.1013290, 0.1108946, 0.1029278
+2 0.16427413, 0.23161952, 0.14893799, 0.11416371, 0.26405371, 0.11179539, 0.26014000, 0.18289054, 0.19667058, 0.09149498
+3 0.29138700, 0.21278779, 0.37319640, 0.21099893, 0.24380875, 0.20700157, 0.11604756, 0.12002033, 0.05688152, 0.05109146
+4 0.29227672, 0.11744006, 0.31121179, 0.19800812, 0.11671058, 0.19873080, 0.07080020, 0.09581885, 0.09488722, 0.09645158
+5 0.27227719, 0.20080409, 0.28975179, 0.11744959, 0.32691286, 0.16299892, 0.14651203, 0.08989627, 0.06697946, 0.08264043
+                                                                                                                            dc50.Si_S
+1    0.022301191, 0.141522425, 0.001091068, 0.005899022, 0.156413354, 0.027454197, 0.011319774, 0.016391705, 0.022992294, 0.033512286
+2  -0.008369691, 0.025226789, 0.014961996, 0.022174458, 0.057127130, -0.002729846, 0.111159048, 0.075595878, 0.102449910, 0.014492819
+3    0.028971374, 0.019342311, 0.160212782, 0.039439132, 0.011646724, 0.061752146, 0.005252641, 0.013214671, 0.001250652, 0.002096674
+4    0.153378744, 0.011597799, 0.206467038, 0.081211685, 0.003634928, 0.055133039, 0.005877034, 0.017674493, 0.022574500, 0.049527056
+5 0.084881317, 0.018970068, 0.141391064, -0.003147564, 0.139840092, 0.027670121, -0.002142853, 0.019784441, -0.004883494, 0.017636991
+                                                                                                               dc50.Si_T
+1           0.2250832, 0.3186916, 0.1600691, 0.1353578, 0.2894664, 0.1506647, 0.2365681, 0.1008178, 0.1109177, 0.1023448
+2           0.1656969, 0.2298346, 0.1498840, 0.1172364, 0.2640993, 0.1124946, 0.2598181, 0.1808909, 0.1944228, 0.0895963
+3 0.29086992, 0.21273431, 0.37326820, 0.21090176, 0.24413132, 0.20685763, 0.11632570, 0.12000143, 0.05816332, 0.05073804
+4 0.29205193, 0.11769630, 0.31109799, 0.19803933, 0.11689834, 0.19839621, 0.07162444, 0.09542387, 0.09582499, 0.09561648
+5 0.27118318, 0.20036799, 0.28905984, 0.11695507, 0.32650589, 0.16161013, 0.14393061, 0.09261349, 0.06847158, 0.08196695
+                                                                                                                                     dr25.Si_S
+1             0.020744673, 0.143178759, 0.001280429, 0.004875854, 0.157073766, 0.026917706, 0.012083234, 0.015572013, 0.024248789, 0.033948925
+2 -0.0072329726, 0.0247122875, 0.0159967952, 0.0216338918, 0.0583841396, -0.0009723214, 0.1098860163, 0.0757078088, 0.1009963272, 0.0152390575
+3             0.030306612, 0.019559789, 0.161853590, 0.038787581, 0.010696062, 0.060797984, 0.004864763, 0.012708519, 0.001459046, 0.002694116
+4             0.153746172, 0.010215685, 0.206134227, 0.080554508, 0.004034315, 0.053965979, 0.005526475, 0.016258240, 0.024040657, 0.049851445
+5          0.087389008, 0.017427205, 0.141041025, -0.004383936, 0.137885024, 0.029034127, -0.002320062, 0.018541952, -0.004858695, 0.017662177
+                                                                                                               dr25.Si_T
+1           0.2251692, 0.3232841, 0.1540730, 0.1337173, 0.2891036, 0.1522146, 0.2393662, 0.1018473, 0.1098769, 0.1034597
+2 0.16100840, 0.23133408, 0.14860598, 0.11200477, 0.26471515, 0.10933053, 0.26059830, 0.18538871, 0.20048569, 0.09486461
+3 0.29185899, 0.21181981, 0.37406086, 0.21002466, 0.24419304, 0.20708063, 0.11389749, 0.11987145, 0.05502778, 0.05211356
+4 0.29232995, 0.11594946, 0.31208898, 0.19842331, 0.11504757, 0.19937976, 0.06995225, 0.09612210, 0.09537567, 0.09640963
+5 0.27435306, 0.19985553, 0.29163584, 0.11763529, 0.32792485, 0.16372567, 0.14728358, 0.08509982, 0.06256761, 0.08411966
+                                                                                                                            dc25.Si_S
+1    0.022298056, 0.141737118, 0.001240805, 0.005923856, 0.156153929, 0.027419583, 0.011430270, 0.016179508, 0.023086933, 0.033517340
+2  -0.007645253, 0.025804302, 0.014618003, 0.022162457, 0.057031523, -0.002353086, 0.110251999, 0.075681058, 0.102972743, 0.014801015
+3    0.029076652, 0.019529477, 0.160430691, 0.039798516, 0.011462565, 0.062068426, 0.005686827, 0.013331127, 0.001018049, 0.002313058
+4    0.153635586, 0.011352821, 0.206919464, 0.080926294, 0.003599365, 0.054817193, 0.005793696, 0.017481263, 0.022798471, 0.049421012
+5 0.085294359, 0.018619241, 0.141729355, -0.003379902, 0.139470328, 0.027675432, -0.002095106, 0.019549850, -0.004971520, 0.017582965
+                                                                                                               dc25.Si_T
+1           0.2253567, 0.3189587, 0.1602533, 0.1355410, 0.2897053, 0.1511543, 0.2366456, 0.1009302, 0.1104920, 0.1026586
+2           0.1661619, 0.2296396, 0.1489073, 0.1159285, 0.2643454, 0.1123149, 0.2596111, 0.1813258, 0.1954927, 0.0906047
+3 0.29127602, 0.21199671, 0.37357616, 0.21064224, 0.24503221, 0.20705724, 0.11655878, 0.11967375, 0.05769184, 0.04981516
+4 0.29222557, 0.11828175, 0.31129462, 0.19757242, 0.11689698, 0.19880074, 0.07179249, 0.09516800, 0.09543828, 0.09538822
+5 0.27145422, 0.20036825, 0.28968722, 0.11643004, 0.32679580, 0.16201127, 0.14533502, 0.09136918, 0.06839369, 0.08241006
+> 
+> proc.time()
+     user    system   elapsed 
+55064.286   484.677 56313.727 
