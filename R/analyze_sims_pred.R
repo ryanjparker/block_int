@@ -76,7 +76,6 @@ mean(good.dc25)
 
 	# full
 	sub <- which(good.orac&good.full)
-print(length(sub))
 	full <- list()
 	full$rmse_t_mu <- mean(full.rmse_t[sub])
 	full$rmse_p_mu <- mean(full.rmse_p[sub])
@@ -447,6 +446,7 @@ if (TRUE) {
 pres <- vector("list", 6)
 for (i in c(1,2,3,4,5,6)) {#,8,9)) {
 	tmp<-analyze_sims(i)
+print(t.test( tmp$l100.rmse, tmp$full.rmse, paired=TRUE ))
 	pres[[i]] <- colMeans(tmp)
 }
 

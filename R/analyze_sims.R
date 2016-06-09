@@ -131,6 +131,9 @@ print(length(sub))
 	ic250$rel_speedup_mu <- mean(full.time[sub]/(ic250.time[sub]))
 	ic250$speedup_mu <- mean(ic250.time[sub])/60
 
+print(t.test(full.rmse_p[sub], ic250.rmse_full_p[sub], paired=TRUE))
+
+
 	# ir 100
 	sub <- which(good.orac&good.full&good.ir100)
 	ir100 <- list()
